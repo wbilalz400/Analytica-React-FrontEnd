@@ -6,7 +6,12 @@ import barIcon from '../images/bar.png';
 import radarIcon from '../images/radar.png';
 import donutIcon from '../images/donut.png';
 import lineIcon from '../images/line.png';
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 import userLogo from '../images/user-icon.svg';
 import FormButton from '../components/FormButton'
 import editLogo from '../images/edit-icon.svg';
@@ -15,12 +20,16 @@ import '../css/styles1.css';
 import { circle } from '@fortawesome/fontawesome-free'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import leftArrowIcon from '../images/left-arrow-icon.svg';
-import { faCircle,faTimesCircle, faArrowAltCircleLeft, faArrowAltCircleRight, faUserCircle, faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faCircle, faTimesCircle, faArrowAltCircleLeft, faArrowAltCircleRight, faUserCircle, faArrowAltCircleDown, faEdit, faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { faWifi, faBolt, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Collapse } from 'react-collapse';
 import GridLayout from 'react-grid-layout';
 import Chart from "react-apexcharts";
 import DashboardView from './DashboardView.js';
-
+import DevicesView from './Devices.js';
+import Actions from './Actions';
+import DeviceView from './DeviceView';
+import MyProfileView from './MyProfileView';
 
 export default class extends React.Component {
     constructor() {
@@ -205,20 +214,20 @@ export default class extends React.Component {
             }
         };
         if (type === "donut") toR.data.series = toR.data.series[0].data;
-        return toR; 
+        return toR;
     }
     addChart = type => {
-        this.setState({widgets: [...this.state.widgets,this.generateChart(type)]});
+        this.setState({ widgets: [...this.state.widgets, this.generateChart(type)] });
     }
-    
+
     updateLayout = layout => {
         let widgets = [...this.state.widgets];
         layout.forEach(lay => {
             let index = widgets.findIndex(o => o.id === lay.i);
             widgets[index].layout = lay;
         });
-        this.setState({widgets:widgets});
-        localStorage.setItem("dashboard",JSON.stringify(this.state.widgets));
+        this.setState({ widgets: widgets });
+        localStorage.setItem("dashboard", JSON.stringify(this.state.widgets));
     }
     componentDidMount() {
         if (localStorage.getItem("dashboard")) {
@@ -255,7 +264,7 @@ export default class extends React.Component {
             // window.location.href = '/login';
         }
     }
-    
+
     render() {
         if (!this.state.auth) {
             return (<div style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} className="HomeBody"><img src={logo} width='300' px></img></div>);
@@ -277,18 +286,39 @@ export default class extends React.Component {
                         <FormButton color='orange' label="Sign Out" onClick={this.logOut} ></FormButton>
                     </div>
                     <div className="Menus">
-                        <div className="MenuItem">
+                        <div onClick={() => window.location.href='/home/dashboard'} className="MenuItem">
+                            <FontAwesomeIcon icon={faCalendar} />
+                            <h3>Dashboard</h3>
+
+                        </div>
+                        <div onClick={() => window.location.href='/home/devices'} className="MenuItem">
+                            <FontAwesomeIcon icon={faWifi} />
+                            <h3>Devices</h3>
+
+                        </div>
+                        <div onClick={() => window.location.href='/home/actions'} className="MenuItem">
+                            <FontAwesomeIcon icon={faBolt} />
+                            <h3>Actions</h3>
+
+                        </div>
+                        <div onClick={() => window.location.href='/home/devices'} className="MenuItem">
+                            <FontAwesomeIcon icon={faClipboardList} />
+                            <h3>Reports</h3>
+
+                        </div>
+                        <div onClick={e => this.collapse('collapseProfile')}  className="MenuItem">
                             <FontAwesomeIcon icon={faUserCircle} />
                             <h3>My Profile</h3>
                             <FontAwesomeIcon onClick={e => this.collapse('collapseProfile')} icon={faArrowAltCircleDown} rotation={this.state.collapseProfile ? 180 : 0}></FontAwesomeIcon>
 
                         </div>
                         <Collapse isOpened={this.state.collapseProfile}>
-                            <div className='ChildItem'>
+                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faEdit} />
                                 <h3>Edit Profile</h3>
                             </div>
                         </Collapse>
+
                     </div>
                 </div>
                 <div className="main">
@@ -297,8 +327,17 @@ export default class extends React.Component {
                         <div className="subHeader center"><img src={logo} width='200px' /></div>
                         <div className="subHeader right"></div>
                     </div>
-                    <div style={{overflow:'scroll'}} className={"content " + (this.state.loading ? "" : "")}>
-                       <DashboardView/>
+                    <div style={{ overflow: 'scroll' }} className={"content " + (this.state.loading ? "" : "")}>
+                        <Router>
+                            <Switch>
+                                <Route path='/home/devices/:device' component={DeviceView}/>
+                                <Route path='/home/devices' component={DevicesView}/>
+                                <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props}/>}/>
+                                <Route path='/home/actions' component = {Actions}/>
+                                <Route path="/home" render={() => <DashboardView/>}/>
+
+                            </Switch>
+                        </Router>
                     </div>
                 </div>
             </div>

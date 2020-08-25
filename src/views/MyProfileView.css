@@ -1,0 +1,39 @@
+.MPMain {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.MPMain h1 {
+    color: orangered;
+    border: 0.5px solid orangered;
+    margin: 20px;
+    text-align: center;
+}
+
+.MPMain .InputContainer {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.MPMain .InputContainer > :first-child {
+    font-size:18px;
+    
+}
+.MPMain .InputContainer > :not(:first-child) {
+    width:80%
+}
+.MPMain .InputContainer h3 {
+    margin: 2 12%;
+}
+.MPMain .ButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}

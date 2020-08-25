@@ -1,0 +1,86 @@
+.ActionMain {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ActionMain table {
+    width: 80%;
+    border-collapse: separate;
+    border: 1px solid lightsalmon;
+    margin: 20px;
+    background-color: rgba(255,160,122,0.1);
+}
+.ActionMain .modalContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ActionMain .inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    
+}
+.ActionMain .inputContainer > * {
+    flex:1
+}
+.ActionMain select {
+    margin: 1% 12% -5px;
+    padding-left: 12px;
+    line-height: 28px;
+}
+.ActionMain .Modal {
+    position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    width: 100vw;
+    height: 100vh;
+    display : none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0
+}
+.ActionMain .Modal.show {
+    display: flex;
+    z-index: 20;
+}
+.ActionMain .addForm {
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ActionMain tr:nth-child(even) {
+    border-collapse: collapse;
+    color: white;
+    background-color: lightsalmon;
+
+}
+
+.ActionMain tr,td {
+    text-align: center;
+    border: 1px solid lightsalmon;
+
+}
+
+.ActionMain tr:nth-child(even) {
+    border-collapse: collapse;
+    color: white;
+    border-color: white;
+    background-color: lightsalmon;
+}
+.ActionMain tr:nth-child(even) > td {
+    border-color: white;
+}
+.ActionMain th {
+    border: 1px solid lightsalmon;
+
+}

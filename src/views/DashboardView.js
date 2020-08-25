@@ -76,7 +76,7 @@ export default class DashboardView extends React.Component {
                                     });
                                     widget.data = data;
                                     widget.chartOptions.xaxis = { type: 'category' };
-                                } else if (widget.type === 'donut') {
+                                } else if (widget.type === 'donut' || widget.type === 'pie') {
                                     let uniqueData = new Set(res.data.data.map(data => data.value));
                                     let data = [];
                                     let labels = [];
@@ -264,11 +264,11 @@ export default class DashboardView extends React.Component {
                     {this.isChart(element.type) ?
                         <Chart
                             options={{ ...element.chartOptions }}
-                            series={element.type === 'donut' ? (element.data ? element.data : []) : [{ data: element.data }]}
+                            series={element.type === 'pie' ? (element.data ? element.data : []) : [{name:'Series-1',   data: element.data }]}
                             height={element.layout.h * 30}
 
                             width={element.layout.w * 95}
-                            type={element.type}
+                            type={element.type === 'pie'?'donut':element.type}
                         />
                         : element.type === 'thermometer' ? <Thermometer value={element.data} height={element.layout.h * 30} />
                             : <div />}

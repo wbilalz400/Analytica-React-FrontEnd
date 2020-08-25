@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import styles from './About.css'
 import comsats from '../images/comsats.jpg'
 import Footer from '../components/Footer'
-import me from '../assets/images/me.jpg'
+import me from '../assets/images/c1.jpg'
 import billu from '../assets/images/c6.jpg'
 import sir from '../assets/images/c5.jpg'
 import w1 from '../assets/images/w1.png'
@@ -110,10 +110,13 @@ function About() {
                 <h4>Full Stack Developer</h4>
                
                 <div class="overlay">
-                <div class="text">Computer Scientist - Expert in Machine Learning & Data Science. 
-                React full stack developer with expertise in Mongo & Express. Known language - Python, Java, C++, Javascript.
-                Motive - Combining both the analytical skills, problem solving technique with modern ways of recognizing patterns
-                through the art of data science and machine learning with the assistance of modern methodologies such as Cloud Computing 
+                <div class="text">Meow Moew Moew Moew Moew Moew Moew Meow Meow Moew Moew Moew Moew Moew Moew Meow Meow Moew Moew Moew Moew Moew Moew Meow
+                Meow Moew Moew Moew Moew Moew Moew Meow 
+                Meow Moew Moew Moew Moew Moew Moew Meow 
+                Meow Moew Moew Moew Moew Moew Moew Meow 
+                Meow Moew Moew Moew Moew Moew Moew Meow 
+                Meow Moew Moew Moew Moew Moew Moew Meow 
+                Meow Meow
                  </div>
                 </div>
             </div>

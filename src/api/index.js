@@ -11,6 +11,7 @@ const GET_SENSORS = '/device/{deviceId}';
 const GET_DATA_LIMIT = '/device/{deviceId}/sensor/{sensorId}/limit/{limit}';
 const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}';
 const DELETE_WIDGET = '/dashboard/widget/{widgetId}';
+const UPDATE_USER = "/users/";
 const API = axios.create({
     baseURL: BASE_URL,
 });
@@ -68,7 +69,10 @@ export const getLimitData = (limit,device,sensor) => {
     let url = GET_DATA_LIMIT.replace("{limit}",limit).replace("{deviceId}",device).replace("{sensorId}",sensor);
     return API.get(url);
 }
-
+export const updateUser = payload => {
+    let url = UPDATE_USER;
+    return API.put(url,payload);
+}
 export const addChart = async (type,device,sensor,days) => {
     let url = ADD_CHART.replace("{type}",type).replace("{device}",device).replace("{sensor}",sensor).replace("{days}",days);
     return API.post(url,{});
@@ -78,6 +82,12 @@ export const addThermometer = async (device,sensor) => {
     return API.post(url,{});
 }
 
+export const addAction = (payload) => {
+    let url = "/users/action";
+    return API.post(url,payload);
+}
+
+export const getActions = () => API.get('/users/action');
 export const fetchDailyData = async () => {
     try {
         const { data } = await axios.get(`${url1}/daily`);

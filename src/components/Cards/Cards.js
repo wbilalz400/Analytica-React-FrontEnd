@@ -18,7 +18,7 @@ class Cards extends Component{
                     <CardUI imgsrc={img2} title={"How to add Widgets to your Dashboard"}/>
                     </div>
                     <div className="col-md-3">
-                    <CardUI imgsrc={img3} title={"How to Navigate through your devices"}/>
+                    <CardUI imgsrc={img3} title={"How to Add devices to your Dashboard"}/>
                     </div>
                     <div className="col-md-3">
                     <CardUI imgsrc={img4} title={"Perform your desired Analytics"}/>

@@ -37,7 +37,7 @@ export default class FormField extends React.Component {
                     {this.props.label}
                     { this.props.required? <span style={{color:'red'}}>*</span>: ''}
                 </label>
-                <input className={'input-field ' + this.props.color}  type={this.props.type} name={this.props.name} placeholder={this.props.placeholder} onChange={this.props.onChange} >
+                <input className={'input-field ' + this.props.color}  value={this.props.value} type={this.props.type} name={this.props.name} placeholder={this.props.placeholder} onChange={this.props.onChange} >
 
                 </input>
                 <label style={this.styles.errLabel}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/dark-logo.png'
+import logo from '../images/light-logo.png'
 import user from '../images/user.png'
 import light from '../images/thunder.png'
 import Row from 'react-bootstrap/Row'
