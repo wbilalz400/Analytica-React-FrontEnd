@@ -6,6 +6,14 @@ const GET_DASHBOARD = '/dashboard/{id}';
 const UPDATE_DASHBOARD = '/dashboard/{id}';
 const ADD_CHART = '/dashboard/chart/{type}/{device}/{sensor}/{days}';
 const ADD_THERMOMETER = '/dashboard/thermometer/{device}/{sensor}';
+const ADD_GAUGE = '/dashboard/gauge/{device}/{sensor}';
+const ADD_INDICATOR = '/dashboard/indicator/{device}/{sensor}';
+const ADD_INTENSITY = '/dashboard/intensity/{device}/{sensor}';
+const ADD_PM = '/dashboard/pm/{device}/{sensor}';
+const ADD_HUMIDITY = '/dashboard/humidity/{device}/{sensor}';
+const ADD_ELECTRICITY = '/dashboard/electricity/{device}/{sensor}';
+const ADD_TVOC = '/dashboard/tvoc/{device}/{sensor}';
+const ADD_TEMPERATURE = '/dashboard/temperature/{device}/{sensor}';
 const GET_DEVICES = '/device';
 const GET_SENSORS = '/device/{deviceId}';
 const GET_DATA_LIMIT = '/device/{deviceId}/sensor/{sensorId}/limit/{limit}';
@@ -80,6 +88,42 @@ export const addChart = async (type,device,sensor,days) => {
 export const addThermometer = async (device,sensor) => {
     let url = ADD_THERMOMETER.replace("{device}",device).replace("{sensor}",sensor);
     return API.post(url,{});
+}
+export const addIntensity = async (device,sensor) => {
+    let url = ADD_INTENSITY.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addPM = async (device,sensor) => {
+    let url = ADD_PM.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addHumidity = async (device,sensor) => {
+    let url = ADD_HUMIDITY.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addElectricity = async (device,sensor) => {
+    let url = ADD_ELECTRICITY.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addTvoc = async (device,sensor) => {
+    let url = ADD_TVOC.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addTemperature = async (device,sensor) => {
+    let url = ADD_TEMPERATURE.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const add = async (device,sensor) => {
+    let url = ADD_THERMOMETER.replace("{device}",device).replace("{sensor}",sensor);
+    return API.post(url,{});
+}
+export const addGauge = async (device,sensor) => {
+    let url = ADD_GAUGE.replace("{device}",device).replace("{sensor}",sensor);
+    return await API.post(url,{});
+}
+export const addIndicator = async (device,sensor) => {
+    let url = ADD_INDICATOR.replace("{device}",device).replace("{sensor}",sensor);
+    return await API.post(url,{});
 }
 
 export const addAction = (payload) => {
