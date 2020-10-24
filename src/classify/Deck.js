@@ -7,7 +7,7 @@ import Card from "./Card";
 //import data2 from "../data2.js";
 import data3 from "../data.js";
 
-import "../styles/Deck.css";
+// import "../styles/Deck.css";
 
 const to = i => ({
   x: 0,
