@@ -175,12 +175,16 @@
     flex-direction: row;
     display: flex;
     margin-left: 20px;
+    margin-right:20px;
+    padding: 17px 0px;
+    border-top:1px solid rgba(0, 0, 0, 0.3);
+    transition: 0.5s color;
     align-items: center;
 }
-
-
-
-
+.MenuItem:hover {
+    color: orangered;
+    cursor: pointer;
+}
 
 .Menus {
     margin-top: 5%;
@@ -193,7 +197,7 @@
     margin-bottom: 0;
 }
 
-.MenuItem>*:last-child {
+.MenuItem> *:not(h3):last-child {
     margin-left: auto;
     margin-right: 30px;
     transition: spin 3s;
@@ -212,7 +216,9 @@
     align-items: center;
     margin-left: 20%;
 }
-
+.collapsed .MenuItem > h3 {
+    font-size:0;
+}
 .ChildItem:first-child {}
 
 .ReactCollapse--content {}
@@ -231,4 +237,7 @@
     height: 100%;
     flex-direction: column;
     overflow: auto;
+}
+.MenuItem > svg:first-child {
+    min-width: 30px;
 }
