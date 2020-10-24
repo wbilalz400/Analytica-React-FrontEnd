@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container';
 import './NavBar.css';
-import Demo from './DemoModal'
 
 
 export default class Navbar extends React.Component {
@@ -62,7 +61,7 @@ export default class Navbar extends React.Component {
                 </div>
                 </div>
                 <div className='SubHeader'>
-                <Demo/>
+                <button>Demo</button>
                 <a href='/login'><img src={user} width='50px'></img></a>
                 </div>
 

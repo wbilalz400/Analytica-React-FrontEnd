@@ -17,9 +17,10 @@ const ADD_TEMPERATURE = '/dashboard/temperature/{device}/{sensor}';
 const GET_DEVICES = '/device';
 const GET_SENSORS = '/device/{deviceId}';
 const GET_DATA_LIMIT = '/device/{deviceId}/sensor/{sensorId}/limit/{limit}';
-const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}';
+const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}'; 
 const DELETE_WIDGET = '/dashboard/widget/{widgetId}';
 const UPDATE_USER = "/users/";
+const GET_IMAGES = '/image/all';
 const API = axios.create({
     baseURL: BASE_URL,
 });
@@ -35,6 +36,11 @@ API.interceptors.request.use(config => {
 //const url = 'https://api.covid19api.com/summary';
 //const url2 = 'https://api.covid19api.com/stats';
 const url1 = 'https://covid19.mathdro.id/api';
+
+export const getImages = async () => {
+    const res = await API.get(GET_IMAGES); // ye vo array le aega. ab jaha display krana hai vaha le
+    return res.data;
+}
 
 export const getDaysData = (device,sensor,days) => {
     return API.get(GET_DATA_DAYS.replace("{deviceId}",device).replace("{sensorId}",sensor).replace("{days}",days));

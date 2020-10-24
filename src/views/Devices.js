@@ -2,6 +2,7 @@ import './Devices.css';
 import React, { useState, useEffect } from 'react';
 import { getDevices } from '../api';
 import deviceIcon from '../images/device.png';
+import IMG from './Images'
 export default props => {
     const [devices, setDevices] = useState([]);
     if (devices.length === 0) {

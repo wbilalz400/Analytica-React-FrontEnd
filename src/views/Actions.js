@@ -4,6 +4,7 @@ import FormField from '../components/FormField';
 import FormButton from '../components/FormButton';
 import { addAction,getActions } from '../api';
 import { Modal } from '@material-ui/core';
+import Img from './Images';
 const data = [
     {
         sensor: 'Moisture Sensor',
@@ -148,6 +149,7 @@ export default props => {
                 <td>Email</td>
                 <td>{action.action}</td>
             </tr>
+          
         )}
         </table>
         <FormButton
