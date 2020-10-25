@@ -1,0 +1,166 @@
+.LDMain {
+    min-height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    
+}
+.LDMain > * {
+    margin-bottom: 10px;
+}
+
+.LDMain .conditionCards {
+    padding: 10px 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+
+    
+}
+.LDMain .mapContainer {
+    width: 100%;
+    min-height: 40vh;
+
+}
+.LDMain .truckCard {
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+    min-height:15vh;
+    margin: 20px;
+    
+}
+.LDMain .truckCard .TCImage {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellowgreen;
+}
+.LDMain .truckCard .TCImage > img {
+    height: 70%;
+    object-fit: contain;
+    width: 80%;
+
+}
+.LDMain .TCDesc span {
+    text-align: center;
+}
+.LDMain .truckCard .TCDesc {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.LDMain .conditionCard {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 18vw;
+
+}
+
+.LDMain .Heading {
+    color:black;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.LDMain .temperatureCard {
+    padding:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 2px;
+    border-radius: 10px;
+    border-style: solid;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.LDMain .Heading h3 {
+    font-weight: bold;
+
+}
+.LDMain .conditionCard h3 {
+    font-size: 14px;
+}
+.LDMain .conditionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.LDMain .Heading div {
+    width: auto;
+    height: 1px;
+    flex: 1;
+    margin-left: 5px;
+    border-bottom: 1px solid black;
+}
+.LDMain .conditionCard h3 span {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: right;
+}
+.LDMain .conditionCard h5 {
+    font-size: 15px;
+    font-weight: lighter;
+}
+.LDMain .TruckItem {
+    height: 25vh;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    display: flex;
+
+    margin-bottom: 10px;
+}
+.LDMain .imageHolder {
+    flex: 2;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+.LDMain .image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+
+}
+.LDMain .contentItem {
+    flex: 8;
+    height: 100%;
+    display: flex;
+    padding-left: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.LDMain .contentItem > div {
+    width: 100%;
+
+}
+.LDMain .twoCol {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.LDMain .centerCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.LDMain .routeTitle {
+    font-size: 20px;
+    font-weight: 600;
+}

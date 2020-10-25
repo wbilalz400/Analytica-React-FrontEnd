@@ -18,29 +18,9 @@ export default props => {
                 <div><span>Current Location: <strong>Multan</strong></span></div>
                 <div className="twoCol"><span>Status: <span style={{fontWeight:'bold',color:'green'}}>ON TIME</span></span> <span>Temperature: 27C</span></div>
                 <div className="twoCol"><span>Departed On: 02:00</span><span>Estimated Arrival: 18:00</span></div>
+                <a style={{marginLeft:'auto',marginRight:10}} href="/home/logistics/detail">View Details</a>
             </div>
         </Paper>
-        <Paper className="TruckItem">
-            <div className="imageHolder">
-                <img className="image" src={truckIcon}/>
-            </div>
-            <div className="contentItem">
-                <div className="centerCol"><span className="routeTitle">Quetta <span>{'-->'}</span> Gawadar</span></div>
-                <div><span>Current Location: <strong>Hub</strong></span></div>
-                <div className="twoCol"><span>Status: <span style={{fontWeight:'bold',color:'green'}}>ON TIME</span></span> <span>Temperature: 27C</span></div>
-                <div className="twoCol"><span>Departed On: 04:00</span><span>Estimated Arrival: 11:00</span></div>
-            </div>
-        </Paper>
-        <Paper className="TruckItem">
-            <div className="imageHolder">
-                <img className="image" src={truckIcon}/>
-            </div>
-            <div className="contentItem">
-                <div className="centerCol"><span className="routeTitle">Lahore <span>{'-->'}</span> Peshawar</span></div>
-                <div><span>Current Location: <strong>Chakri</strong></span></div>
-                <div className="twoCol"><span>Status: <span style={{fontWeight:'bold',color:'red'}}>LATE</span></span> <span>Temperature: 27C</span></div>
-                <div className="twoCol"><span>Departed On: 02:00</span><span>Estimated Arrival: 8:00</span></div>
-            </div>
-        </Paper>
+        
     </div>
 }   

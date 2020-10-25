@@ -33,6 +33,7 @@ import MyProfileView from './MyProfileView';
 import ImageView from './Images';
 import UseCases from './UseCases';
 import LogisticsView from './LogisticsView';
+import LogisticsDetail from './LogisticsDetail';
 export default class extends React.Component {
     constructor() {
         super();
@@ -370,8 +371,10 @@ export default class extends React.Component {
                                 <Route path='/home/devices' component={DevicesView}/>
                                 <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props}/>}/>
                                 <Route path='/home/actions' component = {Actions}/>
+                                <Route path='/home/logistics/detail' component={LogisticsDetail}/>
                                 <Route path='/home/logistics' component={LogisticsView}/>
                                 <Route path="/home" render={() => <DashboardView/>}/>
+                            
 
                             </Switch>
                         </Router>
