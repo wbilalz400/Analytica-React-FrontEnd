@@ -23,13 +23,13 @@
 }
 .LDMain .mapContainer {
     width: 100%;
-    min-height: 40vh;
+    height: 40vh;
 
 }
 .LDMain .truckCard {
     display: flex;
     flex-direction: row;
-    width: 20vw;
+    width: 19vw;
     min-height:15vh;
     margin: 20px;
     

@@ -3,8 +3,12 @@ import './LogisticsDetail.css';
 import { Paper, Card } from '@material-ui/core';
 import truckIcon from '../assets/images/truck.svg';
 import truckEngineIcon from '../assets/images/engine-temp.png';
+import truckLocationMarker from '../assets/images/truck-location-marker.png';
 import GoogleMapReact from 'google-map-react';
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import tirePressureIcon from '../assets/images/tire-pressure-icon.png';
+import oilGaugeIcon from '../assets/images/oil-guage-icon.png';
+import temperatureIcon from '../assets/images/temperature-icon.png';
+const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{width:50,height:80,objectFit:"contain"}}/>;
 
 
 const DEGREE_SYMBOL = "°";
@@ -104,12 +108,12 @@ export default props => {
             <div style={{height: '100%', width: '100%', }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
-                    defaultCenter={{ lat: 59.95, lng: 30.33 }}
+                    defaultCenter={{ lat: 30.1575, lng: 71.5249 }}
                     defaultZoom={11}
                 >
-                    <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
+                    <TruckLocationMarker
+                        lat={30.1575}
+                        lng={71.5249}
                         text="My Marker"
                     />
                 </GoogleMapReact>
@@ -127,6 +131,33 @@ export default props => {
                 <div className="TCDesc">
                     <span style={{ fontWeight: 'lighter' }}>Engine Temperature</span>
                     <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>55{DEGREE_SYMBOL} C</span>
+                </div>
+            </Card>
+            <Card className="truckCard">
+                <div style={{backgroundColor:'orange'}} className="TCImage">
+                    <img src={oilGaugeIcon}></img>
+                </div>
+                <div className="TCDesc">
+                    <span style={{ fontWeight: 'lighter' }}>Oil Temperature</span>
+                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>67{DEGREE_SYMBOL} C</span>
+                </div>
+            </Card>
+            <Card className="truckCard">
+                <div style={{backgroundColor: 'lightgray'}} className="TCImage">
+                    <img src={tirePressureIcon}></img>
+                </div>
+                <div className="TCDesc">
+                    <span style={{ fontWeight: 'lighter' }}>Tire Pressure</span>
+                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>35 PSI</span>
+                </div>
+            </Card>
+            <Card  className="truckCard">
+                <div style={{backgroundColor: 'yellow'}} className="TCImage">
+                    <img src={temperatureIcon}></img>
+                </div>
+                <div className="TCDesc">
+                    <span style={{ fontWeight: 'lighter' }}>Ambient Temperature</span>
+                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>28{DEGREE_SYMBOL} C</span>
                 </div>
             </Card>
         </Paper>
