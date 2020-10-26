@@ -20,8 +20,6 @@ import About from './sections/About'
 import Navbar from './components/Navbar'
 import PriceTable from './sections/Price'
 import Img from './views/Images';
-import Agri from './usecases/FruitClassifier';
-import Deck from './classify/Deck';
 
 
 
@@ -37,7 +35,7 @@ ReactDOM.render(
         <Route exact path="/login" component={LoginView}/>
         <Route exact path="/register" component={RegisterView}/>
         <Route  path="/home" component={HomeView}/>
-        <Route  path="/use" component={Deck}/>
+      
        
 
 

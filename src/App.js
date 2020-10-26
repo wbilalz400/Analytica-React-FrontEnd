@@ -19,13 +19,12 @@ const images = [
 function App() {
   return (
     <div className="HomeMain">
-      <Navbar/>
-      <Slider slides={images} autoplay={2}/>   
-      <Build/>
-      <Card/>
-      <Covid/>
+      <Navbar/> 
+      <Slider slides={images} autoplay={2}/> 
+      <Build/>  
+      <Card/> 
+      <Covid/> 
       <CVB/>
-      
       <Footer/>
       
        
