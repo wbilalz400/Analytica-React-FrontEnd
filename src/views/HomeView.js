@@ -35,6 +35,7 @@ import UseCases from './UseCases';
 import LogisticsView from './LogisticsView';
 import LogisticsDetail from './LogisticsDetail';
 import SensorDetail from './SensorDetail';
+import AnalyticsFeed from './AnalyticsFeed';
 export default class extends React.Component {
     constructor() {
         super();
@@ -290,6 +291,11 @@ export default class extends React.Component {
                         <FormButton color='orange' label="Sign Out" onClick={this.logOut} ></FormButton>
                     </div>
                     <div className="Menus">
+                        <div onClick={() => window.location.href='/home'} className="MenuItem">
+                            <FontAwesomeIcon icon={faCalendar} />
+                            <h3>Feed</h3>
+
+                        </div>
                         <div onClick={() => window.location.href='/home/dashboard'} className="MenuItem">
                             <FontAwesomeIcon icon={faCalendar} />
                             <h3>Dashboard</h3>
@@ -375,7 +381,8 @@ export default class extends React.Component {
                                 <Route path="/home/sensordetail" component = {SensorDetail}/>
                                 <Route path='/home/logistics/detail' component={LogisticsDetail}/>
                                 <Route path='/home/logistics' component={LogisticsView}/>
-                                <Route path="/home" render={() => <DashboardView/>}/>
+                                <Route path="/home/dashboard" component={DashboardView}/>
+                                <Route path="/home" render={() => <AnalyticsFeed/>}/>
                             
 
                             </Switch>
