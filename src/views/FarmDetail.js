@@ -8,106 +8,60 @@ import GoogleMapReact from 'google-map-react';
 import tirePressureIcon from '../assets/images/tire-pressure-icon.png';
 import oilGaugeIcon from '../assets/images/oil-guage-icon.png';
 import temperatureIcon from '../assets/images/temperature-icon.png';
-import cardsData from '../data.js';
+import fruitsData from '../data.js';
 import SwipeCard from 'react-tinder-card';
+import vegetablesData from '../data2.js';
+import cropsData from '../data3.js';
+import { FarmItem, ColumnImageText } from './AnalyticsFeed';
+import farmIcon from '../assets/images/field.png';
+import farmLabelIcon from '../assets/images/farm.png';
+import tempPlant from '../assets/images/temperature-plant.png';
+import pHIcon from '../assets/images/ph.png';
+import humidityIcon from '../assets/images/humidity.png';
+import { LineChart } from 'react-chartkick';
+const data = {};
+const date = new Date();
+for (let i = 0; i < 20; i++) {
+    data[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = Math.random() * 10;
+    date.setDate(date.getDay() + i + 1);
+}
+const data2 = {};
+for (let i = 0; i < 20; i++) {
+    data2[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = Math.random() * 10;
+    date.setDate(date.getDay() + i + 1);
+}
 
+const data3 = {};
+for (let i = 0; i < 20; i++) {
+    data3[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = Math.random() * 10;
+    date.setDate(date.getDay() + i + 1);
+}
 
-const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{width:50,height:80,objectFit:"contain"}}/>;
+const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{ width: 50, height: 80, objectFit: "contain" }} />;
 const DEGREE_SYMBOL = "°";
 export default props => {
     return <div className="FDMain">
         <div className="Heading">
-            <h3>Logistics Report</h3>
+            <h3>Farm Report</h3>
             <div></div>
         </div>
-        <Paper className="TruckItem">
-            <div className="imageHolder">
-                <img className="image" src={truckIcon} />
-            </div>
-            <div className="contentItem">
-                <div className="centerCol"><span className="routeTitle">Islamabad <span>{'-->'}</span> Karachi</span></div>
-                <div><span>Current Location: <strong>Multan</strong></span></div>
-                <div className="twoCol"><span>Status: <span style={{ fontWeight: 'bold', color: 'green' }}>ON TIME</span></span> <span>Temperature: 27C</span></div>
-                <div className="twoCol"><span>Departed On: 02:00</span><span>Estimated Arrival: 18:00</span></div>
-                <a style={{ marginLeft: 'auto', marginRight: 10 }} href="/home/logistics/detail">View Details</a>
-            </div>
-        </Paper>
+        <FarmItem id='FRM-1' temp='32' humidity='50' pH='4.5' />
+
         <div className="Heading">
-            <h3>Packages Condition</h3>
+            <h3>Enviornment Conditions</h3>
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <Card className="conditionCard">
-                <h3><span>A2ZH</span></h3>
-                <h5>Temperature</h5>
-                <div style={{ borderColor: 'yellow', color: 'yellow' }} className="temperatureCard">
-                    25° C
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZD</span></h3>
-                <h5>Temperature</h5>
-                <div style={{ borderColor: 'green', color: 'green' }} className="temperatureCard">
-                    18° C
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZF</span></h3>
-                <h5>Temperature</h5>
-                <div style={{ borderColor: 'red', color: 'red' }} className="temperatureCard">
-                    35° C
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZG</span></h3>
-                <h5>Temperature</h5>
-                <div style={{ borderColor: 'blue', color: 'blue' }} className="temperatureCard">
-                    12° C
-                </div>
-
-            </Card>
-
-            <Card className="conditionCard">
-                <h3><span>A2ZH</span></h3>
-                <h5>Humidity</h5>
-                <div style={{ borderColor: 'yellow', color: 'yellow' }} className="temperatureCard">
-                    25%
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZD</span></h3>
-                <h5>Humidity</h5>
-                <div style={{ borderColor: 'green', color: 'green' }} className="temperatureCard">
-                    5%
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZF</span></h3>
-                <h5>Humidity</h5>
-                <div style={{ borderColor: 'red', color: 'red' }} className="temperatureCard">
-                    60%
-                </div>
-
-            </Card>
-            <Card className="conditionCard">
-                <h3><span>A2ZG</span></h3>
-                <h5>Humidity</h5>
-                <div style={{ borderColor: 'blue', color: 'blue' }} className="temperatureCard">
-                    0%
-                </div>
-            </Card>
+            <ColumnImageText color="lightcoral" image={tempPlant} label="Temperature" value={`32${DEGREE_SYMBOL} C`} />
+            <ColumnImageText color="orangered" image={pHIcon} label="PH" value={`7.5`} />
+            <ColumnImageText color="lightblue" image={humidityIcon} label="Humidity" value={`35%`} />
         </Paper>
         <div className="Heading">
-            <h3>Truck Location</h3>
+            <h3>Farm Region</h3>
             <div></div>
         </div>
         <Paper className="mapContainer">
-            <div style={{height: '100%', width: '100%', }}>
+            <div style={{ height: '100%', width: '100%', }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
                     defaultCenter={{ lat: 30.1575, lng: 71.5249 }}
@@ -122,44 +76,26 @@ export default props => {
             </div>
         </Paper>
         <div className="Heading">
-            <h3>Truck Condition</h3>
+            <h3>Farm Statistics</h3>
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <Card className="truckCard">
-                <div className="TCImage">
-                    <img src={truckEngineIcon}></img>
-                </div>
-                <div className="TCDesc">
-                    <span style={{ fontWeight: 'lighter' }}>Engine Temperature</span>
-                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>55{DEGREE_SYMBOL} C</span>
+            <Card className="chartCard">
+                <span>Temperature</span>
+                <div>
+                    <LineChart data={data} width="100%" height='100%' />
                 </div>
             </Card>
-            <Card className="truckCard">
-                <div style={{backgroundColor:'orange'}} className="TCImage">
-                    <img src={oilGaugeIcon}></img>
-                </div>
-                <div className="TCDesc">
-                    <span style={{ fontWeight: 'lighter' }}>Oil Temperature</span>
-                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>67{DEGREE_SYMBOL} C</span>
+            <Card className="chartCard">
+                <span>Humidity</span>
+                <div>
+                    <LineChart data={data2} width="100%" height='100%' />
                 </div>
             </Card>
-            <Card className="truckCard">
-                <div style={{backgroundColor: 'lightgray'}} className="TCImage">
-                    <img src={tirePressureIcon}></img>
-                </div>
-                <div className="TCDesc">
-                    <span style={{ fontWeight: 'lighter' }}>Tire Pressure</span>
-                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>35 PSI</span>
-                </div>
-            </Card>
-            <Card  className="truckCard">
-                <div style={{backgroundColor: 'yellow'}} className="TCImage">
-                    <img src={temperatureIcon}></img>
-                </div>
-                <div className="TCDesc">
-                    <span style={{ fontWeight: 'lighter' }}>Ambient Temperature</span>
-                    <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>28{DEGREE_SYMBOL} C</span>
+            <Card className="chartCard">
+                <span>pH</span>
+                <div>
+                    <LineChart data={data3} width="100%" height='100%' />
                 </div>
             </Card>
         </Paper>
@@ -168,14 +104,50 @@ export default props => {
             <div></div>
         </div>
         <Paper className="cropCardsContainer">
-            {cardsData.map(card => <SwipeCard className="cardMain">
+            {fruitsData.map(card => <SwipeCard className="cardMain">
                 <div className="cropCard">
                     <img src={card.pics[0]}></img>
                     <div className="cropCardDesc">
                         <div className="name">{card.name}</div>
-                        <div className="info"><span className="lbl">pH: </span>{card.pH1+ " "} - {card.pH2}</div>
-                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div> 
-                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2+ `${DEGREE_SYMBOL} C`}</div> 
+                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
+
+                    </div>
+                </div>
+            </SwipeCard>)}
+        </Paper>
+        <div className="Heading">
+            <h3>Recommended Vegetables</h3>
+            <div></div>
+        </div>
+        <Paper className="cropCardsContainer">
+            {vegetablesData.map(card => <SwipeCard className="cardMain">
+                <div className="cropCard">
+                    <img src={card.pics[0]}></img>
+                    <div className="cropCardDesc">
+                        <div className="name">{card.name}</div>
+                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
+
+                    </div>
+                </div>
+            </SwipeCard>)}
+        </Paper>
+        <div className="Heading">
+            <h3>Recommended Crops</h3>
+            <div></div>
+        </div>
+        <Paper className="cropCardsContainer">
+            {cropsData.map(card => <SwipeCard className="cardMain">
+                <div className="cropCard">
+                    <img src={card.pics[0]}></img>
+                    <div className="cropCardDesc">
+                        <div className="name">{card.name}</div>
+                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
 
                     </div>
                 </div>

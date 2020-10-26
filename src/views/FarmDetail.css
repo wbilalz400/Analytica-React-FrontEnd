@@ -12,14 +12,30 @@
     margin-bottom: 10px;
 }
 
-.FDMain .conditionCards {
+.FDMain  .conditionCards {
     padding: 10px 30px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    background-color: whitesmoke;
+    justify-content: space-evenly;
+    background-color: whitesmoke;    
+}
+.FDMain .chartCard > div {
+    height: 80%;
+    width: 100%;
+}
+.FDMain .chartCard > span {
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
 
-    
+}
+.conditionCards .chartCard {
+    height: 35vh;
+    width: 45%;
+    margin: 20px;
 }
 .FDMain .mapContainer {
     width: 100%;
@@ -135,7 +151,7 @@
     object-fit: contain;
 
 }
-.FDMain .contentItem {
+.FDMain > .contentItem {
     flex: 8;
     height: 100%;
     display: flex;
