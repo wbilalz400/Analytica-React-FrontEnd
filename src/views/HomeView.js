@@ -36,6 +36,7 @@ import LogisticsView from './LogisticsView';
 import LogisticsDetail from './LogisticsDetail';
 import SensorDetail from './SensorDetail';
 import AnalyticsFeed from './AnalyticsFeed';
+import FarmDetail from './FarmDetail';
 export default class extends React.Component {
     constructor() {
         super();
@@ -316,7 +317,7 @@ export default class extends React.Component {
                                 <FontAwesomeIcon    icon={faTruck} />
                                 <h3>Logistics</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href="/home/agriculture"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faTree} />
                                 <h3>Agriculture</h3>
                             </div>
@@ -382,6 +383,7 @@ export default class extends React.Component {
                                 <Route path='/home/logistics/detail' component={LogisticsDetail}/>
                                 <Route path='/home/logistics' component={LogisticsView}/>
                                 <Route path="/home/dashboard" component={DashboardView}/>
+                                <Route path="/home/agriculture" component={FarmDetail}/>
                                 <Route path="/home" render={() => <AnalyticsFeed/>}/>
                             
 
