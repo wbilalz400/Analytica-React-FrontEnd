@@ -33,6 +33,7 @@ import MyProfileView from './MyProfileView';
 import ImageView from './Images';
 import UseCases from './UseCases';
 import LogisticsView from './LogisticsView';
+import AgricultureView from './AgricultureView';
 import LogisticsDetail from './LogisticsDetail';
 import SensorDetail from './SensorDetail';
 import AnalyticsFeed from './AnalyticsFeed';
@@ -316,7 +317,7 @@ export default class extends React.Component {
                                 <FontAwesomeIcon    icon={faTruck} />
                                 <h3>Logistics</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href="/home/agriculture"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faTree} />
                                 <h3>Agriculture</h3>
                             </div>
@@ -381,6 +382,7 @@ export default class extends React.Component {
                                 <Route path="/home/sensordetail" component = {SensorDetail}/>
                                 <Route path='/home/logistics/detail' component={LogisticsDetail}/>
                                 <Route path='/home/logistics' component={LogisticsView}/>
+                                <Route path='/home/agriculture' component={AgricultureView}/>
                                 <Route path="/home/dashboard" component={DashboardView}/>
                                 <Route path="/home" render={() => <AnalyticsFeed/>}/>
                             
