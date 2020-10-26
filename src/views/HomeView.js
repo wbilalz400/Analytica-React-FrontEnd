@@ -21,7 +21,7 @@ import { circle } from '@fortawesome/fontawesome-free'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import leftArrowIcon from '../images/left-arrow-icon.svg';
 import { faCircle, faTimesCircle, faArrowAltCircleLeft,faFileImage,faBuilding, faArrowAltCircleRight, faUserCircle, faArrowAltCircleDown, faEdit, faCalendar } from '@fortawesome/free-regular-svg-icons'
-import { faWifi, faBolt, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faWifi, faBolt, faClipboardList, faTruck, faShoppingBag, faUtensilSpoon, faTree, faHome } from '@fortawesome/free-solid-svg-icons';
 import { Collapse } from 'react-collapse';
 import GridLayout from 'react-grid-layout';
 import Chart from "react-apexcharts";
@@ -32,7 +32,9 @@ import DeviceView from './DeviceView';
 import MyProfileView from './MyProfileView';
 import ImageView from './Images';
 import UseCases from './UseCases';
-
+import LogisticsView from './LogisticsView';
+import LogisticsDetail from './LogisticsDetail';
+import SensorDetail from './SensorDetail';
 export default class extends React.Component {
     constructor() {
         super();
@@ -298,11 +300,33 @@ export default class extends React.Component {
                             <h3>Devices</h3>
 
                         </div>
-                        <div onClick={() => window.location.href='/home/usecases'} className="MenuItem">
+                        <div  className="MenuItem">
                             <FontAwesomeIcon icon={faBuilding} />
-                            <h3>Use Case(s)</h3>
-
+                            <h3 onClick={() => window.location.href='/home/usecases'}>Situation Center</h3>
+                            <FontAwesomeIcon onClick={e => this.collapse('useCases')} icon={faArrowAltCircleDown} rotation={this.state.useCases ? 180 : 0}></FontAwesomeIcon>
                         </div>
+                        <Collapse isOpened={this.state.useCases}>
+                            <div onClick={() => window.location.href="/home/logistics"} className='ChildItem'>
+                                <FontAwesomeIcon    icon={faTruck} />
+                                <h3>Logistics</h3>
+                            </div>
+                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                                <FontAwesomeIcon icon={faTree} />
+                                <h3>Agriculture</h3>
+                            </div>
+                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                                <FontAwesomeIcon icon={faHome} />
+                                <h3>Home & Office</h3>
+                            </div>
+                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                                <FontAwesomeIcon icon={faShoppingBag} />
+                                <h3>Retail</h3>
+                            </div>
+                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                                <FontAwesomeIcon icon={faUtensilSpoon} />
+                                <h3>Restauraunts & Eateries</h3>
+                            </div>
+                        </Collapse>
                         <div onClick={() => window.location.href='/home/actions'} className="MenuItem">
                             <FontAwesomeIcon icon={faBolt} />
                             <h3>Actions</h3>
@@ -348,8 +372,11 @@ export default class extends React.Component {
                                 <Route path='/home/devices' component={DevicesView}/>
                                 <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props}/>}/>
                                 <Route path='/home/actions' component = {Actions}/>
-                               
+                                <Route path="/home/sensordetail" component = {SensorDetail}/>
+                                <Route path='/home/logistics/detail' component={LogisticsDetail}/>
+                                <Route path='/home/logistics' component={LogisticsView}/>
                                 <Route path="/home" render={() => <DashboardView/>}/>
+                            
 
                             </Switch>
                         </Router>
