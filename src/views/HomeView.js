@@ -33,6 +33,7 @@ import MyProfileView from './MyProfileView';
 import ImageView from './Images';
 import UseCases from './UseCases';
 import LogisticsView from './LogisticsView';
+import AgricultureView from './AgricultureView';
 import LogisticsDetail from './LogisticsDetail';
 import SensorDetail from './SensorDetail';
 import AnalyticsFeed from './AnalyticsFeed';
@@ -382,6 +383,7 @@ export default class extends React.Component {
                                 <Route path="/home/sensordetail" component = {SensorDetail}/>
                                 <Route path='/home/logistics/detail' component={LogisticsDetail}/>
                                 <Route path='/home/logistics' component={LogisticsView}/>
+                                <Route path='/home/agriculture' component={AgricultureView}/>
                                 <Route path="/home/dashboard" component={DashboardView}/>
                                 <Route path="/home/agriculture" component={FarmDetail}/>
                                 <Route path="/home" render={() => <AnalyticsFeed/>}/>

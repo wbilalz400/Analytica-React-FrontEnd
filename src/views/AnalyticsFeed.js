@@ -64,19 +64,19 @@ export const FarmItem = props => <Paper className="FarmItem">
     <div className="contentItem">
         <ColumnImageText
             color="yellowgreen"
-            image={farmLabelIcon} label="Farm" value={`13-CB`}
+            image={farmLabelIcon} label="Farm" value={props.id}
         />
         <ColumnImageText
             color="lightcoral"
-            image={tempPlant} label="Temperature" value={`25${DEGREE_SYMBOL} C`}
+            image={tempPlant} label="Temperature" value={`${props.temp}${DEGREE_SYMBOL} C`}
         />
         <ColumnImageText
             color="lightblue"
-            image={humidityIcon} label="Humidity" value={`15%`}
+            image={humidityIcon} label="Humidity" value={`${props.humidity}%`}
         />
         <ColumnImageText
             color="orange"
-            image={pHIcon} label="pH" value={`7.8`}
+            image={pHIcon} label="pH" value={`${props.pH}`}
         />
     </div>
 
