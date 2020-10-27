@@ -7,6 +7,9 @@
     flex-direction: column;
     align-items: center;
 }
+.SDMain > div {
+    margin-bottom: 20px;
+}
 
 .SDMain .Heading {
     color:black;

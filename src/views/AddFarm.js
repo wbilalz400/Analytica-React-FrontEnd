@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddFarm.css';
 import { TextField, Card, Paper, Button } from '@material-ui/core';
-import { getDevices } from '../api/index';
+import { getDevices, addFarm } from '../api/index';
 import sensorIcon from '../assets/images/sensor-icon.svg';
 import {ColumnImageText} from './AnalyticsFeed';
 export const Heading = props => <div className="Heading">
@@ -11,12 +11,34 @@ export const Heading = props => <div className="Heading">
 
 export default props => {
     const selectDevice = (device) => {
-        setSelection(device.name);
+        setSelection(device._id);
     }
 
+    const addFarmClick = () => {
+        let payload = {
+            name: name,
+            device: selectedDevice,
+            latitude: lat,
+            longtitude: long,
+            region: region,
+        };
+        addFarm(payload)
+        .then(res => {
+            if (res.data.success) window.location.href = "/agriculture";
+            else {
+                alert(res.data.message);
+            }
+        })
+    }
 
     const [devices, setDevices] = useState(null);
     const [selectedDevice, setSelection] = useState(null);
+    const [name, setName] = useState(null);
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    const [region,setRegion] = useState(null);
+
+
     if (devices === null) {
         getDevices()
             .then(({ data }) => {
@@ -32,10 +54,10 @@ export default props => {
         <Paper className="addTripForm">
             <small>Registering your farm with analytics is easy. Just add a few details to get started!</small>
             <form>
-                <TextField variant="outlined" label="Farm Name" fullWidth={true} />
-                <TextField variant="outlined" label="Farm Latitude" fullWidth={true} />
-                <TextField variant="outlined" label="Farm Longtitude" fullWidth={true} />
-                <TextField variant="outlined" label="Farm Area Characteristics" fullWidth={true} />
+                <TextField variant="outlined" value={name} onChange = {e => setName(e.target.value)} label="Farm Name" fullWidth={true} />
+                <TextField variant="outlined" value={lat} onChange = {e => setLat(e.target.value)} label="Farm Latitude" fullWidth={true} />
+                <TextField variant="outlined" value={long} onChange = {e => setLong(e.target.value)} label="Farm Longtitude" fullWidth={true} />
+                <TextField variant="outlined" value={region} onChange = {e => setRegion(e.target.value)} label="Farm Area Characteristics" fullWidth={true} />
 
 
             </form>
@@ -46,7 +68,7 @@ export default props => {
         </Heading>
         <Paper className="selectDeviceForm">
             {devices !== null && devices.map(device => <ColumnImageText onClick = {() => selectDevice(device)}
-                image = {sensorIcon} color={device.name === selectedDevice?"lightgreen":"lightcoral"} value={device.name}
+                image = {sensorIcon} color={device._id === selectedDevice?"lightgreen":"lightcoral"} value={device.name}
             />
             )}
         </Paper>
@@ -56,7 +78,7 @@ export default props => {
         </Heading>
         <Paper className="submissionForm">
             <small>Please verify all entered information as Farm once registered cannot be changed.</small>
-            <Button variant="contained" color="secondary">Register Farm!</Button>
+            <Button variant="contained" color="secondary" onClick={addFarmClick}>Register Farm!</Button>
         </Paper>
 
     </Card>

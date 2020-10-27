@@ -17,10 +17,19 @@ const ADD_TEMPERATURE = '/dashboard/temperature/{device}/{sensor}';
 const GET_DEVICES = '/device';
 const GET_SENSORS = '/device/{deviceId}';
 const GET_DATA_LIMIT = '/device/{deviceId}/sensor/{sensorId}/limit/{limit}';
-const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}'; 
+const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}';
 const DELETE_WIDGET = '/dashboard/widget/{widgetId}';
 const UPDATE_USER = "/users/";
 const GET_IMAGES = '/image/all';
+const GET_FARMS = '/farm'
+const POST_FARM = '/farm';
+const GET_FARM = '/farm/{id}';
+const GET_TRUCKS = '/truck';
+const GET_TRUCK = '/truck/{id}';
+const POST_TRUCK = '/truck';
+
+
+
 const API = axios.create({
     baseURL: BASE_URL,
 });
@@ -42,8 +51,20 @@ export const getImages = async () => {
     return res.data;
 }
 
-export const getDaysData = (device,sensor,days) => {
-    return API.get(GET_DATA_DAYS.replace("{deviceId}",device).replace("{sensorId}",sensor).replace("{days}",days));
+export const getTrucks = () => {
+    return API.get(GET_TRUCKS);
+}
+
+export const getTruck = id => {
+    return API.get(GET_TRUCK.replace("{id}",id));
+}
+
+export const addTruck = payload => {
+    return API.post(POST_TRUCK,payload);
+}
+
+export const getDaysData = (device, sensor, days) => {
+    return API.get(GET_DATA_DAYS.replace("{deviceId}", device).replace("{sensorId}", sensor).replace("{days}", days));
 }
 export const fetchData = async (country) => {
     let changableUrl = url1
@@ -62,79 +83,79 @@ export const fetchData = async (country) => {
 }
 
 export const deleteWidget = async widgetId => {
-    return API.delete(DELETE_WIDGET.replace("{widgetId}",widgetId));
+    return API.delete(DELETE_WIDGET.replace("{widgetId}", widgetId));
 }
 
 export const getDevices = async () => {
     return API.get(GET_DEVICES);
 }
-export const updateDashboard  = async(payload) => {
-    return API.put(UPDATE_DASHBOARD.replace("{id}",0),payload);
+export const updateDashboard = async (payload) => {
+    return API.put(UPDATE_DASHBOARD.replace("{id}", 0), payload);
 }
 
 export const getSensors = async device => {
-    return API.get(GET_SENSORS.replace("{deviceId}",device));
+    return API.get(GET_SENSORS.replace("{deviceId}", device));
 }
 export const getWidgets = async () => {
-    return API.get(GET_DASHBOARD.replace("{id}",""));
+    return API.get(GET_DASHBOARD.replace("{id}", ""));
 }
 
-export const getLimitData = (limit,device,sensor) => {
-    let url = GET_DATA_LIMIT.replace("{limit}",limit).replace("{deviceId}",device).replace("{sensorId}",sensor);
+export const getLimitData = (limit, device, sensor) => {
+    let url = GET_DATA_LIMIT.replace("{limit}", limit).replace("{deviceId}", device).replace("{sensorId}", sensor);
     return API.get(url);
 }
 export const updateUser = payload => {
     let url = UPDATE_USER;
-    return API.put(url,payload);
+    return API.put(url, payload);
 }
-export const addChart = async (type,device,sensor,days) => {
-    let url = ADD_CHART.replace("{type}",type).replace("{device}",device).replace("{sensor}",sensor).replace("{days}",days);
-    return API.post(url,{});
+export const addChart = async (type, device, sensor, days) => {
+    let url = ADD_CHART.replace("{type}", type).replace("{device}", device).replace("{sensor}", sensor).replace("{days}", days);
+    return API.post(url, {});
 }
-export const addThermometer = async (device,sensor) => {
-    let url = ADD_THERMOMETER.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addThermometer = async (device, sensor) => {
+    let url = ADD_THERMOMETER.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addIntensity = async (device,sensor) => {
-    let url = ADD_INTENSITY.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addIntensity = async (device, sensor) => {
+    let url = ADD_INTENSITY.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addPM = async (device,sensor) => {
-    let url = ADD_PM.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addPM = async (device, sensor) => {
+    let url = ADD_PM.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addHumidity = async (device,sensor) => {
-    let url = ADD_HUMIDITY.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addHumidity = async (device, sensor) => {
+    let url = ADD_HUMIDITY.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addElectricity = async (device,sensor) => {
-    let url = ADD_ELECTRICITY.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addElectricity = async (device, sensor) => {
+    let url = ADD_ELECTRICITY.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addTvoc = async (device,sensor) => {
-    let url = ADD_TVOC.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addTvoc = async (device, sensor) => {
+    let url = ADD_TVOC.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addTemperature = async (device,sensor) => {
-    let url = ADD_TEMPERATURE.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const addTemperature = async (device, sensor) => {
+    let url = ADD_TEMPERATURE.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const add = async (device,sensor) => {
-    let url = ADD_THERMOMETER.replace("{device}",device).replace("{sensor}",sensor);
-    return API.post(url,{});
+export const add = async (device, sensor) => {
+    let url = ADD_THERMOMETER.replace("{device}", device).replace("{sensor}", sensor);
+    return API.post(url, {});
 }
-export const addGauge = async (device,sensor) => {
-    let url = ADD_GAUGE.replace("{device}",device).replace("{sensor}",sensor);
-    return await API.post(url,{});
+export const addGauge = async (device, sensor) => {
+    let url = ADD_GAUGE.replace("{device}", device).replace("{sensor}", sensor);
+    return await API.post(url, {});
 }
-export const addIndicator = async (device,sensor) => {
-    let url = ADD_INDICATOR.replace("{device}",device).replace("{sensor}",sensor);
-    return await API.post(url,{});
+export const addIndicator = async (device, sensor) => {
+    let url = ADD_INDICATOR.replace("{device}", device).replace("{sensor}", sensor);
+    return await API.post(url, {});
 }
 
 export const addAction = (payload) => {
     let url = "/users/action";
-    return API.post(url,payload);
+    return API.post(url, payload);
 }
 
 export const getActions = () => API.get('/users/action');
@@ -150,6 +171,34 @@ export const fetchDailyData = async () => {
     } catch (error) {
         console.log(error);
     }
+}
+export const addFarm = payload => {
+    return API.post(POST_FARM,payload);
+}
+export const getFarm = id => {
+    return API.get(GET_FARM.replace("{id}",id));
+}
+export const getFarms = async () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let farms = await API.get(GET_FARMS);
+            if (farms.data.success) {
+                farms = farms.data.farms.map(async farm => {
+                    return new Promise(async (resolve, reject) => {
+                        farm = await API.get(GET_FARM.replace("{id}", farm._id));
+                        farm = farm.data;
+                        resolve(farm);
+                    });
+                });
+                farms = await Promise.all(farms);
+                resolve(farms);
+            } else {
+                reject("API returned no sucess " + JSON.stringify(farms.data.message));
+            }
+        } catch (e) {
+            reject("Error from API:" + e);
+        }
+    });
 }
 
 export const fetchCountries = async () => {

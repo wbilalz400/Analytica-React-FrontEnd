@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddTruck.css';
 import { TextField, Card, Paper, Button } from '@material-ui/core';
-import { getDevices } from '../api/index';
+import { getDevices , addTruck } from '../api/index';
 import sensorIcon from '../assets/images/sensor-icon.svg';
 import {ColumnImageText} from './AnalyticsFeed';
 export const Heading = props => <div className="Heading">
@@ -11,12 +11,33 @@ export const Heading = props => <div className="Heading">
 
 export default props => {
     const selectDevice = (device) => {
-        setSelection(device.name);
+        setSelection(device._id);
+    }
+
+    const addTruckClick = () => {
+        let payload = {
+            name,from,to,departTime,arrivalTime,device: selectedDevice
+        };
+        addTruck(payload)
+        .then(res => {
+            if (res.data.success) {
+                window.location.href = "/home/logistics";
+            } else {
+                alert(res.data.message);
+            }
+        })
+        .catch (e => alert(e));
     }
 
 
     const [devices, setDevices] = useState(null);
     const [selectedDevice, setSelection] = useState(null);
+    const [name, setName] = useState(null);
+    const [from ,setFrom] = useState(null);
+    const [to, setTo] = useState(null);
+    const [departTime, setDepartTime] = useState(null);
+    const [arrivalTime, setArrivalTime] = useState(null);
+
     if (devices === null) {
         getDevices()
             .then(({ data }) => {
@@ -32,11 +53,11 @@ export default props => {
         <Paper className="addTripForm">
             <small>Add a trip is as easy as entering a few details and selecting the corresponding device</small>
             <form>
-                <TextField variant="outlined" label="Trip Name" fullWidth={true} />
-                <TextField variant="outlined" label="Departure City" fullWidth={true} />
-                <TextField variant="outlined" label="Arrival City" fullWidth={true} />
-                <TextField variant="outlined" label="Departure Time" defaultValue={(new Date).toISOString().substr(0, 16)} type="datetime-local" fullWidth={true} />
-                <TextField variant="outlined" label="Arrival Time" defaultValue={(new Date).toISOString().substr(0, 16)} type="datetime-local" fullWidth={true} />
+                <TextField variant="outlined" onChange = {e => setName(e.target.value)} value={name} label="Trip Name" fullWidth={true} />
+                <TextField variant="outlined" onChange = {e => setFrom(e.target.value)} value={from} label="Departure City" fullWidth={true} />
+                <TextField variant="outlined" onChange = {e => setTo(e.target.value)} value={to} label="Arrival City" fullWidth={true} />
+                <TextField variant="outlined" onChange = {e => setDepartTime(e.target.value)} value={departTime} label="Departure Time" defaultValue={(new Date).toISOString().substr(0, 16)} type="datetime-local" fullWidth={true} />
+                <TextField variant="outlined" onChange = {e => setArrivalTime(e.target.value)} value={arrivalTime} label="Arrival Time" defaultValue={(new Date).toISOString().substr(0, 16)} type="datetime-local" fullWidth={true} />
 
 
             </form>
@@ -47,7 +68,7 @@ export default props => {
         </Heading>
         <Paper className="selectDeviceForm">
             {devices !== null && devices.map(device => <ColumnImageText onClick = {() => selectDevice(device)}
-                image = {sensorIcon} color={device.name === selectedDevice?"lightgreen":"lightcoral"} value={device.name}
+                image = {sensorIcon} color={device._id === selectedDevice?"lightgreen":"lightcoral"} value={device.name}
             />
             )}
         </Paper>
@@ -57,7 +78,7 @@ export default props => {
         </Heading>
         <Paper className="submissionForm">
             <small>Please verify all entered information as Trip once started cannot be changed.</small>
-            <Button variant="contained" color="secondary">Start Trip!</Button>
+            <Button variant="contained" onClick={addTruckClick} color="secondary">Start Trip!</Button>
         </Paper>
 
     </Card>

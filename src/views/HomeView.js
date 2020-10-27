@@ -383,12 +383,12 @@ export default class extends React.Component {
                                 <Route path='/home/devices' component={DevicesView} />
                                 <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props} />} />
                                 <Route path='/home/actions' component={Actions} />
-                                <Route path="/home/sensor/detail" component={SensorDetail} />
+                                <Route path="/home/device/:device/sensor/:sensor" component={SensorDetail} />
                                 <Route path='/home/logistics/add' component={AddTruck} />
-                                <Route path='/home/logistics/detail' component={LogisticsDetail} />
+                                <Route path='/home/logistics/:id' component={LogisticsDetail} />
                                 <Route path='/home/logistics' component={LogisticsView} />
                                 <Route path='/home/agriculture/add' component={AddFarm} />
-                                <Route path='/home/agriculture/detail' component={FarmDetail} />
+                                <Route path='/home/agriculture/:id' component={FarmDetail} />
                                 <Route path='/home/agriculture' component={AgricultureView} />
                                 <Route path="/home/dashboard" component={DashboardView} />
                                 <Route path="/home/agriculture" component={FarmDetail} />

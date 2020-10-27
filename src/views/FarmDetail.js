@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FarmDetail.css';
 import { Paper, Card } from '@material-ui/core';
 import truckIcon from '../assets/images/truck.svg';
@@ -19,6 +19,8 @@ import tempPlant from '../assets/images/temperature-plant.png';
 import pHIcon from '../assets/images/ph.png';
 import humidityIcon from '../assets/images/humidity.png';
 import { LineChart } from 'react-chartkick';
+import { getFarm } from '../api';
+
 const data = {};
 const date = new Date();
 for (let i = 0; i < 20; i++) {
@@ -37,33 +39,82 @@ for (let i = 0; i < 20; i++) {
     date.setDate(date.getDay() + i + 1);
 }
 
-let fruitsData = fruitsDataA.filter(f => Math.random()*10 < 5);
-let vegetablesData = vegetablesDataA.filter(v => Math.random()*10 < 5);
-let cropsData = cropsDataA.filter(v => Math.random()*10 < 5);
+let fruitsData = fruitsDataA.filter(f => Math.random() * 10 < 5);
+let vegetablesData = vegetablesDataA.filter(v => Math.random() * 10 < 5);
+let cropsData = cropsDataA.filter(v => Math.random() * 10 < 5);
 
-fruitsData = fruitsData.filter((F,index) => index < 5);
-vegetablesData = vegetablesData.filter((V,index) => index < 5);
-cropsData = cropsData.filter((C,index) => index < 5);
+fruitsData = fruitsData.filter((F, index) => index < 5);
+vegetablesData = vegetablesData.filter((V, index) => index < 5);
+cropsData = cropsData.filter((C, index) => index < 5);
 
 
 const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{ width: 50, height: 80, objectFit: "contain" }} />;
 const DEGREE_SYMBOL = "°";
 export default props => {
+
+    if (!props.match.params.id) window.location.href = "/home/agriculture"
+    const [tempSensors, setTempSensors] = useState(null);
+    const [humidSensors, setHumidSensors] = useState(null);
+    const [pHSensors, setPHSensors] = useState(null);
+    const [farm, setFarm] = useState(null);
+
+    if (farm === null) {
+        getFarm(props.match.params.id)
+            .then(res => {
+                if (res.data.success) {
+                    setTempSensors(res.data.tempSensors.filter(tP => tP.data.length !== 0));
+                    setHumidSensors(res.data.humidSensors.filter(hD => hD.data.length !== 0));
+                    setPHSensors(res.data.pHSensors.filter(pH => pH.data.length !== 0));
+                    setFarm(res.data.farm);
+                } else {
+                    window.location.href = "/home/agriculture";
+                }
+            })
+            .catch(e => {
+                //window.location.href = "/home/agriculture";
+            })
+    }
+    if (farm === null) return <div></div>
     return <div className="FDMain">
         <div className="Heading">
             <h3>Farm Report</h3>
             <div></div>
         </div>
-        <FarmItem id='FRM-1' temp='32' humidity='50' pH='4.5' />
+        <FarmItem
+            id={farm.name}
+            temp={tempSensors.length > 0 ? parseInt(tempSensors[0].data[0].value).toPrecision(2) : null}
+            humidity={humidSensors.length > 0 ? parseInt(humidSensors[0].data[0].value).toPrecision(2) : null}
+            pH={pHSensors.length > 0 ? parseInt(pHSensors[0].data[0].value).toPrecision(2) : null}
+        />
 
         <div className="Heading">
             <h3>Enviornment Conditions</h3>
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <ColumnImageText color="lightcoral" image={tempPlant} label="Temperature" value={`32${DEGREE_SYMBOL} C`} />
-            <ColumnImageText color="orangered" image={pHIcon} label="PH" value={`7.5`} />
-            <ColumnImageText color="lightblue" image={humidityIcon} label="Humidity" value={`35%`} />
+            {tempSensors !== null && tempSensors.map(tP =>
+                <ColumnImageText
+                    image={temperatureIcon}
+                    color="lightcoral"
+                    label={"Temperature(" + tP.sensor.id.split('_')[1] + ")"}
+                    value={`${parseInt(tP.data[0].value)}${DEGREE_SYMBOL} C`}
+                />)}
+            {pHSensors !== null && pHSensors.map(PH =>
+                <ColumnImageText
+                    image={pHIcon}
+                    color="orangered"
+                    label={`PH(${PH.sensor.id.split('_')[1]})`}
+                    value={`${parseInt(PH.data[0].value)}`}
+                />)}
+            {humidSensors !== null && humidSensors.map(HD =>
+                <ColumnImageText
+                    image={humidityIcon}
+                    color="lightblue"
+                    label={`Humidity(${HD.sensor.id.split('_')[1]})`}
+                    value={`${parseInt(HD.data[0].value)}`}
+                />)}
+
+
         </Paper>
         <div className="Heading">
             <h3>Farm Region</h3>
@@ -73,14 +124,10 @@ export default props => {
             <div style={{ height: '100%', width: '100%', }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
-                    defaultCenter={{ lat: 30.1575, lng: 71.5249 }}
+                    defaultCenter={{ lat: parseFloat(farm.latitude), lng: parseFloat(farm.longtitude) }}
                     defaultZoom={11}
                 >
-                    <TruckLocationMarker
-                        lat={30.1575}
-                        lng={71.5249}
-                        text="My Marker"
-                    />
+
                 </GoogleMapReact>
             </div>
         </Paper>
@@ -89,24 +136,53 @@ export default props => {
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <Card className="chartCard">
-                <span>Temperature</span>
+            {tempSensors !== null && tempSensors.map(tP => {
+                let data = {};
+                tP.data.forEach(datum => {
+                    let time = new Date(datum.time);
+                    data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
+                });
+                console.log(data);
+                return <Card className="chartCard">
+                    <span>Temperature ({tP.sensor.id.split("_")[1]})</span>
+                    <div>
+                        <LineChart data={data} width="100%" height='100%' />
+                    </div>
+                </Card>
+            }
+            )}
+            {humidSensors !== null && humidSensors.map(tP => {
+                let data = {};
+                tP.data.forEach(datum => {
+                    let time = new Date(datum.time);
+                    data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
+                });
+                console.log(data);
+                return <Card className="chartCard">
+                <span>Humidity ({tP.sensor.id.split("_")[1]})</span>
                 <div>
                     <LineChart data={data} width="100%" height='100%' />
                 </div>
             </Card>
-            <Card className="chartCard">
-                <span>Humidity</span>
+            }
+            )}
+            
+            {pHSensors !== null && pHSensors.map(tP => {
+                let data = {};
+                tP.data.forEach(datum => {
+                    let time = new Date(datum.time);
+                    data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
+                });
+                console.log(data);
+                return <Card className="chartCard">
+                <span>PH ({tP.sensor.id.split("_")[1]})</span>
                 <div>
-                    <LineChart data={data2} width="100%" height='100%' />
+                    <LineChart data={data} width="100%" height='100%' />
                 </div>
             </Card>
-            <Card className="chartCard">
-                <span>pH</span>
-                <div>
-                    <LineChart data={data3} width="100%" height='100%' />
-                </div>
-            </Card>
+            }
+            )}
+           
         </Paper>
         <div className="Heading">
             <h3>Recommended Fruits</h3>
