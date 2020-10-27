@@ -787,57 +787,57 @@ export default class DashboardView extends React.Component {
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'area' }) }}>
                                 <img src={areaIcon} />
                                 <h3>Area Graph</h3>
-                                <p>A Area graph to show different distinction of groups</p>
+                                <p>A Area graph to represent the change in one or more quantities over time.s</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'thermometer' }) }}>
                                 <img src={thermometerIcon} />
                                 <h3>Thermometer</h3>
-                                <p>A Thermometer widget to show different distinction of groups</p>
+                                <p>A Thermometer widget to show the rise and fall in temperature</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'gauge' }) }}>
                                 <img src={gaugeIcon} />
                                 <h3>Gauge</h3>
-                                <p>A Gauge widget to show different distinction of groups</p>
+                                <p>A Gauge widget to give a rise and all of different values</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'indicator' }) }}>
                                 <img src={indicatorIcon} />
                                 <h3>Indicator</h3>
-                                <p>An Indicator widget to show different distinction of groups</p>
+                                <p>An Indicator widget to give an insight of water level</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'intensity' }) }}>
                                 <img src={intensityIcon} />
                                 <h3>Intensity Chart</h3>
-                                <p>An Intensity widget to show different distinction of groups</p>
+                                <p>An Intensity widget to show the intensity of sunlight</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'pm' }) }}>
                                 <img src={pmIcon} />
                                 <h3>Particulate Matter Chart</h3>
-                                <p>A PM widget to show different distinction of groups</p>
+                                <p>A PM widget to show the purity level of air</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'humidity' }) }}>
                                 <img src={humidityIcon} />
                                 <h3>Humidity Chart</h3>
-                                <p>A Humidity widget to show different distinction of groups</p>
+                                <p>A Humidity widget to show the humidity levels</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'electricity' }) }}>
                                 <img src={electricityIcon} />
                                 <h3>Electricity Chart</h3>
-                                <p>An  Chart to show different distinction of groups</p>
+                                <p>An  Chart to show the fluctuation of electricity</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'tvoc' }) }}>
                                 <img src={tvocIcon} />
                                 <h3>VOC Chart</h3>
-                                <p>A Tvoc widget to show different distinction of groups</p>
+                                <p>A Tvoc widget to show the degree of pullted air</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'temperature' }) }}>
                                 <img src={temperatureIcon} />
                                 <h3>Temperature Chart</h3>
-                                <p>A Temperature widget to show different distinction of groups</p>
+                                <p>A Temperature widget to give a quick insight of temperature</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'scatter' }) }}>
                                 <img src={scatterIcon} />
                                 <h3>Scatter Graph</h3>
-                                <p>A scatter graph to show different distinction of groups</p>
+                                <p>A scatter graph to display values for typically two variables for a set of data. </p>
                             </div>
                         </div>] : <div className="widgetSelectionContainer">
                             <img src={nameToImg[this.state.selectedWidget]} className='widgetSelectionImg' />
