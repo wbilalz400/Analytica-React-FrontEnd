@@ -8,10 +8,10 @@ import GoogleMapReact from 'google-map-react';
 import tirePressureIcon from '../assets/images/tire-pressure-icon.png';
 import oilGaugeIcon from '../assets/images/oil-guage-icon.png';
 import temperatureIcon from '../assets/images/temperature-icon.png';
-import fruitsData from '../data.js';
+import fruitsDataA from '../data.js';
 import SwipeCard from 'react-tinder-card';
-import vegetablesData from '../data2.js';
-import cropsData from '../data3.js';
+import vegetablesDataA from '../data2.js';
+import cropsDataA from '../data3.js';
 import { FarmItem, ColumnImageText } from './AnalyticsFeed';
 import farmIcon from '../assets/images/field.png';
 import farmLabelIcon from '../assets/images/farm.png';
@@ -36,6 +36,15 @@ for (let i = 0; i < 20; i++) {
     data3[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = Math.random() * 10;
     date.setDate(date.getDay() + i + 1);
 }
+
+let fruitsData = fruitsDataA.filter(f => Math.random()*10 < 5);
+let vegetablesData = vegetablesDataA.filter(v => Math.random()*10 < 5);
+let cropsData = cropsDataA.filter(v => Math.random()*10 < 5);
+
+fruitsData = fruitsData.filter((F,index) => index < 5);
+vegetablesData = vegetablesData.filter((V,index) => index < 5);
+cropsData = cropsData.filter((C,index) => index < 5);
+
 
 const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{ width: 50, height: 80, objectFit: "contain" }} />;
 const DEGREE_SYMBOL = "°";
