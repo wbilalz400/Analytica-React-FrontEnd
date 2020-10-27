@@ -772,17 +772,17 @@ export default class DashboardView extends React.Component {
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'pie' }) }}>
                                 <img src={donutIcon} />
                                 <h3>Pie Chart</h3>
-                                <p>A pie chart to show different distinction of groups</p>
+                                <p>A pie chart to show different percentages of groups</p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'radar' }) }}>
                                 <img src={radarIcon} />
                                 <h3>Radar Graph</h3>
-                                <p>A Radar graph to show different distinction of groups</p>
+                                <p>A web-shaped diagram to indicate the relative influence of different numerical parameters. </p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'line' }) }}>
                                 <img src={lineIcon} />
                                 <h3>Line Graph</h3>
-                                <p>A line graph to show different distinction of groups</p>
+                                <p>A line graph to depict trends and behaviors over time. </p>
                             </div>
                             <div className="widgetOption" onClick={() => { this.setState({ step: 2, selectedWidget: 'area' }) }}>
                                 <img src={areaIcon} />

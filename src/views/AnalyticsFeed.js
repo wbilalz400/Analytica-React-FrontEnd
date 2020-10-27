@@ -99,7 +99,7 @@ export default props => <Card className="AFMain">
         <div></div>
     </Paper>
     <TruckItem />
-    <FarmItem
+    <FarmItem id='FRM-1' temp='32' humidity='50' pH='4.5'/>
 
     />
     <TruckItem />
