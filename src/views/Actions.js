@@ -2,9 +2,8 @@ import React , {useState,useEffect} from 'react';
 import './Actions.css';
 import FormField from '../components/FormField';
 import FormButton from '../components/FormButton';
-import { addAction,getActions } from '../api';
+import { addAction,getActions,getDevices,getSensors } from '../api';
 import { Modal } from '@material-ui/core';
-import Img from './Images';
 const data = [
     {
         sensor: 'Moisture Sensor',
@@ -28,6 +27,21 @@ export default props => {
     const [email, setEmail] = useState('')
     const [modal, setModal] = useState(false);
     const [actions, setActions] = useState(-1);
+    const [devices, setDevices] = useState(-1);
+    const [device, setDevice] = useState('-1');
+    const [method, setMethod] = useState('email');
+    if (devices === -1) {
+        getDevices()
+        .then(res => {
+            if (res.data.success === true) {
+                let sensors = res.data.devices.map(device => getSensors(device.id));
+                Promise.all(sensors)
+                .then(sensors => {
+                    setDevices(res.data.devices.map((device,index) => {return {...device,sensors: sensors[index].data.sensors}})
+                )});
+            }
+        });
+    }
     if (actions === -1) {
         getActions()
         .then(res => {
@@ -35,6 +49,7 @@ export default props => {
         })
         
     }
+    
 
     const doAddAction = () => {
         if (!first) {
@@ -53,7 +68,7 @@ export default props => {
             alert("Please enter a email");
             return;
         }
-        addAction({sensor: first, condition: operator, value: second, action: email})
+        addAction({sensor: first, condition: operator, value: second, action: method, to: email})
         .then (res => {
             if (!!res.data.success) {
                 window.location.reload();
@@ -71,14 +86,20 @@ export default props => {
         <div className="addForm">
         <h3>Add Action</h3>
             <div className="inputContainer">
-                <small>Compare From</small>
-                <FormField
-                    placeholder = "Enter Sensor Name"
-                    color = "orange"
-                    type="text"
-                    value = {first}
-                    onChange = {e => setFirst(e.target.value)}
-                />
+                <span><small>Compare From</small><br/>
+                <small>Select Device</small></span>
+                <select onChange={e => setDevice(e.target.value)} >
+                    <option value="-1" >Select a Device</option>
+                    {devices !== -1 && devices.map((device,index) => <option value={index}>{device.name}</option>)}
+                </select>
+                
+            </div>
+            <div className="inputContainer">
+            <small>Select Sensor</small>
+            <select onChange={e => setFirst(e.target.value)} disabled={device === '-1'}>
+                    <option value="-1" >Select a Sensor</option>
+                    {device!== '-1' && devices[device].sensors.map(sensor => <option value={sensor._id}>{sensor.name}</option>)}
+                </select>
             </div>
             <div className="inputContainer">
                 <small>Operator</small>
@@ -89,8 +110,8 @@ export default props => {
                     <option value="<">Less than ({"<"})</option>
                     <option value="<=">Less than or equal({"<="})</option>
                     <option value= "==">Equals (=)</option>
-                    <option value=">">Less than ({">"})</option>
-                    <option value=">=">Less than or equal({">="})</option>
+                    <option value=">">Greater than ({">"})</option>
+                    <option value=">=">Greater than or equal({">="})</option>
                 </select>
             </div>
             <div className="inputContainer">
@@ -105,9 +126,17 @@ export default props => {
                 />
             </div>
             <div className="inputContainer">
+            <small>Notify By</small>
+
+                <select  onChange={e => setMethod(e.target.value)}>
+                    <option value="email" >Email</option>
+                    <option value="sms">SMS</option>
+                </select>
+            </div>
+            <div className="inputContainer">
                 <small>Notify To</small>
                 <FormField
-                    placeholder = "Enter Email"
+                    placeholder = {`Enter ${method === 'email'?'Email':'Phone No'}`}
                     color = "orange"
                     type="email"
                     value ={email}
@@ -115,6 +144,7 @@ export default props => {
 
                 />
             </div>
+
             <FormButton
                 label="Add"
                 onClick= {doAddAction}
@@ -146,10 +176,9 @@ export default props => {
                 <td>{action.sensor}</td>
                 <td>{action.condition}</td>
                 <td>{action.value}</td>
-                <td>Email</td>
                 <td>{action.action}</td>
+                <td>{action.to}</td>
             </tr>
-          
         )}
         </table>
         <FormButton

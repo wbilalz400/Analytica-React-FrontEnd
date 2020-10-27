@@ -20,7 +20,7 @@ import '../css/styles1.css';
 import { circle } from '@fortawesome/fontawesome-free'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import leftArrowIcon from '../images/left-arrow-icon.svg';
-import { faCircle, faTimesCircle, faArrowAltCircleLeft,faFileImage,faBuilding, faArrowAltCircleRight, faUserCircle, faArrowAltCircleDown, faEdit, faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { faCircle, faTimesCircle, faArrowAltCircleLeft, faFileImage, faBuilding, faArrowAltCircleRight, faUserCircle, faArrowAltCircleDown, faEdit, faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faWifi, faBolt, faClipboardList, faTruck, faShoppingBag, faUtensilSpoon, faTree, faHome } from '@fortawesome/free-solid-svg-icons';
 import { Collapse } from 'react-collapse';
 import GridLayout from 'react-grid-layout';
@@ -38,6 +38,9 @@ import LogisticsDetail from './LogisticsDetail';
 import SensorDetail from './SensorDetail';
 import AnalyticsFeed from './AnalyticsFeed';
 import FarmDetail from './FarmDetail';
+import AddTruck from './AddTruck';
+import AddFarm from './AddFarm';
+
 export default class extends React.Component {
     constructor() {
         super();
@@ -293,71 +296,71 @@ export default class extends React.Component {
                         <FormButton color='orange' label="Sign Out" onClick={this.logOut} ></FormButton>
                     </div>
                     <div className="Menus">
-                        <div onClick={() => window.location.href='/home'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home'} className="MenuItem">
                             <FontAwesomeIcon icon={faCalendar} />
                             <h3>Feed</h3>
 
                         </div>
-                        <div onClick={() => window.location.href='/home/dashboard'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/dashboard'} className="MenuItem">
                             <FontAwesomeIcon icon={faCalendar} />
                             <h3>Dashboard</h3>
 
                         </div>
-                        <div onClick={() => window.location.href='/home/devices'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/devices'} className="MenuItem">
                             <FontAwesomeIcon icon={faWifi} />
                             <h3>Devices</h3>
 
                         </div>
-                        <div  className="MenuItem">
+                        <div className="MenuItem">
                             <FontAwesomeIcon icon={faBuilding} />
-                            <h3 onClick={() => window.location.href='/home/usecases'}>Situation Center</h3>
+                            <h3 onClick={() => window.location.href = '/home/usecases'}>Situation Center</h3>
                             <FontAwesomeIcon onClick={e => this.collapse('useCases')} icon={faArrowAltCircleDown} rotation={this.state.useCases ? 180 : 0}></FontAwesomeIcon>
                         </div>
                         <Collapse isOpened={this.state.useCases}>
-                            <div onClick={() => window.location.href="/home/logistics"} className='ChildItem'>
-                                <FontAwesomeIcon    icon={faTruck} />
+                            <div onClick={() => window.location.href = "/home/logistics"} className='ChildItem'>
+                                <FontAwesomeIcon icon={faTruck} />
                                 <h3>Logistics</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/agriculture"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/agriculture"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faTree} />
                                 <h3>Agriculture</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faHome} />
                                 <h3>Home & Office</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faShoppingBag} />
                                 <h3>Retail</h3>
                             </div>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faUtensilSpoon} />
                                 <h3>Restauraunts & Eateries</h3>
                             </div>
                         </Collapse>
-                        <div onClick={() => window.location.href='/home/actions'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/actions'} className="MenuItem">
                             <FontAwesomeIcon icon={faBolt} />
                             <h3>Actions</h3>
 
                         </div>
-                        <div onClick={() => window.location.href='/home/devices'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/devices'} className="MenuItem">
                             <FontAwesomeIcon icon={faClipboardList} />
                             <h3>Reports</h3>
 
                         </div>
-                        <div onClick={() => window.location.href='/home/images'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/images'} className="MenuItem">
                             <FontAwesomeIcon icon={faFileImage} />
                             <h3>Images</h3>
 
                         </div>
-                        <div onClick={e => this.collapse('collapseProfile')}  className="MenuItem">
+                        <div onClick={e => this.collapse('collapseProfile')} className="MenuItem">
                             <FontAwesomeIcon icon={faUserCircle} />
                             <h3>My Profile</h3>
                             <FontAwesomeIcon onClick={e => this.collapse('collapseProfile')} icon={faArrowAltCircleDown} rotation={this.state.collapseProfile ? 180 : 0}></FontAwesomeIcon>
 
                         </div>
                         <Collapse isOpened={this.state.collapseProfile}>
-                            <div onClick={() => window.location.href="/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faEdit} />
                                 <h3>Edit Profile</h3>
                             </div>
@@ -374,21 +377,23 @@ export default class extends React.Component {
                     <div style={{ overflow: 'scroll' }} className={"content " + (this.state.loading ? "" : "")}>
                         <Router>
                             <Switch>
-                                <Route path='/home/usecases' component = {UseCases}/>
-                                <Route path='/home/images' component = {ImageView}/>
-                                <Route path='/home/devices/:device' component={DeviceView}/>
-                                <Route path='/home/devices' component={DevicesView}/>
-                                <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props}/>}/>
-                                <Route path='/home/actions' component = {Actions}/>
-                                <Route path="/home/sensordetail" component = {SensorDetail}/>
-                                <Route path='/home/logistics/detail' component={LogisticsDetail}/>
-                                <Route path='/home/logistics' component={LogisticsView}/>
-                                <Route path='/home/agriculture/detail' component={FarmDetail}/>
-                                <Route path='/home/agriculture' component={AgricultureView}/>
-                                <Route path="/home/dashboard" component={DashboardView}/>
-                                <Route path="/home/agriculture" component={FarmDetail}/>
-                                <Route path="/home" render={() => <AnalyticsFeed/>}/>
-                            
+                                <Route path='/home/usecases' component={UseCases} />
+                                <Route path='/home/images' component={ImageView} />
+                                <Route path='/home/devices/:device' component={DeviceView} />
+                                <Route path='/home/devices' component={DevicesView} />
+                                <Route path='/home/editprofile' render={(props) => <MyProfileView user={this.state.user} {...props} />} />
+                                <Route path='/home/actions' component={Actions} />
+                                <Route path="/home/sensordetail" component={SensorDetail} />
+                                <Route path='/home/logistics/add' component={AddTruck} />
+                                <Route path='/home/logistics/detail' component={LogisticsDetail} />
+                                <Route path='/home/logistics' component={LogisticsView} />
+                                <Route path='/home/agriculture/add' component={AddFarm} />
+                                <Route path='/home/agriculture/detail' component={FarmDetail} />
+                                <Route path='/home/agriculture' component={AgricultureView} />
+                                <Route path="/home/dashboard" component={DashboardView} />
+                                <Route path="/home/agriculture" component={FarmDetail} />
+                                <Route path="/home" render={() => <AnalyticsFeed />} />
+
 
                             </Switch>
                         </Router>

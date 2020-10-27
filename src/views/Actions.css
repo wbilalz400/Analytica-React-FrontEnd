@@ -29,6 +29,10 @@
 .ActionMain .inputContainer > * {
     flex:1
 }
+.ActionMain .inputContainer > select {
+    width: 50%;
+    margin-bottom: 4px;
+}
 .ActionMain select {
     margin: 1% 12% -5px;
     padding-left: 12px;
@@ -51,11 +55,12 @@
 }
 .ActionMain .addForm {
     width: 50%;
-    height: 50%;
+    height: 70%;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .ActionMain tr:nth-child(even) {

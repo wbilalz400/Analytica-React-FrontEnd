@@ -21,6 +21,8 @@ export default props => {
                 <a style={{marginLeft:'auto',marginRight:10}} href="/home/logistics/detail">View Details</a>
             </div>
         </Paper>
-        
+        <div onClick={() => window.location.href = "/home/logistics/add"} className="addIcon">
+            <span >+</span>
+        </div>
     </div>
 }   
