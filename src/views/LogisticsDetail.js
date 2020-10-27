@@ -35,7 +35,7 @@ export default props => {
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZH</span></h3>
                 <h5>Temperature</h5>
                 <div style={{ borderColor: 'yellow', color: 'yellow' }} className="temperatureCard">
@@ -43,7 +43,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZD</span></h3>
                 <h5>Temperature</h5>
                 <div style={{ borderColor: 'green', color: 'green' }} className="temperatureCard">
@@ -51,7 +51,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"}  className="conditionCard">
                 <h3><span>A2ZF</span></h3>
                 <h5>Temperature</h5>
                 <div style={{ borderColor: 'red', color: 'red' }} className="temperatureCard">
@@ -59,7 +59,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZG</span></h3>
                 <h5>Temperature</h5>
                 <div style={{ borderColor: 'blue', color: 'blue' }} className="temperatureCard">
@@ -68,7 +68,7 @@ export default props => {
 
             </Card>
 
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZH</span></h3>
                 <h5>Humidity</h5>
                 <div style={{ borderColor: 'yellow', color: 'yellow' }} className="temperatureCard">
@@ -76,7 +76,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZD</span></h3>
                 <h5>Humidity</h5>
                 <div style={{ borderColor: 'green', color: 'green' }} className="temperatureCard">
@@ -84,7 +84,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZF</span></h3>
                 <h5>Humidity</h5>
                 <div style={{ borderColor: 'red', color: 'red' }} className="temperatureCard">
@@ -92,7 +92,7 @@ export default props => {
                 </div>
 
             </Card>
-            <Card className="conditionCard">
+            <Card onClick={() => window.location.href="/home/sensor/detail"} className="conditionCard">
                 <h3><span>A2ZG</span></h3>
                 <h5>Humidity</h5>
                 <div style={{ borderColor: 'blue', color: 'blue' }} className="temperatureCard">
