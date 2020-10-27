@@ -23,7 +23,7 @@ export const TruckItem = props => <Paper className="TruckItem">
     </div>
 </Paper>;
 
-export const ColumnImageText = props => <Card className="CITMain">
+export const ColumnImageText = props => <Card onClick = {props.onClick? props.onClick : () => console.log("click")} className="CITMain">
     <div style={{ backgroundColor: props.color }} className="CITImage">
         <img src={props.image} />
     </div>
