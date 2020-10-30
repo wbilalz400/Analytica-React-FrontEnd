@@ -5,7 +5,7 @@ export default [
         "https://media.cntraveller.in/wp-content/uploads/2020/06/2C16FW9-866x487.jpg",
        
       ],
-      name: "Potatoes",
+      name: "Potato",
       pH1: 4.5,
       pH2: 6.0,
       humidity1: 90,
@@ -22,7 +22,7 @@ export default [
           
          
         ],
-        name: "Sweet Potatoes",
+        name: "Sweet Potato",
         pH1: 5.5,
         pH2: 6.0,
         humidity1: 80,
@@ -38,7 +38,7 @@ export default [
           "https://www.burpee.com/dw/image/v2/ABAQ_PRD/on/demandware.static/-/Sites-masterCatalog_Burpee/default/dwba2185ca/Images/Product%20Images/prod000631/prod000631.jpg?sw=322&sh=380&sm=fit",
          
         ],
-        name: "Carrots",
+        name: "Carrot",
         pH1: 5.5,
         pH2: 7.0,
         humidity1: 95,
@@ -54,7 +54,7 @@ export default [
           "https://www.eatwell.co.nz/images/recipes/Generic_Cauliflower_1.jpg?width=603&height=339&mode=crop&upscale=false",
          
         ],
-        name: "Cauliflowers",
+        name: "Cauliflower",
         pH1: 5.5,
         pH2: 7.5,
         humidity1: 88,
@@ -70,7 +70,7 @@ export default [
           "https://l.hdnux.com/350x235p/s3-us-west-1.amazonaws.com/contentlab.studiod/getty/e223a13ea53243fa806a19021f3bdb08.jpg",
          
         ],
-        name: "Cucumbers",
+        name: "Cucumber",
         pH1: 5.5,
         pH2: 7.0,
         humidity1: 60,
@@ -86,7 +86,7 @@ export default [
           "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_764,h_764/k%2Farchive%2F491a9d0c37879ccf8a8247f7aa948eb6e5cd38d2",
          
         ],
-        name: "Eggplants",
+        name: "Eggplant",
         pH1: 5.5,
         pH2: 6.0,
         humidity1: 50,
@@ -102,7 +102,7 @@ export default [
           "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/all_about_garlic_slideshow/1800ss_thinkstock_rf_garlic_in_bowl.jpg?resize=650px:*"
          
         ],
-        name: "Garlics",
+        name: "Garlic",
         pH1: 5.5,
         pH2: 7.5,
         humidity1: 60,
@@ -134,7 +134,7 @@ export default [
           "https://miro.medium.com/max/2363/1*uzQEjVpb85fzlezAGXAGig.jpeg",
          
         ],
-        name: "Tomatoes",
+        name: "Tomato",
         pH1: 5.5,
         pH2: 7.5,
         humidity1: 80,
@@ -150,7 +150,7 @@ export default [
           "https://i.ndtvimg.com/mt/cooks/2014-11/turnip-shalgam.jpg",
          
         ],
-        name: "Turnips",
+        name: "Turnip",
         pH1: 5.5,
         pH2: 7.0,
         humidity1: 90,
@@ -166,7 +166,7 @@ export default [
           "https://i.cbc.ca/1.5553624.1588444084!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cabbage.jpg",
          
         ],
-        name: "Cabbages",
+        name: "Cabbage",
         pH1: 6.0,
         pH2: 7.5,
         humidity1: 90,
@@ -182,7 +182,7 @@ export default [
           "https://www.ctvnews.ca/polopoly_fs/1.5047601.1602430297!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
          
         ],
-        name: "Onions",
+        name: "Onion",
         pH1: 6.0,
         pH2: 7.0,
         humidity1: 60,
@@ -198,7 +198,7 @@ export default [
           "https://www.sbs.com.au/food/sites/sbs.com.au.food/files/styles/full/public/images/site_21_rand_264138416_peas.jpg?itok=i-FypCXu&mtime=1376846953",
          
         ],
-        name: "Peas",
+        name: "Pea",
         pH1: 6.0,
         pH2: 7.5,
         humidity1: 60,
