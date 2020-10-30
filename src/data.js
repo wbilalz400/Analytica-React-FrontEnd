@@ -5,7 +5,7 @@ export default [
       "https://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/strawberries-1.jpg?itok=M1rx-t2P",
      
     ],
-    name: "Strawberries",
+    name: "Strawberry",
     pH1: 5.0,
     pH2: 7.5,
     humidity1: 60,
@@ -21,7 +21,7 @@ export default [
       "https://c8n.tradeling.com/img/plain/pim/rs:auto:350::0/f:jpg/up/5eeef1266d49e1001c65f990/3ff9a23c4aa6f6a3e841062bfcfab11b.jpg",
      
     ],
-    name: "Plums",
+    name: "Plum",
     pH1: 6.0,
     pH2: 8.8,
     humidity1: 90,
@@ -37,7 +37,7 @@ export default [
       "https://i.ndtvimg.com/i/2016-12/pear-625_620x350_71480939206.jpg",
      
     ],
-    name: "Pears",
+    name: "Pear",
     pH1: 6.0,
     pH2: 7.5,
     humidity1: 90,
@@ -53,7 +53,7 @@ export default [
       "https://www.healthypawspetinsurance.com/blog/wp-content/uploads/2018/08/peaches-1.jpg",
      
     ],
-    name: "Peaches",
+    name: "Peach",
     pH1: 6.0,
     pH2: 7.0,
     humidity1: 67,
@@ -69,7 +69,7 @@ export default [
       "https://img3.exportersindia.com/product_images/bc-full/dir_149/4462477/orange-1487845259-2734402.jpeg",
      
     ],
-    name: "Oranges",
+    name: "Orange",
     pH1: 6.0,
     pH2: 7.5,
     humidity1: 40,
@@ -85,7 +85,7 @@ export default [
       "https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/grapes_0.jpg?itok=uYYnmpTm",
      
     ],
-    name: "Grapes",
+    name: "Grape",
     pH1: 6.0,
     pH2: 7.0,
     humidity1: 90,
@@ -117,7 +117,7 @@ export default [
       "https://images.unsplash.com/pH1oto-1506917728037-b6af01a7d403?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80",
      
     ],
-    name: "Pumpkins",
+    name: "Pumpkin",
     pH1: 6.0,
     pH2: 6.5,
     humidity1: 70,
@@ -132,7 +132,7 @@ export default [
       "https://cdn.shopify.com/s/files/1/1698/1675/products/Melon_Canary.jpg?v=1536888091",
       "https://www.finefruitsdirect.co.uk/images/stories/virtuemart/product/honeydew-melon.jpg",
     ],
-    name: "Melons",
+    name: "Melon",
     pH1: 5.5,
     pH2: 6.5,
     humidity1: 65,
@@ -147,7 +147,7 @@ export default [
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cranberries500-1483647841.jpg?resize=980:*",
       "https://media.npr.org/assets/img/2019/11/12/gettyimages-1042995226-40e004bbd130884fcfb897a41d80d22615baa56f-s1600-c85.jpg",
     ],
-    name: "Cranberries",
+    name: "Cranberry",
     pH1: 4.0,
     pH2: 5.5,
     humidity1: 75,
@@ -162,7 +162,7 @@ export default [
       "https://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/blackberries-dish.jpg?itok=nRc8flxa",
       "https://morningchores.com/wp-content/uploads/2019/10/Growing-Blackberries-A-Complete-Guide-on-How-to-Plant-Grow-Harvest-Blackberries-FB.jpg"
     ],
-    name: "Blackberries",
+    name: "Blackberry",
     pH1: 5.0,
     pH2: 6.0,
     humidity1: 90,
@@ -177,7 +177,7 @@ export default [
       "https://images.everydayhealth.com/images/diet-nutrition/all-about-blueberries-722x406.jpg?w=1110",
       "https://s3-eu-west-1.amazonaws.com/fs.siteor.com/wellness/files/bluberries.jpg"
     ],
-    name: "Blueberries",
+    name: "Blueberry",
     pH1: 4.0,
     pH2: 6.0,
     humidity1: 85,
@@ -192,7 +192,7 @@ export default [
       "https://img.itinari.com/pages/images/original/8973c746-edda-4ace-89f4-1ed7734b7e81-istock-486346030.jpg?ch=DPR&dpr=1.25&w=1600&s=8491492f671dfb7997e23fbc547a1cad",
       "https://aces.nmsu.edu/pubs/_h/H320/images/raspberries_39010114.jpg"
     ],
-    name: "Raspberries",
+    name: "Raspberry",
     pH1: 5.5,
     pH2: 7.5,
     humidity1: 75,
@@ -207,7 +207,7 @@ export default [
       "https://cdn.vox-cdn.com/thumbor/V1RhQ164vqDV54mwjD58v8K0RZ4=/0x0:4000x3100/920x613/filters:focal(1680x1230:2320x1870):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/49183721/shutterstock_391404361.0.jpg",
       "https://mrnmrsekart.com/assets/product_images/prod_5a43e0781f91d.jpg"
     ],
-    name: "Bananas",
+    name: "Banana",
     pH1: 5.5,
     pH2: 7.0,
     humidity1: 90,
@@ -223,7 +223,7 @@ export default [
       "https://www.healthifyme.com/blog/wp-content/uploads/2020/02/mangoes-cover-1.jpg"
 
     ],
-    name: "Mangoes",
+    name: "Mango",
     pH1: 5.5,
     pH2: 7.5,
     humidity1: 50,
@@ -239,7 +239,7 @@ export default [
 
 
     ],
-    name: "Apples",
+    name: "Apple",
     pH1: 5.0,
     pH2: 6.5,
     humidity1: 30,
