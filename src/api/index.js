@@ -26,6 +26,7 @@ const POST_FARM = '/farm';
 const GET_FARM = '/farm/{id}';
 const GET_TRUCKS = '/truck';
 const GET_TRUCK = '/truck/{id}';
+const GET_NOTIFICATION = '/notification';
 const POST_TRUCK = '/truck';
 
 
@@ -57,6 +58,10 @@ export const getTrucks = () => {
 
 export const getTruck = id => {
     return API.get(GET_TRUCK.replace("{id}",id));
+}
+
+export const getNotification = () => {
+    return API.get(GET_NOTIFICATION);
 }
 
 export const addTruck = payload => {

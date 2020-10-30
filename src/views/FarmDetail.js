@@ -20,7 +20,9 @@ import pHIcon from '../assets/images/ph.png';
 import humidityIcon from '../assets/images/humidity.png';
 import { LineChart } from 'react-chartkick';
 import { getFarm } from '../api';
-
+const PREDICTED_VEG = 0;
+const PREDICTED_FRUIT = 1;
+const PREDICTED_CROP = 2;
 const data = {};
 const date = new Date();
 for (let i = 0; i < 20; i++) {
@@ -43,9 +45,9 @@ let fruitsData = fruitsDataA.filter(f => Math.random() * 10 < 5);
 let vegetablesData = vegetablesDataA.filter(v => Math.random() * 10 < 5);
 let cropsData = cropsDataA.filter(v => Math.random() * 10 < 5);
 
-fruitsData = fruitsData.filter((F, index) => index < 5);
-vegetablesData = vegetablesData.filter((V, index) => index < 5);
-cropsData = cropsData.filter((C, index) => index < 5);
+let fruitsDataAB = fruitsData.filter((F, index) => index < 4);
+let vegetablesDataAB = vegetablesData.filter((V, index) => index < 4);
+let cropsDataAB = cropsData.filter((C, index) => index < 4);
 
 
 const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{ width: 50, height: 80, objectFit: "contain" }} />;
@@ -57,6 +59,9 @@ export default props => {
     const [humidSensors, setHumidSensors] = useState(null);
     const [pHSensors, setPHSensors] = useState(null);
     const [farm, setFarm] = useState(null);
+    const [fruitPrediction, setFruitPrediction] = useState(null);
+    const [vegetablePrediction, setVegetablePrediction] = useState(null);
+    const [cropPrediction, setCropPrediction] = useState(null);
 
     if (farm === null) {
         getFarm(props.match.params.id)
@@ -66,6 +71,14 @@ export default props => {
                     setHumidSensors(res.data.humidSensors.filter(hD => hD.data.length !== 0));
                     setPHSensors(res.data.pHSensors.filter(pH => pH.data.length !== 0));
                     setFarm(res.data.farm);
+                    let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT).map(P => fruitsDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG).map(P => vegetablesDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP).map(P => cropsDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    
+                    setFruitPrediction(fruitPredictionA.length !== 0? [...fruitPredictionA,...fruitsDataAB]:null);
+                    setVegetablePrediction(vegetablePredictionA.length !== 0? [...vegetablePredictionA,...vegetablesDataAB]:null);
+                    setCropPrediction(cropPredictionA.length !== 0? [...cropPredictionA,...cropsDataAB]:null);
+                    
                 } else {
                     window.location.href = "/home/agriculture";
                 }
@@ -189,7 +202,7 @@ export default props => {
             <div></div>
         </div>
         <Paper className="cropCardsContainer">
-            {fruitsData.map(card => <SwipeCard className="cardMain">
+            {fruitPrediction.map(card => <SwipeCard className="cardMain">
                 <div className="cropCard">
                     <img src={card.pics[0]}></img>
                     <div className="cropCardDesc">
@@ -207,7 +220,7 @@ export default props => {
             <div></div>
         </div>
         <Paper className="cropCardsContainer">
-            {vegetablesData.map(card => <SwipeCard className="cardMain">
+            {vegetablePrediction.map(card => <SwipeCard className="cardMain">
                 <div className="cropCard">
                     <img src={card.pics[0]}></img>
                     <div className="cropCardDesc">
@@ -225,7 +238,7 @@ export default props => {
             <div></div>
         </div>
         <Paper className="cropCardsContainer">
-            {cropsData.map(card => <SwipeCard className="cardMain">
+            {cropPrediction.map(card => <SwipeCard className="cardMain">
                 <div className="cropCard">
                     <img src={card.pics[0]}></img>
                     <div className="cropCardDesc">
