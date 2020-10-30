@@ -71,20 +71,22 @@ export default props => {
                     setHumidSensors(res.data.humidSensors.filter(hD => hD.data.length !== 0));
                     setPHSensors(res.data.pHSensors.filter(pH => pH.data.length !== 0));
                     setFarm(res.data.farm);
-                    let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT).map(P => fruitsDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
-                    let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG).map(P => vegetablesDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
-                    let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP).map(P => cropsDataA.find(D => P.predictions[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
-                    
-                    setFruitPrediction(fruitPredictionA.length !== 0? [...fruitPredictionA,...fruitsDataAB]:null);
-                    setVegetablePrediction(vegetablePredictionA.length !== 0? [...vegetablePredictionA,...vegetablesDataAB]:null);
-                    setCropPrediction(cropPredictionA.length !== 0? [...cropPredictionA,...cropsDataAB]:null);
-                    
+                    let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT).map(P => fruitsDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG).map(P => vegetablesDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP).map(P => cropsDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    console.log(fruitPredictionA);
+
+                    setFruitPrediction(fruitPredictionA.length !== 0 ? [ ...fruitsDataAB,...fruitPredictionA] : null);
+                    setVegetablePrediction(vegetablePredictionA.length !== 0 ? [ ...vegetablesDataAB,...vegetablePredictionA] : null);
+                    setCropPrediction(cropPredictionA.length !== 0 ? [ ...cropsDataAB,...cropPredictionA] : null);
+
                 } else {
                     window.location.href = "/home/agriculture";
                 }
             })
             .catch(e => {
                 //window.location.href = "/home/agriculture";
+                console.log(e);
             })
     }
     if (farm === null) return <div></div>
@@ -155,7 +157,6 @@ export default props => {
                     let time = new Date(datum.time);
                     data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
                 });
-                console.log(data);
                 return <Card className="chartCard">
                     <span>Temperature ({tP.sensor.id.split("_")[1]})</span>
                     <div>
@@ -170,86 +171,87 @@ export default props => {
                     let time = new Date(datum.time);
                     data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
                 });
-                console.log(data);
                 return <Card className="chartCard">
-                <span>Humidity ({tP.sensor.id.split("_")[1]})</span>
-                <div>
-                    <LineChart data={data} width="100%" height='100%' />
-                </div>
-            </Card>
+                    <span>Humidity ({tP.sensor.id.split("_")[1]})</span>
+                    <div>
+                        <LineChart data={data} width="100%" height='100%' />
+                    </div>
+                </Card>
             }
             )}
-            
+
             {pHSensors !== null && pHSensors.map(tP => {
                 let data = {};
                 tP.data.forEach(datum => {
                     let time = new Date(datum.time);
                     data[`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`] = parseFloat(datum.value);
                 });
-                console.log(data);
                 return <Card className="chartCard">
-                <span>PH ({tP.sensor.id.split("_")[1]})</span>
-                <div>
-                    <LineChart data={data} width="100%" height='100%' />
-                </div>
-            </Card>
+                    <span>PH ({tP.sensor.id.split("_")[1]})</span>
+                    <div>
+                        <LineChart data={data} width="100%" height='100%' />
+                    </div>
+                </Card>
             }
             )}
-           
-        </Paper>
-        <div className="Heading">
-            <h3>Recommended Fruits</h3>
-            <div></div>
-        </div>
-        <Paper className="cropCardsContainer">
-            {fruitPrediction.map(card => <SwipeCard className="cardMain">
-                <div className="cropCard">
-                    <img src={card.pics[0]}></img>
-                    <div className="cropCardDesc">
-                        <div className="name">{card.name}</div>
-                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
-                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
-                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
 
-                    </div>
-                </div>
-            </SwipeCard>)}
         </Paper>
-        <div className="Heading">
-            <h3>Recommended Vegetables</h3>
-            <div></div>
-        </div>
-        <Paper className="cropCardsContainer">
-            {vegetablePrediction.map(card => <SwipeCard className="cardMain">
-                <div className="cropCard">
-                    <img src={card.pics[0]}></img>
-                    <div className="cropCardDesc">
-                        <div className="name">{card.name}</div>
-                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
-                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
-                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
+        {fruitPrediction == null ? "" :
+            [<div className="Heading">
+                <h3>Recommended Fruits</h3>
+                <div></div>
+            </div>,
+            <Paper className="cropCardsContainer">
+                {fruitPrediction.map(card => <SwipeCard className="cardMain">
+                    <div className="cropCard">
+                        <img src={card.pics[0]}></img>
+                        <div className="cropCardDesc">
+                            <div className="name">{card.name}</div>
+                            <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                            <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                            <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
 
+                        </div>
                     </div>
-                </div>
-            </SwipeCard>)}
-        </Paper>
-        <div className="Heading">
-            <h3>Recommended Crops</h3>
-            <div></div>
-        </div>
-        <Paper className="cropCardsContainer">
-            {cropPrediction.map(card => <SwipeCard className="cardMain">
-                <div className="cropCard">
-                    <img src={card.pics[0]}></img>
-                    <div className="cropCardDesc">
-                        <div className="name">{card.name}</div>
-                        <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
-                        <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
-                        <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
+                </SwipeCard>)}
+            </Paper>]}
+        {vegetablePrediction != null ?
+            [<div className="Heading">
+                <h3>Recommended Vegetables</h3>
+                <div></div>
+            </div>,
+            <Paper className="cropCardsContainer">
+                {vegetablePrediction.map(card => <SwipeCard className="cardMain">
+                    <div className="cropCard">
+                        <img src={card.pics[0]}></img>
+                        <div className="cropCardDesc">
+                            <div className="name">{card.name}</div>
+                            <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                            <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                            <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
 
+                        </div>
                     </div>
-                </div>
-            </SwipeCard>)}
-        </Paper>
+                </SwipeCard>)}
+            </Paper>] : ""}
+        {cropPrediction == null ? "" : [
+            <div className="Heading">
+                <h3>Recommended Crops</h3>
+                <div></div>
+            </div>,
+            <Paper className="cropCardsContainer">
+                {cropPrediction.map(card => <SwipeCard className="cardMain">
+                    <div className="cropCard">
+                        <img src={card.pics[0]}></img>
+                        <div className="cropCardDesc">
+                            <div className="name">{card.name}</div>
+                            <div className="info"><span className="lbl">pH: </span>{card.pH1 + " "} - {card.pH2}</div>
+                            <div className="info"><span className="lbl">Humidity:</span>{card.humidity1}% {" "} - {card.humidity2 + "%"}</div>
+                            <div className="info"><span className="lbl">Temperature:</span>{card.temperature1 + `${DEGREE_SYMBOL} C`} {" "} - {card.temperature2 + `${DEGREE_SYMBOL} C`}</div>
+
+                        </div>
+                    </div>
+                </SwipeCard>)}
+            </Paper>]}
     </div>;
 }
