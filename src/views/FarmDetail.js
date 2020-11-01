@@ -71,14 +71,14 @@ export default props => {
                     setHumidSensors(res.data.humidSensors.filter(hD => hD.data.length !== 0));
                     setPHSensors(res.data.pHSensors.filter(pH => pH.data.length !== 0));
                     setFarm(res.data.farm);
-                    let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT).map(P => fruitsDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
-                    let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG).map(P => vegetablesDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
-                    let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP).map(P => cropsDataA.find(D => P.prediction[0].toLowerCase().trim() === D.name.toLowerCase().trim()));
+                    let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT);
+                    let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG);
+                    let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP);
                     console.log(fruitPredictionA);
 
-                    setFruitPrediction(fruitPredictionA.length !== 0 ? [ ...fruitsDataAB,...fruitPredictionA] : null);
-                    setVegetablePrediction(vegetablePredictionA.length !== 0 ? [ ...vegetablesDataAB,...vegetablePredictionA] : null);
-                    setCropPrediction(cropPredictionA.length !== 0 ? [ ...cropsDataAB,...cropPredictionA] : null);
+                    setFruitPrediction(fruitPredictionA.length !== 0 ? fruitPredictionA[0].prediction.map(P => fruitsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setVegetablePrediction(vegetablePredictionA.length !== 0 ? vegetablePredictionA[0].prediction.map(P => vegetablesDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setCropPrediction(cropPredictionA.length !== 0 ?cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
 
                 } else {
                     window.location.href = "/home/agriculture";
