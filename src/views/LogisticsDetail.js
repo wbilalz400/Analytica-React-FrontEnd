@@ -51,7 +51,7 @@ export default props => {
             current={"Data not submitted"}
             departed={truck.truck.departTime}
             arrival={truck.truck.arrivalTime}
-            temperature={truck.tempSensors.length > 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
+            temperature={truck.tempSensors.length > 0  && truck.tempSensors[0].data.length !== 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
             onTime="ON TIME"
             id={truck.truck._id}
         />
@@ -98,7 +98,7 @@ export default props => {
                 {(truck.locationSensors.length > 0 && truck.locationSensors[0].data.length > 0) ?
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
-                        defaultCenter={{ lat: parseFloat(truck.locationSensors[0].data[0].value.split(",")[0]), lng: parseFloat(truck.locationSensors[0].data[9].value.split(",")[1]) }}
+                        defaultCenter={{ lat: parseFloat(truck.locationSensors[0].data[0].value.split(",")[0]), lng: parseFloat(truck.locationSensors[0].data[0].value.split(",")[1]) }}
                         defaultZoom={11}
                     >
                         <TruckLocationMarker

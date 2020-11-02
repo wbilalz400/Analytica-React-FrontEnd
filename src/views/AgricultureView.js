@@ -9,7 +9,7 @@ export default props => {
 
     if (farms === null) {
         getFarms()
-            .then(farms => { setFarms(farms) });
+            .then(farms => { debugger;setFarms(farms) });
     }
     return <div className="LogisticsMain">
         <div className="Heading">
