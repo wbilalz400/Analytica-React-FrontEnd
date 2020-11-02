@@ -194,7 +194,7 @@ export default props => {
             current={"Data not submitted"}
             departed={truck.truck.departTime}
             arrival={truck.truck.arrivalTime}
-            temperature={truck.tempSensors.length > 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
+            temperature={truck.tempSensors.length > 0 && truck.tempSensors[0].data.length !== 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
             onTime="ON TIME"
             id={truck.truck._id}
         />)}

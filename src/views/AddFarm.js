@@ -24,7 +24,7 @@ export default props => {
         };
         addFarm(payload)
         .then(res => {
-            if (res.data.success) window.location.href = "/agriculture";
+            if (res.data.success) window.location.href = "/home/agriculture";
             else {
                 alert(res.data.message);
             }
