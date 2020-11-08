@@ -17,6 +17,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: whitesmoke;
 
     
@@ -62,11 +63,17 @@
     margin-right: 20px;
     padding: 20px;
     margin-bottom: 20px;
-    width: 18vw;
     cursor: pointer;
 
 }
+.LDMain .conditionRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 20px !important;
 
+    justify-content: center;
+}
 .LDMain .Heading {
     color:black;
     display: flex;
@@ -90,11 +97,30 @@
 }
 .LDMain .conditionCard h3 {
     font-size: 14px;
+    
 }
 .LDMain .conditionCard {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.LDMain .conditionMap {
+    width: 50vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    align-self: center;
+    justify-self: center;
+
+}
+.LDMain .conditionItem {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 20px;
 }
 .LDMain .Heading div {
     width: auto;
