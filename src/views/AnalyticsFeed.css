@@ -1,5 +1,5 @@
 .TruckItem, .FarmItem {
-    height: 25vh;
+    height: 30vh;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -116,7 +116,7 @@
 }
 
 .CITMain {
-    height: 20vh;
+    height: 25vh;
     min-width: 20% !important;
     display: flex;
     flex-direction: column;

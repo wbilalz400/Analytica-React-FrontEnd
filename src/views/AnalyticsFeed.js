@@ -8,6 +8,13 @@ import tempPlant from '../assets/images/temperature-plant.png';
 import pHIcon from '../assets/images/ph.png';
 import humidityIcon from '../assets/images/humidity.png';
 import { getFarms, getTrucks, getNotification } from '../api';
+import temperatureIcon from '../assets/images/temperature-icon.png';
+import shopIcon from '../assets/images/shop.png';
+import dollarIcon from '../assets/images/dollar.png';
+import basketIcon from '../assets/images/basket.png';
+import shopThumb from '../assets/images/shopIcon.png';
+import customerIcon from '../assets/images/customers.png';
+
 const FARM = 0;
 const TRUCK = 1;
 
@@ -15,7 +22,7 @@ const CRITICAL = -1;
 const REGULAR = 0;
 const INFO = 1;
 
-const DEGREE_SYMBOL = "°";
+export const DEGREE_SYMBOL = "°";
 
 const TruckItem = props => <Paper className="TruckItem">
     <div className="imageHolder">
@@ -89,8 +96,38 @@ export const FarmItem = props => <Paper onClick={() => window.location.href = `/
     </div>
 
     <div style={{ backgroundColor: 'yellowgreen' }} className="imageHolder">
-        <img style={{ filter: 'invert(1)' }} className="image" src={farmIcon} />
+        <img style={{ filter: 'invert(1)' }} className="image" src={shopThumb} />
     </div>
+</Paper>
+
+export const RetailItem = props => <Paper onClick={() => window.location.href = `/home/retail/detail`} className="FarmItem">
+    <div style={{ backgroundColor: 'lightblue' }} className="imageHolder">
+        <img style={{  }} className="image" src={shopIcon} />
+    </div>
+    <div className="contentItem">
+        <ColumnImageText
+            color="lightblue"
+            image={shopThumb} label="Outlet" value={props.name}
+
+        />
+        <ColumnImageText
+            color="lightcoral"
+            image={temperatureIcon} label="Ambient Temperature" value={`${props.temp}${DEGREE_SYMBOL} C`}
+        />
+        {props.sales ?
+            <ColumnImageText
+                color="lightgreen"
+                image={dollarIcon} label="Today's Sales" value={props.sales}
+            /> : ""}
+        {props.customer && 
+            <ColumnImageText
+                color="orangered"
+                image={customerIcon} label="Customers Served" value={props.customer}
+            />
+        }
+    </div>
+
+    
 </Paper>
 
 export default props => {

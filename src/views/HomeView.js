@@ -40,6 +40,8 @@ import AnalyticsFeed from './AnalyticsFeed';
 import FarmDetail from './FarmDetail';
 import AddTruck from './AddTruck';
 import AddFarm from './AddFarm';
+import RetailView from './RetailView';
+import RetailDetailView from './RetailDetail';
 
 export default class extends React.Component {
     constructor() {
@@ -329,13 +331,9 @@ export default class extends React.Component {
                                 <FontAwesomeIcon icon={faHome} />
                                 <h3>Home & Office</h3>
                             </div>
-                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/retail"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faShoppingBag} />
                                 <h3>Retail</h3>
-                            </div>
-                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
-                                <FontAwesomeIcon icon={faUtensilSpoon} />
-                                <h3>Restauraunts & Eateries</h3>
                             </div>
                         </Collapse>
                         <div onClick={() => window.location.href = '/home/actions'} className="MenuItem">
@@ -387,6 +385,8 @@ export default class extends React.Component {
                                 <Route path='/home/logistics/add' component={AddTruck} />
                                 <Route path='/home/logistics/:id' component={LogisticsDetail} />
                                 <Route path='/home/logistics' component={LogisticsView} />
+                                <Route path='/home/retail/detail' component={RetailDetailView} />
+                                <Route path='/home/retail' component={RetailView} />
                                 <Route path='/home/agriculture/add' component={AddFarm} />
                                 <Route path='/home/agriculture/:id' component={FarmDetail} />
                                 <Route path='/home/agriculture' component={AgricultureView} />
