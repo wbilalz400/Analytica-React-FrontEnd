@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './LogisticsView.css';
 //import { Paper } from '@material-ui/core';
 //import truckIcon from '../assets/images/truck.svg';
+
 import { FarmItem } from './AnalyticsFeed';
 import { getFarms } from '../api';
+
 export default props => {
+
     const [farms, setFarms] = useState(null);
 
     if (farms === null) {
@@ -42,8 +45,6 @@ export default props => {
         <div onClick={() => window.location.href = "/home/agriculture/add"} className="addIcon">
             <span >+</span>
         </div>
-
-
 
     </div>
 }   
