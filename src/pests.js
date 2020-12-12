@@ -1,8 +1,66 @@
-import cutworm from './Cutworm.jpg'
+import CrownBorer from './views/PestImages/CrownBorer.jpg'
+import CaneBorer from './views/PestImages/CaneBorer.jpg'
+import BlueberryGallMidge from './views/PestImages/BlueberryGallMidge.jpg'
+import ObscureRootWeevil from './views/PestImages/ObscureRootWeevil.jpg'
+import RaspberryFruitworm from './views/PestImages/RaspberryFruitworm.jpg'
+import BlackheadedFireworm from './views/PestImages/BlackheadedFireworm.jpg'
+import CodlingMoth from './views/PestImages/CodlingMoth.jpg'
+import AppleMaggot from './views/PestImages/AppleMaggot.jpg'
+import BudMoth from './views/PestImages/BudMoth.jpg'
+import AppleAphid from './views/PestImages/AppleAphid.jpg'
+import CucumberBeetle from './views/PestImages/CucumberBeetle.jpg'
+import Thrips from './views/PestImages/Thrips.jpg'
+import SpiderMites from './views/PestImages/SpiderMites.jpg'
+import Mites from './views/PestImages/Mites.jpg'
+import GrassHopper from './views/PestImages/GrassHopper.jpg'
+import CitrusButterfly from './views/PestImages/CitrusButterfly.jpg'
+import Leafhopper from './views/PestImages/Leafhopper.jpg'
+import Cutworm from './views/PestImages/Cutworm.jpg'
+import StemWeevil from './views/PestImages/StemWeevil.jpg'
+import StemGrilder from './views/PestImages/StemGrilder.jpg'
+import FleaBeetle from './views/PestImages/FleaBeetle.jpg'
+import MealyBug from './views/PestImages/MealyBug.jpeg'
+import BerryPlumeMoth from './views/PestImages/BerryPlumeMoth.jpg'
+import MangoHopper from './views/PestImages/MangoHopper.jpg'
+import RedAnt from './views/PestImages/RedAnt.jpg'
+import MangoFruitfly from './views/PestImages/MangoFruitfly.jpg'
+import StemBorer from './views/PestImages/StemBorer.jpg'
+import CitrusPsylla from './views/PestImages/CitrusPsylla.jpg'
+import CitrusLeafMiner from './views/PestImages/CitrusLeafMiner.jpg'
+import Aphids from './views/PestImages/Aphids.jpg'
+import CitrusFruitfly from './views/PestImages/CitrusFruitfly.jpg'
+import Whiteflies from './views/PestImages/Whiteflies.jpg'
+import SlugsAndSnails from './views/PestImages/SlugsAndSnails.jpg'
+import SquashBugs from './views/PestImages/SquashBugs.jpg'
+import ColoradoPotatoBeetle from './views/PestImages/ColoradoPotatoBeetle.jpg'
+import TuberMoth from './views/PestImages/TuberMoth.jpg'
+import Armyworm from './views/PestImages/ArmyWorm.jpg'
+import Leafminer from './views/PestImages/Leafminer.jpg'
+import CarrotRustFly from './views/PestImages/CarrotRustFly.jpg'
+import CabbageWorm from './views/PestImages/CabbageWorm.jpg'
+import BulbMites from './views/PestImages/BulbMites.jpg'
+import OnionMaggot from './views/PestImages/OnionMaggot.jpg'
+import CabbageMaggot from './views/PestImages/CabbageMaggot.jpg'
+import Hornworm from './views/PestImages/Hornworm.jpg'
+import CornEarworm from './views/PestImages/CornEarworm.jpg'
+import CornAphid from './views/PestImages/CornAphid.jpg'
+import PinkWheatBorer from './views/PestImages/PinkWheatBorer.jpg'
+import WheatAphid from './views/PestImages/WheatAphid.jpg'
+import WheatArmyworm from './views/PestImages/WheatArmyworm.jpg'
+import BrownPlanthopper from './views/PestImages/BrownPlanthopper.jpg'
+import WhiteStemBorer from './views/PestImages/WhiteStemBorer.jpg'
+import YellowStemBorer from './views/PestImages/YellowStemBorer.jpg'
+import GreenRiceLeafhopper from './views/PestImages/GreenRiceLeafhopper.jpg'
+
+
+
+
+
+
 const pests = [
     {
         name:"Crown Borer",
-        pic:"https://uwm.edu/field-station/wp-content/uploads/sites/380/2019/10/raspberry-crown-borer19-3.jpg",
+        pic:CrownBorer,
         remedies:{
             managamentCultural:[
                 "Dig out and burn infested canes and crowns in the fall. Remove other hosts, such as wild blackberries, from the area."
@@ -17,7 +75,7 @@ const pests = [
     },
     {
         name:"Cane Borer",
-        pic:"https://www.canr.msu.edu/uploads/images/raspberry-cane-borer-adult-girdles-7-8-14.jpg",
+        pic:CaneBorer,
         remedies:{
             managamentCultural:[
                 "Cut girdled canes about an inch below the girdle and burn them soon after cane borer damage appears. Attacked canes wilt, making the damage easy to spot.",
@@ -30,7 +88,7 @@ const pests = [
     },
     {
         name:"Blueberry Gall Midge",
-        pic:"https://vscnews.com/wp-content/uploads/2020/01/Screen-Shot-2020-01-07-at-10.58.27-AM-768x588.png",
+        pic:BlueberryGallMidge,
         remedies:{
             managamentCultural:[
                 "A white bucket trap with a sticky Plexiglas top placed under bushes in direct contact with soil or pine bark can detect adult midges when they begin to emerge early in the season."
@@ -49,7 +107,7 @@ const pests = [
     },
     {
         name:"Obscure Root Weevil",
-        pic:"https://homyden.com/wp-content/uploads/2017/06/black-vine-weevil.jpg",
+        pic:ObscureRootWeevil,
         remedies:{
             managamentCultural:[
                 "Use a cereal cover crop, as small grains are not a host for root weevils.",
@@ -62,7 +120,7 @@ const pests = [
     },
     {
         name:"Raspberry Fruitworm",
-        pic:"https://gardenerspath.com/wp-content/uploads/2020/05/Raspberry-Fruitworms-Butyrus-Feeding.jpg",
+        pic:RaspberryFruitworm,
         remedies:{
             managamentCultural:[
                 "Dig out and burn infested canes and worms in the fall. Remove other hosts, such as wild blackberries, from the area."
@@ -78,7 +136,7 @@ const pests = [
     },
     {
         name:"Blackheaded Fireworm",
-        pic:"https://pnwhandbooks.org/sites/pnwhandbooks/files/insect/images/cranberry-blackheaded-fireworm/g37-70.jpg",
+        pic:BlackheadedFireworm,
         remedies:{
             managamentCultural:[
                 "Short-term (24 to 48 hours) spring flooding just prior to or during egg-hatch can reduce populations of the first generation fireworm larvae. Water level must be maintained above vine tips.",
@@ -94,7 +152,7 @@ const pests = [
     },
     {
         name:"Codling Moth",
-        pic:"https://content.ces.ncsu.edu/media/images/codling_crop_UOdy8no.jpg",
+        pic:CodlingMoth,
         remedies:{
             managamentCultural:[
                 "Proper sanitation conditions should be maintained by removing host trees in the vicinity which are unwanted (apple, walnut and pear) for elimination of pest.",
@@ -113,7 +171,7 @@ const pests = [
     },
     {
         name:"Apple Maggot",
-        pic:"https://bugguide.net/images/raw/OHX/HOH/OHXHOHMHJHMHDHIHYH5L1ZML1ZXLYH6HRREHYHPH1Z8LBZ2HBZSLBZ7LNZ2HHRIL3HGL3HGLFHEHJH.jpg",
+        pic:AppleMaggot,
         remedies:{
             managamentCultural:[
                 "Using different traps which may bepheromone traps or may be baited trap. Baited trap used are bait + GF120 to control adult flies.",
@@ -131,7 +189,7 @@ const pests = [
     },
     {
         name:"Bud Moth",
-        pic:"https://content.ces.ncsu.edu/media/images/5461479-PPT.jpg",
+        pic:BudMoth,
         remedies:{
             managamentCultural:[
                 "The pheromone traps can be installed in the plantation by 1st May but their maintenance should be carried out throughout the growing season.",
@@ -145,7 +203,7 @@ const pests = [
     },
     {
         name:"Apple Aphid",
-        pic:"https://www.bctfpg.ca/files/Apple%20aphid-9.jpg",
+        pic:AppleAphid,
         remedies:{
             managamentCultural:[
                 "Most recommended and mostly used cultural control practice is the use of resistance rootstock.",
@@ -157,7 +215,7 @@ const pests = [
     },
     {
         name:"Cucumber Beetle",
-        pic:"http://www.parfaitimage.com/Images/Insecta/Diabrotica_u_undecimpunctata_2009-07-19_1_400.jpg",
+        pic:CucumberBeetle,
         remedies:{
             managamentCultural:[
                 "Flaming using standard weed flamers is one way to kill cucumber beetles",
@@ -174,7 +232,7 @@ const pests = [
     },
     {
         name:"Thrips",
-        pic:"http://anic.ento.csiro.au/thrips/identifying_thrips/images/Thripidae/anisofull_cleaned.jpg",
+        pic:Thrips,
         remedies:{
             managamentCultural:[
                 "To get rid of thrips remove weeds and grass from around garden areas to eliminate alternate hosts. Clean up crop debris in the garden, especially onion leaves after harvest.",
@@ -194,7 +252,7 @@ const pests = [
     },
     {
         name:"Spider Mites",
-        pic:"https://extension.umn.edu/sites/extension.umn.edu/files/styles/large/public/spider-mite-adult-and-eggs-5403497.jpg?itok=LYib4zLd",
+        pic:SpiderMites,
         remedies:{
             managamentCultural:[
                 "Adequate watering of plants during dry conditions can limit the importance of drought stress on spider mite outbreaks.",
@@ -214,7 +272,7 @@ const pests = [
     },
     {
         name:"Mites",
-        pic:"https://raycop.com/wp-content/uploads/2020/04/dustmite.jpg",
+        pic:Mites,
         remedies:{
             managamentCultural:[
                 "If necessary, prune off the most heavily infested (damaged) plants or plant parts, double bag any plant material that you dispose of before moving it off your property place.", 
@@ -232,7 +290,7 @@ const pests = [
     },
     {
         name:"Grass Hopper",
-        pic:"https://www.factsjustforkids.com/images/grasshopper.png",
+        pic:GrassHopper,
         remedies:{
             managamentCultural:[
                 "Tillage, also known as chemical fallowing, helps manage the population of grasshopper by removing the plants that young grasshoppers feed on.",
@@ -250,7 +308,7 @@ const pests = [
     },
     {
         name:"Citrus Butterfly",
-        pic:"https://c1.wallpaperflare.com/preview/450/427/585/lime-butterfly-papilio-demoleus-butterfly-lemon-butterfly-lime-swallowtail-small-citrus-butterfly.jpg",
+        pic:CitrusButterfly,
         remedies:{
             managamentCultural:[
                 "Hand pick the larvae and the leaves that have had eggs laid on them and bury them in the soil or burn them.",
@@ -265,7 +323,7 @@ const pests = [
     },
     {
         name:"Leafhopper",
-        pic:"https://barmac.com.au/wp-content/uploads/sites/3/2016/07/leafhopper.jpg",
+        pic:Leafhopper,
         remedies:{
             managamentCultural:[
                 "Remove overwintering sites by disposing of garden debris and waste immediately upon harvesting.",
@@ -281,7 +339,7 @@ const pests = [
     },
     {
         name:"Cutworm",
-        pic:cutworm,
+        pic:Cutworm,
         remedies:{
             managamentCultural:[
                 "Remove thatch to eliminate much of the daytime resting habitat for larvae.",
@@ -306,7 +364,7 @@ const pests = [
     },
     {
         name:"Stem Weevil",
-        pic:"https://entomology.k-state.edu/images/sunflower/Apion.jpg",
+        pic:StemWeevil,
         remedies:{
             managamentCultural:[
                 "Application of Neem cake to the soil mixed with farmyard manure (FYM) during the basal fertilization can reduce the chance of stem and shoot weevil infestations (10 tons FYM + 250 kg of Neem cake/ha).",
@@ -323,7 +381,7 @@ const pests = [
     },
     {
         name:"Stem Grilder",
-        pic:"https://www.kisansuvidha.com/wp-content/uploads/2017/07/Sthenias-grisator-265x300.jpg",
+        pic:StemGrilder,
         remedies:{
             managamentCultural:[
                 "Remove loose bark at the time of pruning to prevent egg laying.",
@@ -339,7 +397,7 @@ const pests = [
     },
     {
         name:"Flea Beetle",
-        pic:"https://upload.wikimedia.org/wikipedia/commons/8/85/Disonycha_xanthomelas.jpg",
+        pic:FleaBeetle,
         remedies:{
             managamentCultural:[
                 "Remove the loose bark at the time of pruning&nbsp; to prevent egg laying",
@@ -353,7 +411,7 @@ const pests = [
     },
     {
         name:"Mealy Bug",
-        pic:"https://static.inaturalist.org/photos/17286845/medium.jpeg?1525290893",
+        pic:MealyBug,
         remedies:{
             managamentCultural:[
                 "Debark vines and branches and apply methyl parathion paste.",
@@ -371,7 +429,7 @@ const pests = [
     },
     {
         name:"Berry Plume Moth",
-        pic:"https://lh3.googleusercontent.com/8jpPlLWrKAsIXjI0kgZBGnERObXQYfq7up4tiSWcLw53Pfh4SY3ko7xEiohtCijVcE2T16DvQLIy7J3XLTM=s1200",
+        pic:BerryPlumeMoth,
         remedies:{
             managamentCultural:[
                 "Collect and destroy the infested leaves and buried with soil.",
@@ -385,7 +443,7 @@ const pests = [
     },
     {
         name:"Mango Hopper",
-        pic:"https://www.biolib.cz/IMG/GAL/144216.jpg",
+        pic:MangoHopper,
         remedies:{
             managamentCultural:[
                 "Pruning of dense orchards in the month of November - December, orchard sanitation and field sanitation.",
@@ -410,7 +468,7 @@ const pests = [
     },
     {
         name:"Red Ant",
-        pic:"https://media.wired.com/photos/5c1d2fde36da29336938e319/master/w_2560%2Cc_limit/fireant-686792679.jpg",
+        pic:RedAnt,
         remedies:{
             managamentCultural:[
                 "Nests should be removed and destroyed mechanically by web cutting device.",                
@@ -424,7 +482,7 @@ const pests = [
     },
     {
         name:"Mango Fruitfly",
-        pic:"https://www.coraf.org/wp-content/uploads/2018/09/mdf.jpg",
+        pic:MangoFruitfly,
         remedies:{
             managamentCultural:[
                 "Prior to harvest (30-40 days ahead) collect and disposed off infested and fallen fruits to prevent further multiplication and carry-over of population.",
@@ -446,7 +504,7 @@ const pests = [
     },
     {
         name:"Stem Borer",
-        pic:"http://www.knowledgebank.irri.org/images/stories/stem-borer.jpg",
+        pic:StemBorer,
         remedies:{
             managamentCultural:[
                 "Remove and destroy dead and severely affected branches of the tree.",
@@ -467,7 +525,7 @@ const pests = [
     },
     {
         name:"Citrus Psylla",
-        pic:"https://ferrebeekeeper.files.wordpress.com/2015/10/psyllid.jpg",
+        pic:CitrusPsylla,
         remedies:{
             managamentCultural:[
                 "Use yellow sticky cards, conduct visual monitoring, and sweep net or tap sampling every 2 weeks throughout the season.", 
@@ -483,7 +541,7 @@ const pests = [
     },
     {
         name:"Citrus Leaf Miner",
-        pic:"http://entnemdept.ufl.edu/creatures/citrus/citrus_leafminer02.jpg",
+        pic:CitrusLeafMiner,
         remedies:{
             managamentCultural:[
                 "Pruning of affected parts during winter and burning",
@@ -498,7 +556,7 @@ const pests = [
     },
     {
         name:"Aphids",
-        pic:"https://i0.wp.com/savvygardening.com/wp-content/uploads/2017/08/cabbage_aphids_pests.jpg?w=600&ssl=1",
+        pic:Aphids,
         remedies:{
             managamentCultural:[
                 "Neem oil or insecticidal soap will go a long way to guide against aphids. But make sure to follow the specified instruction.",
@@ -520,7 +578,7 @@ const pests = [
     },
     {
         name:"Citrus Fruitfly",
-        pic:"https://www.gardeningknowhow.com/wp-content/uploads/2014/06/Mediterranean-fruit-fly-400x351.jpg",
+        pic:CitrusFruitfly,
         remedies:{
             managamentCultural:[
                 "Regularly collect the infected fallen fruits and destroy by deep burial to kill the larvae and prevent adults emerging.",
@@ -536,7 +594,7 @@ const pests = [
     },
     {
         name:"Whiteflies",
-        pic:"https://i1.wp.com/savvygardening.com/wp-content/uploads/2017/08/whiteflies_on_tomato_plants.jpg?w=600&ssl=1",
+        pic:Whiteflies,
         remedies:{
             managamentCultural:[
                 "Hang yellow sticky cards just above plant tops to capture the adult flies and prevent a new generation.",
@@ -553,7 +611,7 @@ const pests = [
     },
     {
         name:"Slugs and Snails",
-        pic:"https://gloriousmess.typepad.com/.a/6a01bb07a2cf84970d01b7c95e096e970b-pi",
+        pic:SlugsAndSnails,
         remedies:{
             managamentCultural:[
                 "Handpick slugs and drop them into a jar of soapy water. Beer traps also work, but the beer should be emptied and refilled daily.",
@@ -572,7 +630,7 @@ const pests = [
     },
     {
         name:"Squash Bugs",
-        pic:"https://i2.wp.com/savvygardening.com/wp-content/uploads/2017/08/squash_bugs_mating.jpg?w=600&ssl=1",
+        pic:SquashBugs,
         remedies:{
             managamentCultural:[
                 "Use floating row covers from the time of planting until flowering begins.",  
@@ -590,7 +648,7 @@ const pests = [
     },
     {
         name:"Colorado Potato Beetle",
-        pic:"https://gardenerspath.com/wp-content/uploads/2019/04/Colorado-Potato-Beetle-larva-feeding-on-a-leaf.jpg",
+        pic:ColoradoPotatoBeetle,
         remedies:{
             managamentCultural:[
                 "Crop rotation. Rotate to fields at least 200 yards from previous year’s fields. Barriers such as roads, rivers, woodlands, and fields with non-host crops are helpful.",
@@ -622,7 +680,7 @@ const pests = [
     },
     {
         name:"Tuber Moth",
-        pic:"https://i1.wp.com/www.potatonewstoday.com/wp-content/uploads/2020/09/Potato-Tuber-Moth-Denis-Crawford-Graphic-Science-1.jpg?fit=750%2C537&ssl=1",
+        pic:TuberMoth,
         remedies:{
             managamentCultural:[
                 "Remove weeds and volunteer plants as these can be alternate hosts of the tuber moth.",
@@ -640,7 +698,7 @@ const pests = [
     },
     {
         name:"Armyworm",
-        pic:"https://www.planetnatural.com/wp-content/uploads/2012/12/fall-army-worm.jpg",
+        pic:Armyworm,
         remedies:{
             managamentCultural:[
                 "Destroy the eggs, larvae and pupae in the crop residues after harvest by deep burying the plant residues in soil (at least 12cm deep).",
@@ -660,7 +718,7 @@ const pests = [
     },
     {
         name:"Leafminer",
-        pic:"https://dh1muyqdu88ie.cloudfront.net/wp-content/uploads/2018/08/25152329/Firethorn-leaf-miner.jpg",
+        pic:Leafminer,
         remedies:{
             managamentCultural:[
                 "You can help prevent the spread of leafmining insects by checking your transplants before planting them in your vegetable garden.", 
@@ -678,7 +736,7 @@ const pests = [
     },
     {
         name:"Carrot Rust Fly",
-        pic:"https://s3.eu-west-2.amazonaws.com/growinginteractive/bbh/pests/eu/CARF7.jpg",
+        pic:CarrotRustFly,
         remedies:{
             managamentCultural:[
                 "Keep carrots and other susceptible crops covered with floating row cover from the time of planting until harvesting day.",
@@ -694,7 +752,7 @@ const pests = [
     },
     {
         name:"Cabbage Worm",
-        pic:"https://s3.eu-west-2.amazonaws.com/growinginteractive/bbh/pests/eu/CABW1.jpg",
+        pic:CabbageWorm,
         remedies:{
             managamentCultural:[
                 "A type of beneficial bacteria, Bacillus thuringiensis kurstaki (Btk), is an effective treatment that will immediately stop the caterpillars from feeding.",
@@ -708,7 +766,7 @@ const pests = [
     },
      {
         name:"Bulb Mites",
-        pic:"https://www.dudutech.com/wp-content/uploads/2014/05/dudutech-pests-bulb-mites.jpg",
+        pic:BulbMites,
         remedies:{
             managamentCultural:[
                 "Dip bulbs or infested plants in 110°F water for 30 minutes.",
@@ -740,7 +798,7 @@ const pests = [
     },
     {
         name:"Cabbage Maggot",
-        pic:"https://gardenerspath.com/wp-content/uploads/2020/03/Cabbage-Maggot-Delia-radicum-Close-Up.jpg",
+        pic:CabbageMaggot,
         remedies:{
             managamentCultural:[
                 "Look in the morning and late evening when temperatures are cool. Pull off the icky little things and dispose of them.",
@@ -755,7 +813,7 @@ const pests = [
     },
     {
         name:"Hornworm",
-        pic:"https://i0.wp.com/savvygardening.com/wp-content/uploads/2017/08/tomato_hornworm_control.jpg?w=600&ssl=1",
+        pic:Hornworm,
         remedies:{
             managamentCultural:[
                 "Plant lots of flowering herbs with tiny flowers near susceptible plants as these flowers attract tiny parasitic cotesia wasps that use hornworms as hosts for their young", 
@@ -769,7 +827,7 @@ const pests = [
     },
     {
         name:"Corn Earworm",
-        pic:"https://www.ces.ncsu.edu/wp-content/uploads/2013/10/CEW-on-Corn-SR.jpg",
+        pic:CornEarworm,
         remedies:{
             managamentCultural:[
                 "General predators such as lacewings, minute pirate bugs,and damsel bugs feed on corn earworm eggs and small larvae.",
@@ -783,7 +841,7 @@ const pests = [
     },
     {
         name:"Corn Aphid",
-        pic:"https://extension.entm.purdue.edu/fieldcropsipm/images/insects/cornleafaphid02.jpg",
+        pic:CornAphid,
         remedies:{
             managamentCultural:[
                 "Aphids mostly survive on alternative hosts in the absence of host plant. Therefore, the removal of alternative host from the field can minimise pest infestation.",
@@ -798,7 +856,7 @@ const pests = [
     },
     {
         name:"Pink Wheat Borer",
-        pic:"https://upload.wikimedia.org/wikipedia/commons/d/dd/Sesamia_inferens_dorsal.jpg",
+        pic:PinkWheatBorer,
         remedies:{
             managamentCultural:[
                 "The uprooting and destruction of infested wheat crop and removal of stubbles after harvesting can minimise the impact of this pest damage.", 
@@ -811,7 +869,7 @@ const pests = [
     },
     {
         name:"Wheat Aphid",
-        pic:"https://entomology.k-state.edu/images/wheat/russian-wheat-aphids-on-leaf--dnim0027--.jpg",
+        pic:WheatAphid,
         remedies:{
             managamentCultural:[
                 "Delayed planting of wheat may avoid aphid’s colonization before winter.", 
@@ -824,7 +882,7 @@ const pests = [
     },
     {
         name:"Wheat Armyworm",
-        pic:"https://ohioline.osu.edu/sites/ohioline/files/ENT_36_14.pdf-2_1.jpg",
+        pic:WheatArmyworm,
         remedies:{
             managamentCultural:[
                 "During the initial stage of infestation, the uprooting and destruction of infested seedlings are recommended.", 
@@ -839,7 +897,7 @@ const pests = [
     },
     {
         name:"Brown Planthopper",
-        pic:"http://www.knowledgebank.irri.org/images/stories/factsheet-planthopper-1.jpg",
+        pic:BrownPlanthopper,
         remedies:{
             managamentCultural:[
                 "The excessive use of nitrogen fertilizer should be avoided and recommended doses should be used.", 
@@ -853,7 +911,7 @@ const pests = [
     },
     {
         name:"White Stem Borer",
-        pic:"https://lh5.ggpht.com/Vko3Y4iFIm6iccGqRD5g-YOIqAz7hg2m8WtWUeu0uleL8EZhAekIovOk3FqILUpZx5FOQXKyqNuRl-aolfc=s1200",
+        pic:WhiteStemBorer,
         remedies:{
             managamentCultural:[
                 "Removing of previous crop stubbles should be done with deep ploughing to destroy the hibernating pest.", 
@@ -867,7 +925,7 @@ const pests = [
     },
     {
         name:"Yellow Stem Borer",
-        pic:"https://www.direct2farmer.com/wp-content/uploads/nc/catalog/Lures/YSB2.jpg",
+        pic:YellowStemBorer,
         remedies:{
             managamentCultural:[
                 "Destruction of stubbles after harvesting and the nursery planting after 20th may give effective control of this pest.",
@@ -879,7 +937,7 @@ const pests = [
     },
     {
         name:"Green Rice Leafhopper",
-        pic:"http://www.knowledgebank.irri.org/images/stories/factsheet-green-leafhopper-1.jpg",
+        pic:GreenRiceLeafhopper,
         remedies:{
             managamentCultural:[
                 "On harvested fields, ratoon rice can serve as a resource of existence for leaf hopper and virus diseases.", 
