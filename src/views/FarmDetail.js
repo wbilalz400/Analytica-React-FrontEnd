@@ -271,7 +271,7 @@ export default props => {
                 <h3>Pest Forecasting</h3>
                 <div></div>
                 <br></br>
-                <a href="#">View Remedies</a>
+                <a href="/remedies">View Remedies</a>
             </div>,
             <h4 style={{background:"white"}}>Swipe to view More</h4>
             <div id="hellog" style={{background:"gray"}}>

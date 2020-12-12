@@ -62,6 +62,6 @@ html {
   
   }
   
-  ::-webkit-scrollbar-thumb{
+  .card ::-webkit-scrollbar{
     background-image: url("https://lh3.googleusercontent.com/proxy/6wVvB-HeBardvRBvXJ8VSLq4iYxCD6dYJY-hNOh_MFHsT8RxpyaUC3KjfAf2xIH3K64YNn01HdoXoyBDdDJZ8C4LXDcfeYjB5y-W-n_C2_V4fqSvy1gNgZdGZZY");
   }
