@@ -20,6 +20,7 @@ import About from './sections/About'
 import Navbar from './components/Navbar'
 import PriceTable from './sections/Price'
 import Img from './views/Images';
+import remedies from './Card/CardUI.js'
 
 
 
@@ -30,6 +31,7 @@ ReactDOM.render(
     <Switch>
       <div>
       <Route exact path="/" component={App}/>
+      <Route exact path="/remedies" component={remedies}/>
         <Route exact path="/about" component={About}/>
         <Route exact path="/price" component={PriceTable}/>
         <Route exact path="/login" component={LoginView}/>

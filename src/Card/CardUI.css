@@ -1,0 +1,67 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .column {
+    float: left;
+    width: 25%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.733);
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: rgb(70, 1, 64);
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  .card img{
+    height: 200px;
+  }
+  .container{
+    height: 500px;
+    overflow-y: scroll;
+  
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background-image: url("https://lh3.googleusercontent.com/proxy/6wVvB-HeBardvRBvXJ8VSLq4iYxCD6dYJY-hNOh_MFHsT8RxpyaUC3KjfAf2xIH3K64YNn01HdoXoyBDdDJZ8C4LXDcfeYjB5y-W-n_C2_V4fqSvy1gNgZdGZZY");
+  }
