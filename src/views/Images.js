@@ -14,6 +14,7 @@ const Images = () => {
     return (
         <div className='DevicesMain'>
             
+            
             <h1>Images</h1>
             <div className='devicesContainer'>
             {images && images.map((val,index)=>{
@@ -23,7 +24,10 @@ const Images = () => {
                 if (val.type)  return <div className='deviceItem'><img style={{height:225}}key={index} src={`data:${val.type};base64,${val.image}`} /></div>;
             })}
             </div>
+            
+
         </div>
+        
     )
 }
 

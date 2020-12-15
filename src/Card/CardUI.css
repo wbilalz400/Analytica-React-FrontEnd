@@ -1,0 +1,77 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .column {
+    float: left;
+    width: 25%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.733);
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: rgb(70, 1, 64);
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  .card img{
+    height: 200px;
+  }
+  .container{
+    height: 500px;
+    overflow-y: scroll;
+  
+  }
+.card  ::-webkit-scrollbar {
+    width: 18px;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(236, 236, 236));
+
+}
+.card  ::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(rgb(224, 224, 224), rgb(231, 230, 230));
+}
+
+  
+.card  ::-webkit-scrollbar-thumb:hover {
+      background-image: url("./scroll.png");
+      position: absolute;
+}

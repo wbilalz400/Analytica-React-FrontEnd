@@ -19,6 +19,12 @@ import tempPlant from '../assets/images/temperature-plant.png';
 import pHIcon from '../assets/images/ph.png';
 import humidityIcon from '../assets/images/humidity.png';
 import { LineChart } from 'react-chartkick';
+import { Container, Row, Col } from "react-bootstrap";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './mycss.css'
+import pests from '../pests';
 import { getFarm } from '../api';
 const PREDICTED_VEG = 0;
 const PREDICTED_FRUIT = 1;
@@ -53,6 +59,14 @@ let cropsDataAB = cropsData.filter((C, index) => index < 4);
 const TruckLocationMarker = ({ text }) => <img src={truckLocationMarker} style={{ width: 50, height: 80, objectFit: "contain" }} />;
 const DEGREE_SYMBOL = "°";
 export default props => {
+
+    var settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+      };
 
     if (!props.match.params.id) window.location.href = "/home/agriculture"
     const [tempSensors, setTempSensors] = useState(null);
@@ -253,5 +267,41 @@ export default props => {
                     </div>
                 </SwipeCard>)}
             </Paper>]}
+            <div className="Heading">
+                <h3>Pest Forecasting</h3>
+                <div></div>
+                <br></br>
+                <a href="/remedies">View Remedies</a>
+            </div>,
+            <h4 style={{background:"white"}}>Swipe to view More</h4>
+            <div id="hellog" style={{background:"gray"}}>
+            
+            <Container>
+            <div className="clearfix mt-5 mb-2">
+            </div>
+            <Slider {...settings}>
+                {pests.map(function(pest) {
+                return (
+                    <React.Fragment>
+                        <div className="card-wrapper">
+                    <div className="card">
+                        <div className="card-image">
+                            <img src={pest.pic} />
+                        </div>
+                        
+                        <div className="details">
+                            <h2>{pest.name}</h2>
+                        
+                        </div>
+                    </div>
+                </div>
+                    </React.Fragment>
+                );
+                })}
+            </Slider>
+            </Container>
+
+            </div>
+            
     </div>;
 }
