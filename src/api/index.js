@@ -12,7 +12,7 @@ const ADD_INTENSITY = '/dashboard/intensity/{device}/{sensor}';
 const ADD_PM = '/dashboard/pm/{device}/{sensor}';
 const ADD_HUMIDITY = '/dashboard/humidity/{device}/{sensor}';
 const ADD_ELECTRICITY = '/dashboard/electricity/{device}/{sensor}';
-const ADD_TVOC = '/dashboard/tvoc/{device}/{sensor}';
+const ADD_TVOC = '/dashboard/tvoc/{device}/{sensor}'
 const ADD_TEMPERATURE = '/dashboard/temperature/{device}/{sensor}';
 const GET_DEVICES = '/device';
 const GET_SENSORS = '/device/{deviceId}';
@@ -28,6 +28,7 @@ const GET_TRUCKS = '/truck';
 const GET_TRUCK = '/truck/{id}';
 const GET_NOTIFICATION = '/notification';
 const POST_TRUCK = '/truck';
+const REPORT = '/reports';
 
 
 
@@ -55,6 +56,13 @@ export const getImages = async () => {
 export const getTrucks = () => {
     return API.get(GET_TRUCKS);
 }
+export const getReports = () => API.get(REPORT);
+
+export const addReport = payload => API.post(REPORT,payload);
+
+export const getReport = id => API.get(REPORT + `/${id}`);
+
+export const updateReport = (id,payload) => API.patch(REPORT + `/${id}`,payload);
 
 export const getTruck = id => {
     return API.get(GET_TRUCK.replace("{id}",id));

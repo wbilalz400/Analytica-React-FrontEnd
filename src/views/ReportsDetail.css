@@ -21,7 +21,6 @@
 }
 
 .RDMain .modalContentMain {
-    height: 40%;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -30,6 +29,7 @@
 }
 .RDMain .reportModalContent > * {
     width: 100%;
+    margin-bottom: 30px;
 }
 .RDMain .modalHeading{
     width: 100%;

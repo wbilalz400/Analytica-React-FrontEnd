@@ -42,6 +42,7 @@
     "react-gauge-chart": "^0.2.5",
     "react-grid-layout": "^0.18.3",
     "react-liquid-gauge": "^1.2.4",
+    "react-loading-skeleton": "^2.1.1",
     "react-modal-video": "^1.2.5",
     "react-pricing-table": "^0.3.0",
     "react-router-dom": "^5.2.0",

@@ -154,7 +154,7 @@ export const ReportItem = props => <Paper onClick={() => window.location.href = 
                 color="lightgreen"
                 image={clockIcon} label="Occurs At" value={props.occursAt}
             /> : ""}
-        {props.items && 
+        {(props.items || props.items === 0) && 
             <ColumnImageText
                 color="orangered"
                 image={reportPointIcon} label="Items" value={props.items}
