@@ -45,6 +45,7 @@ import RetailDetailView from './RetailDetail';
 import ReportsView from './ReportsView';
 import ReportsDetailView from './ReportsDetail';
 import AddReportView from './AddReport';
+import AddRetail from './AddRetail';
 
 export default class extends React.Component {
     constructor() {
@@ -388,7 +389,8 @@ export default class extends React.Component {
                                 <Route path='/home/logistics/add' component={AddTruck} />
                                 <Route path='/home/logistics/:id' component={LogisticsDetail} />
                                 <Route path='/home/logistics' component={LogisticsView} />
-                                <Route path='/home/retail/detail' component={RetailDetailView} />
+                                <Route path='/home/retail/:id' component={RetailDetailView} />
+                                <Route path='/home/retail/add' component={AddRetail} />
                                 <Route path='/home/reports/:id' component={ReportsDetailView} />
                                 <Route path='/home/reports/add' component={AddReportView} />
                                 <Route path='/home/reports' component={ReportsView} />

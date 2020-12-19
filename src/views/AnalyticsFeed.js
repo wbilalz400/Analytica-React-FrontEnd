@@ -119,12 +119,12 @@ export const RetailItem = props => <Paper onClick={() => window.location.href = 
             color="lightcoral"
             image={temperatureIcon} label="Ambient Temperature" value={`${props.temp}${DEGREE_SYMBOL} C`}
         />
-        {props.sales ?
+        {(props.sales || props.sales === 0) ?
             <ColumnImageText
                 color="lightgreen"
                 image={dollarIcon} label="Today's Sales" value={props.sales}
             /> : ""}
-        {props.customer && 
+        {(props.customer || props.customer === 0) && 
             <ColumnImageText
                 color="orangered"
                 image={customerIcon} label="Customers Served" value={props.customer}

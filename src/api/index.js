@@ -29,6 +29,7 @@ const GET_TRUCK = '/truck/{id}';
 const GET_NOTIFICATION = '/notification';
 const POST_TRUCK = '/truck';
 const REPORT = '/reports';
+const RETAIL = '/retail';
 
 
 
@@ -63,6 +64,12 @@ export const addReport = payload => API.post(REPORT,payload);
 export const getReport = id => API.get(REPORT + `/${id}`);
 
 export const updateReport = (id,payload) => API.patch(REPORT + `/${id}`,payload);
+
+export const addRetail = payload => API.post(RETAIL,payload);
+
+export const getRetails = () => API.get(RETAIL);
+
+export const getRetail = id => API.get(RETAIL + `/${id}`);
 
 export const getTruck = id => {
     return API.get(GET_TRUCK.replace("{id}",id));
