@@ -162,13 +162,22 @@ const SmartDetailView = props => {
             <h3>Recommendations</h3>
             <div></div>
         </div>
-
+        
         <Paper className="conditionCards">
             {smart ? smart.recommendation.map(recommend => <Card style={{ margin: 5, padding: 30 }}>
                 {recommend}
             </Card>) : <Skeleton height={10} width={800} style={{ marginLeft: 'auto' }} count={5} />}
 
         </Paper>
+        <div className="Heading">
+            <h3>Facial Recognition</h3>
+           
+                
+            
+            
+            <div></div>
+            <a href="http://localhost:8000/monitor">Live Face Monitoring</a>
+        </div>
 
     </div>;
 }
