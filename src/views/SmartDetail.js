@@ -147,6 +147,14 @@ const SmartDetailView = props => {
                 />
             </div>
             )}
+            {smart.electricityPredictions && smart.electricityPredictions.map(eP => <div className="conditionMap">
+                <div>Predicted Electric Load</div>
+                <LineChart
+                    data={eP}
+                    width="100%"
+                    height="100%"
+                />
+            </div>)}
 
 
         </Paper> : <Skeleton height={80} width={800} style={{ marginLeft: 'auto' }} count={5} />}
