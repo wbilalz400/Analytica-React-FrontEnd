@@ -14,6 +14,11 @@ import dollarIcon from '../assets/images/dollar.png';
 import basketIcon from '../assets/images/basket.png';
 import shopThumb from '../assets/images/shopIcon.png';
 import customerIcon from '../assets/images/customers.png';
+import reportMainIcon from '../assets/images/reportMain.png';
+import reportIcon from '../assets/images/report.png';
+import calendarIcon from '../assets/images/calendar.png';
+import clockIcon from '../assets/images/clock.svg';
+import reportPointIcon from '../assets/images/reportpoint.png';
 
 const FARM = 0;
 const TRUCK = 1;
@@ -123,6 +128,36 @@ export const RetailItem = props => <Paper onClick={() => window.location.href = 
             <ColumnImageText
                 color="orangered"
                 image={customerIcon} label="Customers Served" value={props.customer}
+            />
+        }
+    </div>
+
+    
+</Paper>
+
+export const ReportItem = props => <Paper onClick={() => window.location.href = `/home/report/detail`} className="FarmItem">
+    <div style={{ backgroundColor: 'lightblue' }} className="imageHolder">
+        <img style={{  }} className="image" src={reportMainIcon} />
+    </div>
+    <div className="contentItem">
+        <ColumnImageText
+            color="lightblue"
+            image={reportIcon} label="Name" value={props.name}
+
+        />
+        <ColumnImageText
+            color="lightcoral"
+            image={calendarIcon} label="Type" value={`${props.type}`}
+        />
+        {props.occursAt ?
+            <ColumnImageText
+                color="lightgreen"
+                image={clockIcon} label="Occurs At" value={props.occursAt}
+            /> : ""}
+        {(props.items || props.items === 0) && 
+            <ColumnImageText
+                color="orangered"
+                image={reportPointIcon} label="Items" value={props.items}
             />
         }
     </div>

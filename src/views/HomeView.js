@@ -42,6 +42,9 @@ import AddTruck from './AddTruck';
 import AddFarm from './AddFarm';
 import RetailView from './RetailView';
 import RetailDetailView from './RetailDetail';
+import ReportsView from './ReportsView';
+import ReportsDetailView from './ReportsDetail';
+import AddReportView from './AddReport';
 
 export default class extends React.Component {
     constructor() {
@@ -341,7 +344,7 @@ export default class extends React.Component {
                             <h3>Actions</h3>
 
                         </div>
-                        <div onClick={() => window.location.href = '/home/devices'} className="MenuItem">
+                        <div onClick={() => window.location.href = '/home/reports'} className="MenuItem">
                             <FontAwesomeIcon icon={faClipboardList} />
                             <h3>Reports</h3>
 
@@ -386,6 +389,9 @@ export default class extends React.Component {
                                 <Route path='/home/logistics/:id' component={LogisticsDetail} />
                                 <Route path='/home/logistics' component={LogisticsView} />
                                 <Route path='/home/retail/detail' component={RetailDetailView} />
+                                <Route path='/home/reports/:id' component={ReportsDetailView} />
+                                <Route path='/home/reports/add' component={AddReportView} />
+                                <Route path='/home/reports' component={ReportsView} />
                                 <Route path='/home/retail' component={RetailView} />
                                 <Route path='/home/agriculture/add' component={AddFarm} />
                                 <Route path='/home/agriculture/:id' component={FarmDetail} />
@@ -393,8 +399,6 @@ export default class extends React.Component {
                                 <Route path="/home/dashboard" component={DashboardView} />
                                 <Route path="/home/agriculture" component={FarmDetail} />
                                 <Route path="/home" render={() => <AnalyticsFeed />} />
-
-
                             </Switch>
                         </Router>
                     </div>
