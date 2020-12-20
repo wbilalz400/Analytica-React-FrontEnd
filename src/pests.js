@@ -17,7 +17,7 @@ import CitrusButterfly from './views/PestImages/CitrusButterfly.jpg'
 import Leafhopper from './views/PestImages/Leafhopper.jpg'
 import Cutworm from './views/PestImages/Cutworm.jpg'
 import StemWeevil from './views/PestImages/StemWeevil.jpg'
-import StemGrilder from './views/PestImages/StemGrilder.jpg'
+import StemGirdler from './views/PestImages/StemGrilder.jpg'
 import FleaBeetle from './views/PestImages/FleaBeetle.jpg'
 import MealyBug from './views/PestImages/MealyBug.jpeg'
 import BerryPlumeMoth from './views/PestImages/BerryPlumeMoth.jpg'
@@ -380,8 +380,8 @@ const pests = [
         },
     },
     {
-        name:"Stem Grilder",
-        pic:StemGrilder,
+        name:"Stem Girdler",
+        pic:StemGirdler,
         remedies:{
             managamentCultural:[
                 "Remove loose bark at the time of pruning to prevent egg laying.",
@@ -781,7 +781,7 @@ const pests = [
     },
     {
         name:"Onion Maggot",
-        pic:"https://vegcropshotline.org/wp-content/uploads/2016/03/OnionMaggotsDmgGarlicClose-354x235.jpg",
+        pic:OnionMaggot,
         remedies:{
             managamentCultural:[
                 "Rotate crops to keep maggot populations low; greater distances are more effective.",
