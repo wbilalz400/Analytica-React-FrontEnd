@@ -46,6 +46,9 @@ import ReportsView from './ReportsView';
 import ReportsDetailView from './ReportsDetail';
 import AddReportView from './AddReport';
 import AddRetail from './AddRetail';
+import SmartView from './SmartView';
+import SmartDetailView from './SmartDetail';
+import AddSmart from './AddSmart';
 
 export default class extends React.Component {
     constructor() {
@@ -331,7 +334,7 @@ export default class extends React.Component {
                                 <FontAwesomeIcon icon={faTree} />
                                 <h3>Agriculture</h3>
                             </div>
-                            <div onClick={() => window.location.href = "/home/editprofile"} className='ChildItem'>
+                            <div onClick={() => window.location.href = "/home/smart"} className='ChildItem'>
                                 <FontAwesomeIcon icon={faHome} />
                                 <h3>Home & Office</h3>
                             </div>
@@ -395,6 +398,9 @@ export default class extends React.Component {
                                 <Route path='/home/reports/add' component={AddReportView} />
                                 <Route path='/home/reports' component={ReportsView} />
                                 <Route path='/home/retail' component={RetailView} />
+                                <Route path="/home/smart/:id" component={SmartDetailView} />
+                                <Route path="/home/smart/add" component={AddSmart}/>
+                                <Route path="/home/smart" component={SmartView} />
                                 <Route path='/home/agriculture/add' component={AddFarm} />
                                 <Route path='/home/agriculture/:id' component={FarmDetail} />
                                 <Route path='/home/agriculture' component={AgricultureView} />

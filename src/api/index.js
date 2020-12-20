@@ -30,6 +30,7 @@ const GET_NOTIFICATION = '/notification';
 const POST_TRUCK = '/truck';
 const REPORT = '/reports';
 const RETAIL = '/retail';
+const SMART = '/smart';
 
 
 
@@ -57,6 +58,14 @@ export const getImages = async () => {
 export const getTrucks = () => {
     return API.get(GET_TRUCKS);
 }
+
+export const addSmart =  (payload) => API.post(SMART,payload);
+
+export const getSmarts = () => API.get(SMART);
+
+export const getSmart = id => API.get(`${SMART}/${id}`);
+
+
 export const getReports = () => API.get(REPORT);
 
 export const addReport = payload => API.post(REPORT,payload);

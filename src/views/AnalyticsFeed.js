@@ -19,6 +19,11 @@ import reportIcon from '../assets/images/report.png';
 import calendarIcon from '../assets/images/calendar.png';
 import clockIcon from '../assets/images/clock.svg';
 import reportPointIcon from '../assets/images/reportpoint.png';
+import smartHomeMainIcon from '../assets/images/smartHomeMain.png';
+import smartHomeIcon from '../assets/images/smartHomeIcon.png';
+import electricIcon from '../assets/images/electricMeter (1).png';
+
+
 
 const FARM = 0;
 const TRUCK = 1;
@@ -60,7 +65,33 @@ export const TruckCriticalItem = props => <Paper className="TruckItem">
     </div>
 </Paper>
 
-export const FarmInfoItem = props => <Paper  className="FarmItem">
+export const SmartItem = props => <Paper onClick={() => window.location.href = `/home/agriculture/${props.id}`} className="FarmItem">
+    <div className="contentItem">
+        <ColumnImageText
+            color="lightcoral"
+            image={smartHomeIcon} label="Home" value={props.name}
+        />
+        {(props.temp || props.temp === 0) ?
+            <ColumnImageText
+                color="lightgreen"
+                image={temperatureIcon} label="Temperature" value={`${parseInt(props.temp)}${DEGREE_SYMBOL} C`}
+            /> : ""}
+        {(props.humidity || props.humidity === 0) ? <ColumnImageText
+            color="lightblue"
+            image={humidityIcon} label="Humidity" value={`${parseInt(props.humidity)}%`}
+        /> : ""}
+        {(props.electricity || props.electricity === 0) ? <ColumnImageText
+            color="orange"
+            image={electricIcon} label="Energy Use" value={`${parseFloat(props.electricity).toFixed(3)} kWh`}
+        /> : ""}
+    </div>
+
+    <div style={{ backgroundColor: 'lightblue' }} className="imageHolder">
+        <img style={{ filter: 'invert(1)' }} className="image" src={smartHomeMainIcon} />
+    </div>
+</Paper>
+
+export const FarmInfoItem = props => <Paper className="FarmItem">
     <div style={{ flexDirection: 'row', justifyContent: 'center', padding: 30, }} className="contentItem">
         <div>{props.children}</div>
         <div><a href={`${props.link}`}>{props.label}</a></div>
@@ -69,7 +100,7 @@ export const FarmInfoItem = props => <Paper  className="FarmItem">
         <img style={{ filter: 'invert(1)' }} className="image" src={farmIcon} />
     </div>
 </Paper>
-export const FarmCriticalItem = props => <Paper onClick={() => window.location.href=`/home/agriculture/${props.id}`} className="FarmItem">
+export const FarmCriticalItem = props => <Paper onClick={() => window.location.href = `/home/agriculture/${props.id}`} className="FarmItem">
     <div style={{ justifyContent: 'center', padding: 30, backgroundColor: 'red', color: 'white' }} className="contentItem">
         {props.children}
     </div>
@@ -107,7 +138,7 @@ export const FarmItem = props => <Paper onClick={() => window.location.href = `/
 
 export const RetailItem = props => <Paper onClick={() => window.location.href = `/home/retail/detail`} className="FarmItem">
     <div style={{ backgroundColor: 'lightblue' }} className="imageHolder">
-        <img style={{  }} className="image" src={shopIcon} />
+        <img style={{}} className="image" src={shopIcon} />
     </div>
     <div className="contentItem">
         <ColumnImageText
@@ -124,7 +155,7 @@ export const RetailItem = props => <Paper onClick={() => window.location.href = 
                 color="lightgreen"
                 image={dollarIcon} label="Today's Sales" value={props.sales}
             /> : ""}
-        {(props.customer || props.customer === 0) && 
+        {(props.customer || props.customer === 0) &&
             <ColumnImageText
                 color="orangered"
                 image={customerIcon} label="Customers Served" value={props.customer}
@@ -132,12 +163,12 @@ export const RetailItem = props => <Paper onClick={() => window.location.href = 
         }
     </div>
 
-    
+
 </Paper>
 
 export const ReportItem = props => <Paper onClick={() => window.location.href = `/home/report/detail`} className="FarmItem">
     <div style={{ backgroundColor: 'lightblue' }} className="imageHolder">
-        <img style={{  }} className="image" src={reportMainIcon} />
+        <img style={{}} className="image" src={reportMainIcon} />
     </div>
     <div className="contentItem">
         <ColumnImageText
@@ -154,7 +185,7 @@ export const ReportItem = props => <Paper onClick={() => window.location.href = 
                 color="lightgreen"
                 image={clockIcon} label="Occurs At" value={props.occursAt}
             /> : ""}
-        {(props.items || props.items === 0) && 
+        {(props.items || props.items === 0) &&
             <ColumnImageText
                 color="orangered"
                 image={reportPointIcon} label="Items" value={props.items}
@@ -162,7 +193,7 @@ export const ReportItem = props => <Paper onClick={() => window.location.href = 
         }
     </div>
 
-    
+
 </Paper>
 
 export default props => {
@@ -197,7 +228,7 @@ export default props => {
                 case FARM:
                     return <FarmInfoItem
                         label="View Farm"
-                        link={"/home/agriculture/"+notification.target}
+                        link={"/home/agriculture/" + notification.target}
                     >{notification.message}
                     </FarmInfoItem>;
                     break;
