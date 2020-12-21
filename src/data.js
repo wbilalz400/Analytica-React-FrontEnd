@@ -235,7 +235,7 @@ export default [
   {
     pics: [
       "https://idsb.tmgrup.com.tr/ly/uploads/images/2020/05/13/35552.jpeg",
-      "https://sm.news/wp-content/uploads/2020/08/26/red-3580560_960_720.jpg",
+      "https://sm.news/wp-content/uploads/2020/08/26/red-3580560_960_720.jpg"
 
 
     ],
