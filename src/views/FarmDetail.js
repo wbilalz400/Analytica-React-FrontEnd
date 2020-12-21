@@ -21,6 +21,7 @@ import humidityIcon from '../assets/images/humidity.png';
 import { LineChart } from 'react-chartkick';
 import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
+import lightIcon from '../assets/images/light.png';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './mycss.css'
@@ -66,7 +67,7 @@ export default props => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1
-      };
+    };
 
     if (!props.match.params.id) window.location.href = "/home/agriculture"
     const [tempSensors, setTempSensors] = useState(null);
@@ -76,8 +77,10 @@ export default props => {
     const [fruitPrediction, setFruitPrediction] = useState(null);
     const [vegetablePrediction, setVegetablePrediction] = useState(null);
     const [cropPrediction, setCropPrediction] = useState(null);
+    const [lightSensor, setLightSensor] = useState(null);
+    const [myInterval, setMyInterval] = useState(null);
 
-    if (farm === null) {
+    const fetchData = () => {
         getFarm(props.match.params.id)
             .then(res => {
                 if (res.data.success) {
@@ -85,6 +88,7 @@ export default props => {
                     setHumidSensors(res.data.humidSensors.filter(hD => hD.data.length !== 0));
                     setPHSensors(res.data.pHSensors.filter(pH => pH.data.length !== 0));
                     setFarm(res.data.farm);
+                    setLightSensor(res.data.lightSensors);
                     let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT);
                     let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG);
                     let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP);
@@ -92,7 +96,7 @@ export default props => {
 
                     setFruitPrediction(fruitPredictionA.length !== 0 ? fruitPredictionA[0].prediction.map(P => fruitsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setVegetablePrediction(vegetablePredictionA.length !== 0 ? vegetablePredictionA[0].prediction.map(P => vegetablesDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
-                    setCropPrediction(cropPredictionA.length !== 0 ?cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setCropPrediction(cropPredictionA.length !== 0 ? cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
 
                 } else {
                     window.location.href = "/home/agriculture";
@@ -103,6 +107,11 @@ export default props => {
                 console.log(e);
             })
     }
+    useEffect(() => {
+        if (myInterval === null) {
+            setMyInterval(setInterval(fetchData, 3000));
+        };
+    }, [myInteval]);
     if (farm === null) return <div></div>
     return <div className="FDMain">
         <div className="Heading">
@@ -142,6 +151,14 @@ export default props => {
                     label={`Humidity(${HD.sensor.id.split('_')[1]})`}
                     value={`${parseInt(HD.data[0].value)}`}
                 />)}
+            {lightSensor !== null && lightSensor.map(LS => {
+                return <ColumnImageText
+                    image={lightSensor}
+                    color="lightblue"
+                    label={`Light Sensor`}
+                    value={`${parseInt(LS)}`}
+                />
+            })}
 
 
         </Paper>
@@ -267,41 +284,41 @@ export default props => {
                     </div>
                 </SwipeCard>)}
             </Paper>]}
-            <div className="Heading">
-                <h3>Pest Forecasting</h3>
-                <div></div>
-                <br></br>
-                <a href="/remedies">View Remedies</a>
-            </div>,
-            <h4 style={{background:"white"}}>Swipe to view More</h4>
-            <div id="hellog" style={{background:"gray"}}>
-            
+        <div className="Heading">
+            <h3>Pest Forecasting</h3>
+            <div></div>
+            <br></br>
+            <a href="/remedies">View Remedies</a>
+        </div>,
+            <h4 style={{ background: "white" }}>Swipe to view More</h4>
+        <div id="hellog" style={{ background: "gray" }}>
+
             <Container>
-            <div className="clearfix mt-5 mb-2">
-            </div>
-            <Slider {...settings}>
-                {pests.map(function(pest) {
-                return (
-                    <React.Fragment>
-                        <div className="card-wrapper">
-                    <div className="card">
-                        <div className="card-image">
-                            <img src={pest.pic} />
-                        </div>
-                        
-                        <div className="details">
-                            <h2>{pest.name}</h2>
-                        
-                        </div>
-                    </div>
+                <div className="clearfix mt-5 mb-2">
                 </div>
-                    </React.Fragment>
-                );
-                })}
-            </Slider>
+                <Slider {...settings}>
+                    {pests.map(function (pest) {
+                        return (
+                            <React.Fragment>
+                                <div className="card-wrapper">
+                                    <div className="card">
+                                        <div className="card-image">
+                                            <img src={pest.pic} />
+                                        </div>
+
+                                        <div className="details">
+                                            <h2>{pest.name}</h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </React.Fragment>
+                        );
+                    })}
+                </Slider>
             </Container>
 
-            </div>
-            
+        </div>
+
     </div>;
 }
