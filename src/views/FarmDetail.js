@@ -159,7 +159,7 @@ export default props => {
                 />)}
             {lightSensor !== null && lightSensor.map(LS => {
                 return <ColumnImageText
-                    image={lightSensor}
+                    image={lightIcon}
                     color="lightblue"
                     label={`Light Sensor`}
                     value={`${parseInt(LS)}`}
