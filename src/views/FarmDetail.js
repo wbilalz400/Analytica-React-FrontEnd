@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FarmDetail.css';
 import { Paper, Card } from '@material-ui/core';
 import truckIcon from '../assets/images/truck.svg';
@@ -115,7 +115,7 @@ export default props => {
         if (myInterval === null) {
             setMyInterval(setInterval(fetchData, 3000));
         };
-    }, [myInteval]);
+    }, [myInterval]);
     if (farm === null) return <div></div>
     return <div className="FDMain">
         <div className="Heading">

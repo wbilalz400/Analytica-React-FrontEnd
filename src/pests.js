@@ -380,7 +380,7 @@ const pests = [
         },
     },
     {
-        name:"Stem Girdler",
+        name:"Stem Grildler",
         pic:StemGirdler,
         remedies:{
             managamentCultural:[
