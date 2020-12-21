@@ -79,6 +79,7 @@ export default props => {
     const [cropPrediction, setCropPrediction] = useState(null);
     const [lightSensor, setLightSensor] = useState(null);
     const [myInterval, setMyInterval] = useState(null);
+    const [pestPrediction, setPestPrediction] = useState(null);
 
     const fetchData = () => {
         getFarm(props.match.params.id)
@@ -92,11 +93,14 @@ export default props => {
                     let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT);
                     let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG);
                     let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP);
+                    let pestPredictionA = res.data.predictions.filter(P => P.predictionType === 3);
+
                     console.log(fruitPredictionA);
 
                     setFruitPrediction(fruitPredictionA.length !== 0 ? fruitPredictionA[0].prediction.map(P => fruitsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setVegetablePrediction(vegetablePredictionA.length !== 0 ? vegetablePredictionA[0].prediction.map(P => vegetablesDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setCropPrediction(cropPredictionA.length !== 0 ? cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setPestPrediction(pestPredictionA.length !== 0 ? pestPredictionA[0].prediction.map(P => {  return pests.find(PP => PP.name.trim().toLowerCase() == P.trim().toLowerCase()) }) : []);
 
                 } else {
                     window.location.href = "/home/agriculture";
@@ -296,8 +300,9 @@ export default props => {
             <Container>
                 <div className="clearfix mt-5 mb-2">
                 </div>
+                {pestPrediction && 
                 <Slider {...settings}>
-                    {pests.map(function (pest) {
+                    {pestPrediction.map(function (pest) {
                         return (
                             <React.Fragment>
                                 <div className="card-wrapper">
@@ -315,7 +320,7 @@ export default props => {
                             </React.Fragment>
                         );
                     })}
-                </Slider>
+                </Slider>}
             </Container>
 
         </div>
