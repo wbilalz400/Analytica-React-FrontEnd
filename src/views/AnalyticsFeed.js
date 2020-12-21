@@ -7,7 +7,7 @@ import farmLabelIcon from '../assets/images/farm.png';
 import tempPlant from '../assets/images/temperature-plant.png';
 import pHIcon from '../assets/images/ph.png';
 import humidityIcon from '../assets/images/humidity.png';
-import { getFarms, getTrucks, getNotification } from '../api';
+import { getFarms, getTrucks, getNotification, getRetails, getSmarts } from '../api';
 import temperatureIcon from '../assets/images/temperature-icon.png';
 import shopIcon from '../assets/images/shop.png';
 import dollarIcon from '../assets/images/dollar.png';
@@ -22,6 +22,7 @@ import reportPointIcon from '../assets/images/reportpoint.png';
 import smartHomeMainIcon from '../assets/images/smartHomeMain.png';
 import smartHomeIcon from '../assets/images/smartHomeIcon.png';
 import electricIcon from '../assets/images/electricMeter (1).png';
+import Skeleton from 'react-loading-skeleton';
 
 
 
@@ -199,6 +200,10 @@ export const ReportItem = props => <Paper onClick={() => window.location.href = 
 export default props => {
     const [trucks, setTrucks] = useState(null);
     const [farms, setFarms] = useState(null);
+    const [smarts, setSmarts] = useState(null);
+    const [retails, setRetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const [notifications, setNotifications] = useState(null);
     const generateCriticalJSX = () => {
         if (notifications.filter(n => n.type === CRITICAL).length === 0) return null;
@@ -266,48 +271,84 @@ export default props => {
         getFarms()
             .then(farms => { setFarms(farms) });
     }
+    if (retails === null) {
+        getRetails().then(res => {
+            if (res.data.success) {
+                setRetails(res.data.retails);
+                setTimeout(() => setLoading(false), 5000);
+            }
+            else {
+                alert(res.data.message);
+            }
+        }).catch(e => console.error(e));
+    }
+    if (smarts === null) {
+        getSmarts()
+            .then(res => {
+                if (res.data.success) {
+                    setSmarts(res.data.smarts);
+                }
+                else
+                    alert(res.data.message);
+            })
+            .catch(e => console.error(e));
+    }
     return <Card className="AFMain">
         {notifications && generateCriticalJSX()}
         <Paper className="Heading">
             <h3>Happening Now</h3>
             <div></div>
         </Paper>
-        {farms !== null && farms.map(farm => {
-            let temp = -1, humidity = -1, pH = -1;
-            let tempSensorsWithData = farm.tempSensors.filter(tP => tP.data.length !== 0);
-            let humidSensorsWithData = farm.humidSensors.filter(hD => hD.data.length !== 0);
-            let pHSensorsWithData = farm.pHSensors.filter(pH => pH.data.length !== 0);
+        {loading? <Skeleton height={100} width={1000} count={5}/>: 
+            <>
+                {farms !== null && farms.map(farm => {
+                    let temp = -1, humidity = -1, pH = -1;
+                    let tempSensorsWithData = farm.tempSensors.filter(tP => tP.data.length !== 0);
+                    let humidSensorsWithData = farm.humidSensors.filter(hD => hD.data.length !== 0);
+                    let pHSensorsWithData = farm.pHSensors.filter(pH => pH.data.length !== 0);
 
-            temp = tempSensorsWithData.length > 0 ? parseInt(tempSensorsWithData[0].data[0].value).toPrecision(2) : null;
-            humidity = humidSensorsWithData.length > 0 ? parseInt(humidSensorsWithData[0].data[0].value).toPrecision(2) : null;
-            pH = pHSensorsWithData.length > 0 ? parseInt(pHSensorsWithData[0].data[0].value).toPrecision(2) : null;
+                    temp = tempSensorsWithData.length > 0 ? parseInt(tempSensorsWithData[0].data[0].value).toPrecision(2) : null;
+                    humidity = humidSensorsWithData.length > 0 ? parseInt(humidSensorsWithData[0].data[0].value).toPrecision(2) : null;
+                    pH = pHSensorsWithData.length > 0 ? parseInt(pHSensorsWithData[0].data[0].value).toPrecision(2) : null;
 
-            return [<FarmItem
-                id={farm.farm.name}
-                temp={temp}
-                humidity={humidity}
-                pH={pH}
-            />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/agriculture/" + farm.farm._id}>View Details</a>
-            ]
-        })}
+                    return [<FarmItem
+                        id={farm.farm.name}
+                        temp={temp}
+                        humidity={humidity}
+                        pH={pH}
+                    />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/agriculture/" + farm.farm._id}>View Details</a>
+                    ]
+                })}
 
-        {trucks !== null && trucks.map(truck => <TruckItem
-            from={truck.truck.from}
-            to={truck.truck.to}
-            current={"Data not submitted"}
-            departed={truck.truck.departTime}
-            arrival={truck.truck.arrivalTime}
-            temperature={truck.tempSensors.length > 0 && truck.tempSensors[0].data.length !== 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
-            onTime="ON TIME"
-            id={truck.truck._id}
-        />)}
+                {trucks !== null && trucks.map(truck => <TruckItem
+                    from={truck.truck.from}
+                    to={truck.truck.to}
+                    current={"Data not submitted"}
+                    departed={truck.truck.departTime}
+                    arrival={truck.truck.arrivalTime}
+                    temperature={truck.tempSensors.length > 0 && truck.tempSensors[0].data.length !== 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
+                    onTime="ON TIME"
+                    id={truck.truck._id}
+                />)}
+                {smarts !== null ? smarts.map(smart => {
 
-        {/* <Paper style={{ backgroundColor: 'mediumslateblue', color: 'white' }} className="Heading">
-        <h3>Information</h3>
-        <div style={{ borderColor: 'white' }}></div>
-    </Paper>
-    <FarmInfoItem label="View Recommendation" link="#">
-        New crop recommendations available!
-    </FarmInfoItem> */}
+                    return [<SmartItem
+                        name={smart.smart.name}
+                        temp={(smart.temperatureValues && smart.temperatureValues.length !== 0) ? smart.temperatureValues[0] : null}
+                        humidity={(smart.humidityValues && smart.humidityValues.length !== 0) ? smart.humidityValues[0] : null}
+                        electricity={(smart.electricityValues && smart.electricityValues.length !== 0) ? smart.electricityValues[0] : null}
+                    />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/smart/" + smart.smart._id}>View Details</a>
+                    ]
+                }) : <Skeleton height={80} width={800} style={{ marginLeft: 'auto' }} count={2} />}
+
+                {retails !== null ? retails.map(retail => [<RetailItem
+                    name={retail.retail.name}
+                    temp={retail.temperature}
+                    sales={retail.productsSold}
+                    customer={retail.customers}
+                />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/retail/" + retail.retail._id}>View Details</a>
+                ]) : <Skeleton height={100} width={1000} count={2} />}
+            </>
+        }
     </Card>
 }
