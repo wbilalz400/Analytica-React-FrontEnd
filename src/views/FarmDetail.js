@@ -66,7 +66,7 @@ export default props => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1
-      };
+    };
 
     if (!props.match.params.id) window.location.href = "/home/agriculture"
     const [tempSensors, setTempSensors] = useState(null);
@@ -76,6 +76,7 @@ export default props => {
     const [fruitPrediction, setFruitPrediction] = useState(null);
     const [vegetablePrediction, setVegetablePrediction] = useState(null);
     const [cropPrediction, setCropPrediction] = useState(null);
+    const [pestPrediction, setPestPrediction] = useState(null);
 
     if (farm === null) {
         getFarm(props.match.params.id)
@@ -88,11 +89,14 @@ export default props => {
                     let fruitPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_FRUIT);
                     let vegetablePredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_VEG);
                     let cropPredictionA = res.data.predictions.filter(P => P.predictionType === PREDICTED_CROP);
+                    let pestPredictionA = res.data.predictions.filter(P => P.predictionType === 3);
+
                     console.log(fruitPredictionA);
 
                     setFruitPrediction(fruitPredictionA.length !== 0 ? fruitPredictionA[0].prediction.map(P => fruitsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setVegetablePrediction(vegetablePredictionA.length !== 0 ? vegetablePredictionA[0].prediction.map(P => vegetablesDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
-                    setCropPrediction(cropPredictionA.length !== 0 ?cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setCropPrediction(cropPredictionA.length !== 0 ? cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
+                    setPestPrediction(pestPredictionA.length !== 0 ? pestPredictionA[0].prediction.map(P => {  return pests.find(PP => PP.name.trim().toLowerCase() == P.trim().toLowerCase()) }) : []);
 
                 } else {
                     window.location.href = "/home/agriculture";
@@ -267,41 +271,42 @@ export default props => {
                     </div>
                 </SwipeCard>)}
             </Paper>]}
-            <div className="Heading">
-                <h3>Pest Forecasting</h3>
-                <div></div>
-                <br></br>
-                <a href="/remedies">View Remedies</a>
-            </div>,
-            <h4 style={{background:"white"}}>Swipe to view More</h4>
-            <div id="hellog" style={{background:"gray"}}>
-            
+        <div className="Heading">
+            <h3>Pest Forecasting</h3>
+            <div></div>
+            <br></br>
+            <a href="/remedies">View Remedies</a>
+        </div>,
+            <h4 style={{ background: "white" }}>Swipe to view More</h4>
+        <div id="hellog" style={{ background: "gray" }}>
+
             <Container>
-            <div className="clearfix mt-5 mb-2">
-            </div>
-            <Slider {...settings}>
-                {pests.map(function(pest) {
-                return (
-                    <React.Fragment>
-                        <div className="card-wrapper">
-                    <div className="card">
-                        <div className="card-image">
-                            <img src={pest.pic} />
-                        </div>
-                        
-                        <div className="details">
-                            <h2>{pest.name}</h2>
-                        
-                        </div>
-                    </div>
+                <div className="clearfix mt-5 mb-2">
                 </div>
-                    </React.Fragment>
-                );
-                })}
-            </Slider>
+                {pestPrediction && 
+                <Slider {...settings}>
+                    {pestPrediction.map(function (pest) {
+                        return (
+                            <React.Fragment>
+                                <div className="card-wrapper">
+                                    <div className="card">
+                                        <div className="card-image">
+                                            <img src={pest.pic} />
+                                        </div>
+
+                                        <div className="details">
+                                            <h2>{pest.name}</h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </React.Fragment>
+                        );
+                    })}
+                </Slider>}
             </Container>
 
-            </div>
-            
+        </div>
+
     </div>;
 }
