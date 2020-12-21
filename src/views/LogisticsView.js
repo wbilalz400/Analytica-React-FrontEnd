@@ -4,6 +4,8 @@ import { Paper } from '@material-ui/core';
 import {DEGREE_SYMBOL} from './AnalyticsFeed';
 import truckIcon from '../assets/images/truck.svg';
 import {getTrucks} from '../api';
+import { TrainRounded } from '@material-ui/icons';
+import Skeleton from 'react-loading-skeleton';
 const TruckItem = props => <Paper className="TruckItem">
     <div className="imageHolder">
         <img className="image" src={truckIcon} />
@@ -18,11 +20,13 @@ const TruckItem = props => <Paper className="TruckItem">
 </Paper>
 export default props => {
     const [trucks, setTrucks] = useState(undefined);
+    const [loading, setLoading] = useState(true);
     if (trucks === undefined) {
         getTrucks()
         .then(res => {
             if (res.data.success) {
                 setTrucks(res.data.trucks);
+                setTimeout(() => setLoading(false),3000);
             } else {
                 alert(res.data.message);
             }
@@ -35,7 +39,7 @@ export default props => {
             <div></div>
         </div>
         
-        {trucks !== undefined && trucks.map( truck => <TruckItem
+        {loading?<Skeleton height={80} width={800} style={{marginLeft:'auto'}} count={8}/>:trucks !== undefined && trucks.map( truck => <TruckItem
                 from = {truck.truck.from}
                 to = {truck.truck.to}
                 current = {"Data not submitted"}

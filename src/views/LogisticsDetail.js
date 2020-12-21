@@ -13,6 +13,7 @@ import humidityIcon from '../assets/images/humidity.png';
 import { getTruck } from '../api';
 import { LineChart } from 'react-chartkick';
 import { ColumnImageText } from './AnalyticsFeed';
+import Skeleton from 'react-loading-skeleton';
 
 const TruckItem = props => <Paper className="TruckItem">
     <div className="imageHolder">
@@ -32,11 +33,13 @@ export default props => {
     if (!props.match.params.id) window.location.href = "/home/logistics";
 
     const [truck, setTruck] = useState(undefined);
+    const [loading, setLoading] = useState(true);
     if (truck === undefined) {
         getTruck(props.match.params.id)
             .then(res => {
                 if (res.data.success) {
                     setTruck(res.data);
+                    setTimeout(() => setLoading(false), 3000);
                 } else {
                     alert(res.data.message);
                 }
@@ -49,7 +52,7 @@ export default props => {
             <h3>Logistics Report</h3>
             <div></div>
         </div>
-        <TruckItem
+        {loading ? <Skeleton height={20} width={800} style={{ marginLeft: 'auto' }} count={4} /> : <TruckItem
             from={truck.truck.from}
             to={truck.truck.to}
             current={"Data not submitted"}
@@ -58,148 +61,150 @@ export default props => {
             temperature={truck.tempSensors.length > 0 && truck.tempSensors[0].data.length !== 0 ? parseInt(truck.tempSensors[0].data[0].value) : 'Not available'}
             onTime="ON TIME"
             id={truck.truck._id}
-        />
+        />}
         <div className="Heading">
             <h3>Packages Summary</h3>
             <div></div>
         </div>
-        <Paper className="conditionCards">
-            <ColumnImageText label="Maximum Temperature" value={parseInt(Math.max(...(truck.tempSensors.map(tP => tP.max))))} image={temperatureIcon} color="orangered"/>
-            <ColumnImageText label="Minimum Temperature" value={parseInt(Math.min(...(truck.tempSensors.map(tP => tP.min))))} image={temperatureIcon} color="lightblue"/>
-            <ColumnImageText label="Average Temperature" value={parseInt(Math.max(...(truck.tempSensors.map(tP => tP.min))))} image={temperatureIcon} color="lightgreen"/>
-            <ColumnImageText label="Maximum Humidity" value={parseInt(Math.max(...(truck.humiditySensors.map(tP => tP.max))))} image={humidityIcon} color="orangered"/>
-            <ColumnImageText label="Minimum Humidity" value={parseInt(Math.min(...(truck.humiditySensors.map(tP => tP.min))))} image={humidityIcon} color="lightblue"/>
-            <ColumnImageText label="Average Humidity" value={parseInt(Math.max(...(truck.humiditySensors.map(tP => tP.min))))} image={humidityIcon} color="lightgreen"/>
+        {loading ? <Skeleton height={80} width={800} style={{ marginLeft: 'auto' }} count={1} /> : <Paper className="conditionCards">
+            <ColumnImageText label="Maximum Temperature" value={parseInt(Math.max(...(truck.tempSensors.map(tP => tP.max))))} image={temperatureIcon} color="orangered" />
+            <ColumnImageText label="Minimum Temperature" value={parseInt(Math.min(...(truck.tempSensors.map(tP => tP.min))))} image={temperatureIcon} color="lightblue" />
+            <ColumnImageText label="Average Temperature" value={parseInt(Math.max(...(truck.tempSensors.map(tP => tP.min))))} image={temperatureIcon} color="lightgreen" />
+            <ColumnImageText label="Maximum Humidity" value={parseInt(Math.max(...(truck.humiditySensors.map(tP => tP.max))))} image={humidityIcon} color="orangered" />
+            <ColumnImageText label="Minimum Humidity" value={parseInt(Math.min(...(truck.humiditySensors.map(tP => tP.min))))} image={humidityIcon} color="lightblue" />
+            <ColumnImageText label="Average Humidity" value={parseInt(Math.max(...(truck.humiditySensors.map(tP => tP.min))))} image={humidityIcon} color="lightgreen" />
 
         </Paper>
+        }
         <div className="Heading">
             <h3>Packages Condition</h3>
             <div></div>
         </div>
-        
-        <Paper className="conditionCards">
-            {truck.tempSensors.length > 0 && truck.tempSensors.map(temp => {
-                let tempValue = temp.data.length > 0 ? temp.data[0].value : undefined;
-                if (tempValue === undefined) return null;
-                let tempColor = tempValue <= 25 ? temp <= 18 ? temp <= 10 ? "blue" : "lightgreen" : "green" : "red";
-                let datum = {};
-                temp.data.forEach(data => {
-                    let date = new Date(data.time);
-                    datum[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = parseInt(data.value);
-                });
-                return <Card onClick={() => { window.location.href = "/home/device/" + truck.truck.device + "/sensor/" + temp.sensor._id }} className="conditionCard">
-                    <h3><span>{temp.sensor.id.split("_")[1]}</span></h3>
-                    <div className="conditionRow">
-                        <div className="conditionItem">
-                            <h5>Temperature</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(tempValue)}° C
+        {loading ? <Skeleton height={35} width={800} style={{ marginLeft: 'auto' }} count={8} /> :
+            <Paper className="conditionCards">
+                {truck.tempSensors.length > 0 && truck.tempSensors.map(temp => {
+                    let tempValue = temp.data.length > 0 ? temp.data[0].value : undefined;
+                    if (tempValue === undefined) return null;
+                    let tempColor = tempValue <= 25 ? temp <= 18 ? temp <= 10 ? "blue" : "lightgreen" : "green" : "red";
+                    let datum = {};
+                    temp.data.forEach(data => {
+                        let date = new Date(data.time);
+                        datum[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = parseInt(data.value);
+                    });
+                    return <Card onClick={() => { window.location.href = "/home/device/" + truck.truck.device + "/sensor/" + temp.sensor._id }} className="conditionCard">
+                        <h3><span>{temp.sensor.id.split("_")[1]}</span></h3>
+                        <div className="conditionRow">
+                            <div className="conditionItem">
+                                <h5>Temperature</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(tempValue)}° C
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>Highest</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.max)}° C
+                            </div>
+                            <div className="conditionItem">
+                                <h5>Highest</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.max)}° C
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>Lowest</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.min)}° C
+                            </div>
+                            <div className="conditionItem">
+                                <h5>Lowest</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.min)}° C
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>On Average</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.average)}° C
+                            </div>
+                            <div className="conditionItem">
+                                <h5>On Average</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.average)}° C
                     </div>
+                            </div>
+                            <div className="conditionMap">
+                                <div>History</div>
+                                <LineChart
+                                    data={datum}
+                                    width="100%"
+                                    height="100%"
+                                />
+                            </div>
                         </div>
-                        <div className="conditionMap">
-                            <div>History</div>
-                            <LineChart
-                                data={datum}
-                                width="100%"
-                                height="100%"
-                            />
-                        </div>
-                    </div>
 
-                </Card>
-            })}
-            {truck.humiditySensors.length > 0 && truck.humiditySensors.map(temp => {
-                let tempValue = temp.data.length > 0 ? temp.data[0].value : undefined;
-                if (tempValue === undefined) return null;
-                let tempColor = tempValue <= 35 ? temp <= 25 ? temp <= 15 ? "blue" : "lightgreen" : "green" : "red";
-                let datum = {};
-                temp.data.forEach(data => {
-                    let date = new Date(data.time);
-                    datum[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = parseInt(data.value);
-                });
-                return <Card onClick={() => { window.location.href = "/home/device/" + truck.truck.device + "/sensor/" + temp.sensor._id }} className="conditionCard">
-                    <h3><span>{temp.sensor.id.split("_")[1]}</span></h3>
-                    <div className="conditionRow">
-                        <div className="conditionItem">
-                            <h5>Humidity</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(tempValue)}%
+                    </Card>
+                })}
+                {truck.humiditySensors.length > 0 && truck.humiditySensors.map(temp => {
+                    let tempValue = temp.data.length > 0 ? temp.data[0].value : undefined;
+                    if (tempValue === undefined) return null;
+                    let tempColor = tempValue <= 35 ? temp <= 25 ? temp <= 15 ? "blue" : "lightgreen" : "green" : "red";
+                    let datum = {};
+                    temp.data.forEach(data => {
+                        let date = new Date(data.time);
+                        datum[`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`] = parseInt(data.value);
+                    });
+                    return <Card onClick={() => { window.location.href = "/home/device/" + truck.truck.device + "/sensor/" + temp.sensor._id }} className="conditionCard">
+                        <h3><span>{temp.sensor.id.split("_")[1]}</span></h3>
+                        <div className="conditionRow">
+                            <div className="conditionItem">
+                                <h5>Humidity</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(tempValue)}%
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>Highest</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.max)}%
+                            </div>
+                            <div className="conditionItem">
+                                <h5>Highest</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.max)}%
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>Lowest</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.min)}%
+                            </div>
+                            <div className="conditionItem">
+                                <h5>Lowest</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.min)}%
                     </div>
-                        </div>
-                        <div className="conditionItem">
-                            <h5>On Average</h5>
-                            <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                {parseInt(temp.average)}%
+                            </div>
+                            <div className="conditionItem">
+                                <h5>On Average</h5>
+                                <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
+                                    {parseInt(temp.average)}%
                     </div>
+                            </div>
+                            <div className="conditionMap">
+                                <div>History</div>
+                                <LineChart
+                                    data={datum}
+                                    width="100%"
+                                    height="100%"
+                                />
+                            </div>
                         </div>
-                        <div className="conditionMap">
-                            <div>History</div>
-                            <LineChart
-                                data={datum}
-                                width="100%"
-                                height="100%"
-                            />
-                        </div>
-                    </div>
 
-                </Card>
-            })}
-        </Paper>
+                    </Card>
+                })}
+            </Paper>}
         <div className="Heading">
             <h3>Truck Location</h3>
             <div></div>
         </div>
-        <Paper className="mapContainer">
-            <div style={{ height: '100%', width: '100%', }}>
-                {(truck.locationSensors.length > 0 && truck.locationSensors[0].data.length > 0) ?
-                    <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
-                        defaultCenter={{ lat: parseFloat(truck.locationSensors[0].data[0].value.split(",")[0]), lng: parseFloat(truck.locationSensors[0].data[0].value.split(",")[1]) }}
-                        defaultZoom={11}
-                    >
-                        <TruckLocationMarker
-                            lat={parseFloat(truck.locationSensors[0].data[0].value.split(",")[0])}
-                            lng={parseFloat(truck.locationSensors[0].data[0].value.split(",")[1])}
-                            text="My Marker"
-                        />
-                    </GoogleMapReact> : "Location Data Not Reported"}
-            </div>
-        </Paper>
+        {loading ? <Skeleton height={80} width={800} style={{ marginLeft: 'auto' }} count={1} /> :
+            <Paper className="mapContainer">
+                <div style={{ height: '100%', width: '100%', }}>
+                    {(truck.locationSensors.length > 0 && truck.locationSensors[0].data.length > 0) ?
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
+                            defaultCenter={{ lat: parseFloat(truck.locationSensors[0].data[0].value.split(",")[0]), lng: parseFloat(truck.locationSensors[0].data[0].value.split(",")[1]) }}
+                            defaultZoom={11}
+                        >
+                            <TruckLocationMarker
+                                lat={parseFloat(truck.locationSensors[0].data[0].value.split(",")[0])}
+                                lng={parseFloat(truck.locationSensors[0].data[0].value.split(",")[1])}
+                                text="My Marker"
+                            />
+                        </GoogleMapReact> : "Location Data Not Reported"}
+                </div>
+            </Paper>}
         <div className="Heading">
             <h3>Truck Condition</h3>
             <div></div>
         </div>
-        <Paper className="conditionCards">
+        {loading ? <Skeleton height={20} width={800} style={{ marginLeft: 'auto' }} count={4} /> : <Paper className="conditionCards">
             {truck.engineTempSensors.length > 0 && truck.engineTempSensors[0].data.length > 0 &&
 
                 <Card className="truckCard">
@@ -242,6 +247,6 @@ export default props => {
                         <span style={{ color: 'lightgreen', fontWeight: 'bold' }}>{truck.ambientTempSensors[0].data[0].value}{DEGREE_SYMBOL} C</span>
                     </div>
                 </Card>}
-        </Paper>
+        </Paper>}
     </div>;
 }

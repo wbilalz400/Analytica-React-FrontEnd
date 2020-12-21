@@ -5,14 +5,15 @@ import './LogisticsView.css';
 
 import { FarmItem } from './AnalyticsFeed';
 import { getFarms } from '../api';
+import Skeleton from 'react-loading-skeleton';
 
 export default props => {
 
     const [farms, setFarms] = useState(null);
 
     if (farms === null) {
-        getFarms()
-            .then(farms => { debugger;setFarms(farms) });
+        setTimeout(() => getFarms()
+            .then(farms => { debugger;setFarms(farms) }),3000);
     }
     return <div className="LogisticsMain">
         <div className="Heading">
@@ -23,7 +24,7 @@ export default props => {
             </div>
 
         </div>
-        {farms !== null && farms.map(farm => {
+        {farms !== null?farms.map(farm => {
             let temp = -1, humidity = -1, pH = -1;
             let tempSensorsWithData = farm.tempSensors.filter(tP => tP.data.length !== 0);
             let humidSensorsWithData = farm.humidSensors.filter(hD => hD.data.length !== 0);
@@ -40,7 +41,7 @@ export default props => {
                 pH={pH}
             />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/agriculture/"+farm.farm._id}>View Details</a>
             ]
-        })}
+        }):<Skeleton height={160} width={800} style={{marginLeft:'auto'}} count={6}/>}
         
         <div onClick={() => window.location.href = "/home/agriculture/add"} className="addIcon">
             <span >+</span>

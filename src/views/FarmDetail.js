@@ -27,6 +27,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './mycss.css'
 import pests from '../pests';
 import { getFarm } from '../api';
+import Skeleton from 'react-loading-skeleton';
 const PREDICTED_VEG = 0;
 const PREDICTED_FRUIT = 1;
 const PREDICTED_CROP = 2;
@@ -80,6 +81,7 @@ export default props => {
     const [lightSensor, setLightSensor] = useState(null);
     const [myInterval, setMyInterval] = useState(null);
     const [pestPrediction, setPestPrediction] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = () => {
         getFarm(props.match.params.id)
@@ -100,8 +102,8 @@ export default props => {
                     setFruitPrediction(fruitPredictionA.length !== 0 ? fruitPredictionA[0].prediction.map(P => fruitsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setVegetablePrediction(vegetablePredictionA.length !== 0 ? vegetablePredictionA[0].prediction.map(P => vegetablesDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
                     setCropPrediction(cropPredictionA.length !== 0 ? cropPredictionA[0].prediction.map(P => cropsDataA.find(FD => P.toLowerCase().trim() === FD.name.toLowerCase().trim())).reverse() : null);
-                    setPestPrediction(pestPredictionA.length !== 0 ? pestPredictionA[0].prediction.map(P => {  return pests.find(PP => PP.name.trim().toLowerCase() == P.trim().toLowerCase()) }) : []);
-
+                    setPestPrediction(pestPredictionA.length !== 0 ? pestPredictionA[0].prediction.map(P => { return pests.find(PP => PP.name.trim().toLowerCase() == P.trim().toLowerCase()) }) : []);
+                    setTimeout(() => setLoading(false), 3000);
                 } else {
                     window.location.href = "/home/agriculture";
                 }
@@ -122,18 +124,18 @@ export default props => {
             <h3>Farm Report</h3>
             <div></div>
         </div>
-        <FarmItem
+        {!loading ? <FarmItem
             id={farm.name}
             temp={tempSensors.length > 0 ? parseInt(tempSensors[0].data[0].value).toPrecision(2) : null}
             humidity={humidSensors.length > 0 ? parseInt(humidSensors[0].data[0].value).toPrecision(2) : null}
             pH={pHSensors.length > 0 ? parseInt(pHSensors[0].data[0].value).toPrecision(2) : null}
-        />
+        /> : <Skeleton height={20} width={800} style={{ marginLeft: 'auto' }} count={4} />}
 
         <div className="Heading">
             <h3>Enviornment Conditions</h3>
             <div></div>
         </div>
-        <Paper className="conditionCards">
+        {loading ? <Skeleton height={50} width={800} style={{ marginLeft: 'auto' }} count={6} /> : <Paper className="conditionCards">
             {tempSensors !== null && tempSensors.map(tP =>
                 <ColumnImageText
                     image={temperatureIcon}
@@ -165,13 +167,13 @@ export default props => {
             })}
 
 
-        </Paper>
+        </Paper>}
         <div className="Heading">
             <h3>Farm Region</h3>
             <div></div>
         </div>
         <Paper className="mapContainer">
-            <div style={{ height: '100%', width: '100%', }}>
+            {loading ? <Skeleton height={80} width={800} style={{ marginLeft: 'auto' }} count={1} /> : <div style={{ height: '100%', width: '100%', }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyD0FFwKL9zAZIpjkM9zf7CKQeNoFUIE6Ss' }}
                     defaultCenter={{ lat: parseFloat(farm.latitude), lng: parseFloat(farm.longtitude) }}
@@ -179,13 +181,13 @@ export default props => {
                 >
 
                 </GoogleMapReact>
-            </div>
+            </div>}
         </Paper>
         <div className="Heading">
             <h3>Farm Statistics</h3>
             <div></div>
         </div>
-        <Paper className="conditionCards">
+        {loading? <Skeleton height={20} width={800} style={{marginLeft:'auto'}} count={6}/>:<Paper className="conditionCards">
             {tempSensors !== null && tempSensors.map(tP => {
                 let data = {};
                 tP.data.forEach(datum => {
@@ -230,7 +232,7 @@ export default props => {
             }
             )}
 
-        </Paper>
+        </Paper>}
         {fruitPrediction == null ? "" :
             [<div className="Heading">
                 <h3>Recommended Fruits</h3>
@@ -300,27 +302,27 @@ export default props => {
             <Container>
                 <div className="clearfix mt-5 mb-2">
                 </div>
-                {pestPrediction && 
-                <Slider {...settings}>
-                    {pestPrediction.map(function (pest) {
-                        return (
-                            <React.Fragment>
-                                <div className="card-wrapper">
-                                    <div className="card">
-                                        <div className="card-image">
-                                            <img src={pest.pic} />
-                                        </div>
+                {pestPrediction?
+                    <Slider {...settings}>
+                        {pestPrediction.map(function (pest) {
+                            return (
+                                <React.Fragment>
+                                    <div className="card-wrapper">
+                                        <div className="card">
+                                            <div className="card-image">
+                                                <img src={pest.pic} />
+                                            </div>
 
-                                        <div className="details">
-                                            <h2>{pest.name}</h2>
+                                            <div className="details">
+                                                <h2>{pest.name}</h2>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </React.Fragment>
-                        );
-                    })}
-                </Slider>}
+                                </React.Fragment>
+                            );
+                        })}
+                    </Slider>:<Skeleton height={20} width={800} style={{marginLeft:'auto'}} count={4}/>}
             </Container>
 
         </div>

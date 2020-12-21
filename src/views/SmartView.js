@@ -5,13 +5,14 @@ import './LogisticsView.css';
 
 import { FarmItem, SmartItem } from './AnalyticsFeed';
 import { getSmarts } from '../api';
+import Skeleton from 'react-loading-skeleton';
 
 export default props => {
 
     const [smarts, setSmarts] = useState(null);
 
     useEffect(() => {
-        setTimeout(fetchData, 100);
+        setTimeout(fetchData, 3000);
     }, []);
     const fetchData = () => {
         getSmarts()
@@ -33,7 +34,7 @@ export default props => {
             </div>
 
         </div>
-        {smarts !== null && smarts.map(smart => {
+        {smarts !== null?smarts.map(smart => {
 
             return [<SmartItem
                 name={smart.smart.name}
@@ -42,7 +43,7 @@ export default props => {
                 electricity={(smart.electricityValues && smart.electricityValues.length !== 0) ? smart.electricityValues[0] : null}
             />, <a style={{ marginLeft: 'auto', marginRight: 10 }} href={"/home/smart/" + smart.smart._id}>View Details</a>
             ]
-        })}
+        }):<Skeleton height={80} width={800} style={{marginLeft:'auto'}} count={4}/>}
 
         <div onClick={() => window.location.href = "/home/smart/add"} className="addIcon">
             <span >+</span>
