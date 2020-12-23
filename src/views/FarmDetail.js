@@ -310,11 +310,11 @@ export default props => {
                                     <div className="card-wrapper">
                                         <div className="card">
                                             <div className="card-image">
-                                                <img src={pest.pic} />
+                                                <img src={pest?.pic} />
                                             </div>
 
                                             <div className="details">
-                                                <h2>{pest.name}</h2>
+                                                <h2>{pest?.name}</h2>
 
                                             </div>
                                         </div>

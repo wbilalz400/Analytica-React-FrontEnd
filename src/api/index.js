@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://analyticaiot-backend.herokuapp.com/';
 const GET_DASHBOARD = '/dashboard/{id}';
 const UPDATE_DASHBOARD = '/dashboard/{id}';
 const ADD_CHART = '/dashboard/chart/{type}/{device}/{sensor}/{days}';
