@@ -392,13 +392,13 @@ export default class extends React.Component {
                                 <Route path='/home/logistics/add' component={AddTruck} />
                                 <Route path='/home/logistics/:id' component={LogisticsDetail} />
                                 <Route path='/home/logistics' component={LogisticsView} />
-                                <Route path='/home/retail/:id' component={RetailDetailView} />
                                 <Route path='/home/retail/add' component={AddRetail} />
-                                <Route path='/home/reports/:id' component={ReportsDetailView} />
+                                <Route path='/home/retail/:id' component={RetailDetailView} />
                                 <Route path='/home/reports/add' component={AddReportView} />
+                                <Route path='/home/reports/:id' component={ReportsDetailView} />
                                 <Route path='/home/reports' component={ReportsView} />
                                 <Route path='/home/retail' component={RetailView} />
-                                <Route path="/home/smart/add" component={AddSmart}/>
+                                <Route path="/home/smart/add" component={AddSmart} />
                                 <Route path="/home/smart/:id" component={SmartDetailView} />
 
                                 <Route path="/home/smart" component={SmartView} />

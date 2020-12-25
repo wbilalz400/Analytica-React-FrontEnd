@@ -26,6 +26,7 @@
     flex-direction: column;
     background-color: white;
     padding: 20px;
+    z-index: 4;
 }
 .RDMain .reportModalContent > * {
     width: 100%;

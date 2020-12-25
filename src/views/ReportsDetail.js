@@ -137,7 +137,7 @@ const ReportsDetailView = props => {
             <div></div>
         </div>
         <Paper className="conditionCards">
-            <p>{report?`This reports occurs every week on ${report?.time}. This report has ${report?.reportItems?.length} items`:<Skeleton height={40} width={800}/>}</p>
+            <p>{report?`This reports occurs  ${stringResource[report?.type]}. This report has ${report?.reportItems?.length} items`:<Skeleton height={40} width={800}/>}</p>
         </Paper>
         <div className="Heading">
             <h3>Report Components</h3>

@@ -95,28 +95,28 @@ export default props => {
                         <h3><span>{temp.sensor.id.split("_")[1]}</span></h3>
                         <div className="conditionRow">
                             <div className="conditionItem">
-                                <h5>Temperature</h5>
+                                <h5>{/shock/.test(temp.sensor.id.toLowerCase()) ? "Shocks" : "Temperature"}</h5>
                                 <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                    {parseInt(tempValue)}° C
-                    </div>
+                                    {parseInt(tempValue)}{/shock/.test(temp.sensor.id.toLowerCase()) ? "N / m" : "° C"}
+                                </div>
                             </div>
                             <div className="conditionItem">
                                 <h5>Highest</h5>
                                 <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                    {parseInt(temp.max)}° C
-                    </div>
+                                    {parseInt(temp.max)}{/shock/.test(temp.sensor.id.toLowerCase()) ? "N / m" : "° C"}
+                                </div>
                             </div>
                             <div className="conditionItem">
                                 <h5>Lowest</h5>
                                 <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                    {parseInt(temp.min)}° C
-                    </div>
+                                    {parseInt(temp.min)}{/shock/.test(temp.sensor.id.toLowerCase()) ? "N / m" : "° C"}
+                                </div>
                             </div>
                             <div className="conditionItem">
                                 <h5>On Average</h5>
                                 <div style={{ borderColor: tempColor, color: tempColor, fontSize: 23 }} className="temperatureCard">
-                                    {parseInt(temp.average)}° C
-                    </div>
+                                    {parseInt(temp.average)}{/shock/.test(temp.sensor.id.toLowerCase()) ? "N / m" : "° C"}
+                                </div>
                             </div>
                             <div className="conditionMap">
                                 <div>History</div>
@@ -179,6 +179,12 @@ export default props => {
                     </Card>
                 })}
             </Paper>}
+        {truck?.recommendRoute &&
+            <div className="Heading">
+                <h3>{truck.recommendRoute}</h3>
+                <div></div>
+            </div>
+        }
         <div className="Heading">
             <h3>Truck Location</h3>
             <div></div>

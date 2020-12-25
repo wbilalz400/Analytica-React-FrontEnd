@@ -251,10 +251,10 @@ export default props => {
                 if (res.data.success) {
                     setNotifications(res.data.notifications);
                 } else {
-                    alert(res.data.message);
+                    console.log(res.data);
                 }
             })
-            .catch(e => alert(e));
+            .catch(e => {throw e});
     }
     if (trucks === null) {
         getTrucks()

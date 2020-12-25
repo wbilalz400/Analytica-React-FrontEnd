@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const BASE_URL = 'https://analyticaiot-backend.herokuapp.com/';
+const BASE_URL = 'http://localhost:3001';
 const GET_DASHBOARD = '/dashboard/{id}';
 const UPDATE_DASHBOARD = '/dashboard/{id}';
 const ADD_CHART = '/dashboard/chart/{type}/{device}/{sensor}/{days}';
@@ -16,6 +16,7 @@ const ADD_TVOC = '/dashboard/tvoc/{device}/{sensor}'
 const ADD_TEMPERATURE = '/dashboard/temperature/{device}/{sensor}';
 const GET_DEVICES = '/device';
 const GET_SENSORS = '/device/{deviceId}';
+const GET_SENSORS_BY_ID = '/device/id/{deviceId}'
 const GET_DATA_LIMIT = '/device/{deviceId}/sensor/{sensorId}/limit/{limit}';
 const GET_DATA_DAYS = '/device/{deviceId}/sensor/{sensorId}/days/{days}';
 const DELETE_WIDGET = '/dashboard/widget/{widgetId}';
@@ -26,11 +27,13 @@ const POST_FARM = '/farm';
 const GET_FARM = '/farm/{id}';
 const GET_TRUCKS = '/truck';
 const GET_TRUCK = '/truck/{id}';
-const GET_NOTIFICATION = '/notification';
+const GET_NOTIFICATION = '/device/notification';
 const POST_TRUCK = '/truck';
 const REPORT = '/reports';
 const RETAIL = '/retail';
 const SMART = '/smart';
+const ROUTE = '/truck/route/routes';
+
 
 
 
@@ -59,12 +62,19 @@ export const getTrucks = () => {
     return API.get(GET_TRUCKS);
 }
 
+export const getRoutes = () => {
+    return API.get(ROUTE);
+}
+
+export const addRoute = payload => API.post(ROUTE,payload);
+
 export const addSmart =  (payload) => API.post(SMART,payload);
 
 export const getSmarts = () => API.get(SMART);
 
 export const getSmart = id => API.get(`${SMART}/${id}`);
 
+export const updateRetail = (id, payload) => API.patch(`${RETAIL}/${id}`,payload);
 
 export const getReports = () => API.get(REPORT);
 
@@ -90,6 +100,9 @@ export const getNotification = () => {
 
 export const addTruck = payload => {
     return API.post(POST_TRUCK,payload);
+}
+export const getDeviceById = id => {
+    return API.get(GET_SENSORS_BY_ID.replace("{deviceId}",id));
 }
 
 export const getDaysData = (device, sensor, days) => {
